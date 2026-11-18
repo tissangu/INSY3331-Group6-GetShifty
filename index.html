@@ -1568,6 +1568,508 @@
         display: table-cell !important;
       }
     }
+
+    /* ==========================================================================
+       Business Lead Enhancements: Getting Started, Schedule Readiness,
+       Business Impact Calculator, and Value Proposition Styling
+       ========================================================================== */
+    /* Getting Started Card */
+    .getting-started-card {
+      background: #ffffff;
+      border: 1px solid var(--primary-border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+    }
+    .getting-started-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .getting-started-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .getting-started-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      letter-spacing: 0.04em;
+    }
+    .getting-started-value-quote {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      line-height: 1.45;
+      margin-bottom: 1rem;
+      padding: 0.65rem 0.95rem;
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .getting-started-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.9rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.15s ease;
+    }
+    .step-card:hover {
+      border-color: var(--primary-border);
+    }
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--primary-border);
+    }
+    .step-body h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.2rem;
+    }
+    .step-body p {
+      font-size: 0.775rem;
+      color: var(--slate-600);
+      line-height: 1.4;
+    }
+    .getting-started-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--slate-200);
+    }
+    .getting-started-collapse-btn {
+      background: none;
+      border: none;
+      color: var(--slate-500);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius-sm);
+    }
+    .getting-started-collapse-btn:hover {
+      color: var(--slate-800);
+      background: var(--slate-100);
+    }
+
+    /* Schedule Readiness Banner */
+    .schedule-readiness-banner {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease-in-out;
+    }
+    .readiness-main-col {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+      min-width: 280px;
+    }
+    .readiness-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .readiness-text h3 {
+      font-size: 1rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.15rem;
+    }
+    .readiness-text p {
+      font-size: 0.8rem;
+      color: var(--slate-600);
+      line-height: 1.35;
+    }
+    .readiness-stats-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .readiness-stat-chip {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.45rem 0.75rem;
+      text-align: center;
+      min-width: 95px;
+    }
+    .readiness-stat-val {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: block;
+      line-height: 1.1;
+    }
+    .readiness-stat-label {
+      font-size: 0.675rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--slate-500);
+      letter-spacing: 0.03em;
+    }
+    /* Status styles */
+    .schedule-readiness-banner.status-ready {
+      border-color: var(--emerald-500);
+      background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 60%);
+    }
+    .schedule-readiness-banner.status-ready .readiness-icon-wrap {
+      background: var(--emerald-100);
+      color: var(--emerald-700);
+    }
+    .schedule-readiness-banner.status-ready .readiness-text h3 {
+      color: var(--emerald-800);
+    }
+    .schedule-readiness-banner.status-attention {
+      border-color: var(--amber-500);
+      background: linear-gradient(90deg, #fffbeb 0%, #ffffff 60%);
+    }
+    .schedule-readiness-banner.status-attention .readiness-icon-wrap {
+      background: var(--amber-100);
+      color: var(--amber-700);
+    }
+    .schedule-readiness-banner.status-attention .readiness-text h3 {
+      color: var(--amber-900);
+    }
+    .schedule-readiness-banner.status-none {
+      border-color: var(--slate-300);
+      background: linear-gradient(90deg, #f8fafc 0%, #ffffff 60%);
+    }
+    .schedule-readiness-banner.status-none .readiness-icon-wrap {
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+    .schedule-readiness-banner.status-none .readiness-text h3 {
+      color: var(--slate-800);
+    }
+
+    /* Business Impact Section & Calculator */
+    .business-impact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .calc-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .calc-input-box {
+      margin-bottom: 1rem;
+    }
+    .calc-input-box label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 0.35rem;
+    }
+    .calc-input-box .calc-sublabel {
+      font-size: 0.725rem;
+      color: var(--slate-500);
+      margin-top: 0.2rem;
+    }
+    .calc-input-with-addon {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #ffffff;
+      transition: border-color 0.15s ease;
+    }
+    .calc-input-with-addon:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+    }
+    .calc-addon {
+      padding: 0.5rem 0.75rem;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-right: 1px solid var(--slate-200);
+      white-space: nowrap;
+    }
+    .calc-input-field {
+      flex: 1;
+      border: none;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--slate-900);
+      outline: none;
+      width: 100%;
+    }
+    .timer-control-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      margin-top: 0.45rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+    .timer-display {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      background: #ffffff;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-300);
+    }
+    .calc-results-empty {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--slate-500);
+      background: var(--slate-50);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--slate-300);
+    }
+    .calc-results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .calc-result-tile {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.95rem;
+      position: relative;
+    }
+    .calc-result-tile.highlight {
+      background: var(--emerald-50);
+      border-color: var(--emerald-200);
+    }
+    .calc-tile-title {
+      font-size: 0.725rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+    .calc-result-tile.highlight .calc-tile-title {
+      color: var(--emerald-700);
+    }
+    .calc-tile-value {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .calc-result-tile.highlight .calc-tile-value {
+      color: var(--emerald-700);
+    }
+    .calc-tile-sub {
+      font-size: 0.725rem;
+      color: var(--slate-500);
+      line-height: 1.3;
+    }
+    .calc-disclaimer-box {
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      line-height: 1.5;
+      background: var(--slate-100);
+      border-left: 3px solid var(--slate-400);
+      padding: 0.7rem 0.9rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-top: 1rem;
+    }
+
+    /* "Why GetShifty?" 3-Pillar Section */
+    .why-getshifty-section {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .why-section-header {
+      margin-bottom: 1.15rem;
+    }
+    .why-section-header h2 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .why-section-header p {
+      font-size: 0.825rem;
+      color: var(--slate-600);
+      margin-top: 0.2rem;
+    }
+    .why-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+    }
+    .why-pillar-card {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .why-pillar-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+    }
+    .why-pillar-card h3 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.35rem;
+    }
+    .why-pillar-card p {
+      font-size: 0.8rem;
+      color: var(--slate-600);
+      line-height: 1.45;
+      flex: 1;
+    }
+    .why-pillar-metric {
+      margin-top: 0.85rem;
+      padding-top: 0.65rem;
+      border-top: 1px dashed var(--slate-300);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* Executive Regeneration Diff Summary Styling */
+    .diff-executive-banner {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      padding: 0.95rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+    .diff-executive-banner.success {
+      background: var(--emerald-50);
+      border-color: var(--emerald-200);
+    }
+    .diff-executive-banner.warning {
+      background: var(--amber-50);
+      border-color: var(--amber-300);
+    }
+    .diff-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      margin-top: 0.65rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      font-size: 0.8rem;
+    }
+    .diff-meta-item strong {
+      color: var(--slate-800);
+    }
+
+    /* Responsive Adjustments for Mobile */
+    @media (max-width: 900px) {
+      .getting-started-steps,
+      .business-impact-layout,
+      .why-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .calc-results-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      .schedule-readiness-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .readiness-stats-strip {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .readiness-stat-chip {
+        flex: 1;
+        min-width: 70px;
+        padding: 0.35rem 0.5rem;
+      }
+      .readiness-stat-val {
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1639,6 +2141,110 @@
         <button id="btn-banner-dismiss" class="btn btn-secondary btn-sm">Clear Alert</button>
       </div>
     </div>
+
+    <!-- Getting Started Section for First-Time Managers -->
+    <section id="getting-started-card" class="getting-started-card">
+      <div class="getting-started-header">
+        <div class="getting-started-title-wrap">
+          <div class="getting-started-badge">New Manager Guide</div>
+          <h2 style="font-size: 1.05rem; font-weight: 800; color: var(--slate-900); margin: 0;">Getting Started with GetShifty</h2>
+        </div>
+        <button id="btn-toggle-getting-started" class="getting-started-collapse-btn" title="Toggle guide visibility">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          <span id="guide-toggle-text">Hide Guide</span>
+        </button>
+      </div>
+
+      <div id="getting-started-content">
+        <div class="getting-started-value-quote">
+          “GetShifty helps small-business managers spend less time building schedules and more time running their business.”
+        </div>
+
+        <div class="getting-started-steps">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-body">
+              <h4>Add Staff & Availability</h4>
+              <p>Configure team members, assigned roles, weekly working hour caps, and preferred shift availability windows.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-body">
+              <h4>Generate Weekly Schedule</h4>
+              <p>Automatically match staff to required morning, afternoon, and evening shifts across all 7 days in seconds.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-body">
+              <h4>Review Coverage & Call-Outs</h4>
+              <p>Check readiness status, inspect fairness metrics, and quickly re-solve coverage whenever an employee calls out.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="getting-started-actions">
+          <button id="btn-guide-load-demo" class="btn btn-primary btn-sm" title="Populate 10 fictional employees and shift requirements">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            Load Demo Scenario (10 Staff)
+          </button>
+          <button id="btn-guide-calc-link" class="btn btn-secondary btn-sm" title="View estimated ROI and time savings">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Calculate Business Impact
+          </button>
+          <span style="font-size: 0.775rem; color: var(--slate-500); margin-left: auto;">
+            Tip: Click <strong>"Load Demo Scenario"</strong> to test all features with pre-configured restaurant data.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule Readiness Summary Banner -->
+    <section id="schedule-readiness-banner" class="schedule-readiness-banner status-none">
+      <div class="readiness-main-col">
+        <div class="readiness-icon-wrap" id="readiness-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+        <div class="readiness-text">
+          <h3 id="readiness-status-title">
+            <span id="readiness-status-badge">No Schedule Generated</span>
+          </h3>
+          <p id="readiness-status-desc">Shift requirements configured. No employee shifts assigned yet. Click 'Generate Schedule' to create your weekly roster.</p>
+        </div>
+      </div>
+
+      <div class="readiness-stats-strip">
+        <div class="readiness-stat-chip">
+          <span class="readiness-stat-val" id="readiness-coverage-pct">0%</span>
+          <span class="readiness-stat-label">Staffing Coverage</span>
+        </div>
+        <div class="readiness-stat-chip">
+          <span class="readiness-stat-val" id="readiness-uncovered-count">0</span>
+          <span class="readiness-stat-label">Uncovered Shifts</span>
+        </div>
+        <div class="readiness-stat-chip">
+          <span class="readiness-stat-val" id="readiness-assigned-hours">0.0h</span>
+          <span class="readiness-stat-label">Assigned Hours</span>
+        </div>
+        <div class="readiness-stat-chip">
+          <span class="readiness-stat-val" id="readiness-conflicts-count">0</span>
+          <span class="readiness-stat-label">Active Conflicts</span>
+        </div>
+      </div>
+
+      <div id="readiness-action-wrap">
+        <button id="btn-readiness-action" class="btn btn-primary btn-sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Generate Schedule Now
+        </button>
+      </div>
+    </section>
 
     <!-- KPI Metric Dashboard Cards -->
     <section class="kpi-grid">
@@ -1742,6 +2348,11 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         Staffing Conflict Report
         <span class="tab-badge" id="badge-conflicts-count">0</span>
+      </button>
+
+      <button class="tab-btn" data-tab="tab-business">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Business Impact & ROI
       </button>
     </nav>
 
@@ -2021,6 +2632,198 @@
       </div>
     </div>
 
+    <!-- ==========================================================================
+         VIEW 6: Business Impact & Strategic Value
+         ========================================================================== -->
+    <div id="tab-business" class="tab-view">
+      
+      <!-- Part A: Interactive Business Impact Calculator -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Business Impact Calculator</h2>
+            <p class="panel-subtitle">Estimate your weekly scheduling hours saved and monthly managerial value</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button id="btn-calc-sample" class="btn btn-secondary btn-sm" title="Pre-fill realistic small restaurant scheduling benchmarks">
+              Use Benchmark Scenario
+            </button>
+            <button id="btn-calc-clear" class="btn btn-secondary btn-sm" title="Reset all calculator inputs">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div class="business-impact-layout">
+            <!-- Left: Inputs & Opt-In Live Timer -->
+            <div class="calc-card">
+              <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                Manager Time & Wage Inputs
+              </h3>
+
+              <!-- Input 1: Manual Scheduling Hours -->
+              <div class="calc-input-box">
+                <label for="calc-manual-hours">Manual Scheduling Hours (Hours / Week) *</label>
+                <div class="calc-input-with-addon">
+                  <span class="calc-addon">Manual Time</span>
+                  <input type="number" id="calc-manual-hours" class="calc-input-field" min="0" max="60" step="0.25" placeholder="e.g. 4.5">
+                  <span class="calc-addon">hrs/wk</span>
+                </div>
+                <div class="calc-sublabel">Average hours spent manually drafting, texting staff, checking availability, and resolving conflicts each week.</div>
+              </div>
+
+              <!-- Input 2: GetShifty Scheduling Hours + Opt-in Timer -->
+              <div class="calc-input-box">
+                <label for="calc-shifty-hours">GetShifty Scheduling Hours (Hours / Week) *</label>
+                <div class="calc-input-with-addon">
+                  <span class="calc-addon">GetShifty</span>
+                  <input type="number" id="calc-shifty-hours" class="calc-input-field" min="0" max="20" step="0.05" placeholder="e.g. 0.25">
+                  <span class="calc-addon">hrs/wk</span>
+                </div>
+                <div class="calc-sublabel">Time spent reviewing constraints and generating the weekly schedule (e.g. 0.25h = 15 minutes).</div>
+
+                <!-- Opt-in Live Generation & Review Timer -->
+                <div class="timer-control-box">
+                  <div style="display:flex; align-items:center; gap:0.5rem;">
+                    <span class="timer-display" id="calc-timer-display">00:00</span>
+                    <span style="font-size:0.75rem; color:var(--slate-600); font-weight:600;">Opt-in Timer</span>
+                  </div>
+                  <div style="display:flex; gap:0.35rem;">
+                    <button type="button" id="btn-timer-toggle" class="btn btn-secondary btn-sm" style="padding:0.25rem 0.6rem; font-size:0.75rem;">
+                      Start Timer
+                    </button>
+                    <button type="button" id="btn-timer-reset" class="btn btn-secondary btn-sm" style="padding:0.25rem 0.5rem; font-size:0.75rem;">
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Input 3: Hourly Manager Rate -->
+              <div class="calc-input-box">
+                <label for="calc-hourly-rate">Estimated Manager Hourly Cost ($ / Hour) *</label>
+                <div class="calc-input-with-addon">
+                  <span class="calc-addon">$ USD</span>
+                  <input type="number" id="calc-hourly-rate" class="calc-input-field" min="1" max="300" step="0.50" placeholder="e.g. 28.00">
+                  <span class="calc-addon">/ hr</span>
+                </div>
+                <div class="calc-sublabel">Hourly compensation or opportunity cost rate of the manager preparing schedules.</div>
+              </div>
+
+              <button id="btn-run-calc" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">
+                Calculate Business Savings
+              </button>
+            </div>
+
+            <!-- Right: Real-time Calculated Outputs -->
+            <div class="calc-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <h3 style="font-size: 0.95rem; font-weight: 800; color: var(--slate-900); margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                  Projected Business Value & Savings
+                </h3>
+
+                <!-- Empty State before inputs are provided -->
+                <div id="calc-results-empty" class="calc-results-empty">
+                  <div class="empty-icon" style="background:#e0e7ff; color:var(--primary); margin:0 auto 0.75rem;">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <h4 style="font-size:0.95rem; font-weight:700; color:var(--slate-800); margin-bottom:0.35rem;">No Calculation Entered Yet</h4>
+                  <p style="font-size:0.8rem; color:var(--slate-500); max-width:320px; margin:0 auto 1rem;">
+                    Enter your weekly scheduling hours and manager hourly rate, or click "Use Benchmark Scenario" to calculate time savings and monthly business value.
+                  </p>
+                </div>
+
+                <!-- Active Results Grid -->
+                <div id="calc-results-active" class="calc-results-grid" style="display:none;">
+                  <!-- Metric 1: Weekly Hours Saved -->
+                  <div class="calc-result-tile">
+                    <div class="calc-tile-title">Weekly Time Saved</div>
+                    <div class="calc-tile-value" id="res-weekly-saved">0.0h</div>
+                    <div class="calc-tile-sub" id="res-weekly-sub">Hours saved each week</div>
+                  </div>
+
+                  <!-- Metric 2: Monthly Hours Saved -->
+                  <div class="calc-result-tile">
+                    <div class="calc-tile-title">Monthly Time Saved</div>
+                    <div class="calc-tile-value" id="res-monthly-saved">0.0h</div>
+                    <div class="calc-tile-sub">Using (52 wks ÷ 12 mos)</div>
+                  </div>
+
+                  <!-- Metric 3: Monthly Time Value -->
+                  <div class="calc-result-tile">
+                    <div class="calc-tile-title">Monthly Time Value</div>
+                    <div class="calc-tile-value" id="res-monthly-val">$0.00</div>
+                    <div class="calc-tile-sub">Gross value of recovered time</div>
+                  </div>
+
+                  <!-- Metric 4: Net Value After $19.99 Sub -->
+                  <div class="calc-result-tile highlight">
+                    <div class="calc-tile-title">Est. Monthly Net Value</div>
+                    <div class="calc-tile-value" id="res-net-val">$0.00</div>
+                    <div class="calc-tile-sub">After $19.99/mo subscription</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mathematical Transparency & Disclaimers -->
+              <div class="calc-disclaimer-box">
+                <strong>💡 Estimation Notice & Mathematical Basis:</strong>
+                Calculations use exact user-entered inputs: <code>Weekly Saved = Manual Hours - GetShifty Hours</code>, <code>Monthly Saved = Weekly Saved × (52 ÷ 12)</code>, and <code>Monthly Value = Monthly Hours × Hourly Rate</code>.
+                All figures represent estimated opportunity value of recovered manager time redirected to operations; they do not represent guaranteed cash savings or payroll reductions. Net monthly value subtracts GetShifty's hypothetical $19.99 per-location monthly subscription price.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part B: "Why GetShifty?" Strategic Value Proposition -->
+      <section class="why-getshifty-section">
+        <div class="why-section-header">
+          <h2>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Why GetShifty? Built for Small-Business Managers
+          </h2>
+          <p>Designed specifically to solve shift-scheduling friction in restaurants, cafés, and retail shops without complex enterprise software overhead.</p>
+        </div>
+
+        <div class="why-pillars-grid">
+          <!-- Pillar 1 -->
+          <div class="why-pillar-card">
+            <div class="why-pillar-icon" style="background:#e0e7ff; color:var(--primary);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3>1. Save Time Creating Schedules</h3>
+            <p>Cut weekly scheduling time from several hours of manual spreadsheets and text message chains down to seconds. Automated constraint matching pairs available team members with required shift positions instantly.</p>
+            <div class="why-pillar-metric">⏱️ Spend less time scheduling, more time managing</div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="why-pillar-card">
+            <div class="why-pillar-icon" style="background:#ecfdf5; color:var(--emerald-600);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <h3>2. Reduce Preventable Scheduling Conflicts</h3>
+            <p>Proactively prevents scheduling mistakes before they reach the team. Enforces qualified roles, declared employee availability, and individual weekly hour caps so double-bookings and inadvertent overtime don't occur.</p>
+            <div class="why-pillar-metric">🛡️ Eliminate accidental double-booking & over-allocation</div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="why-pillar-card">
+            <div class="why-pillar-icon" style="background:#fffbeb; color:var(--amber-600);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            </div>
+            <h3>3. Respond Faster to Employee Call-Outs</h3>
+            <p>When an employee calls out sick, immediately find an available, qualified replacement with one click. GetShifty's stability-preserving regeneration fills the vacated slot while freezing all other assignments in place.</p>
+            <div class="why-pillar-metric">⚡ Re-solve open shifts without disrupting the whole roster</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
   </main>
 
   <!-- ==========================================================================
@@ -2137,14 +2940,25 @@
         <button class="modal-close" id="btn-close-diff-modal">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="background:var(--emerald-50); border:1px solid var(--emerald-200); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem;">
-          <strong style="color:var(--emerald-800); font-size:0.9rem;">Stability-Preserving Regeneration Complete</strong>
-          <p id="diff-summary-stat" style="font-size:0.825rem; color:var(--emerald-700); margin-top:0.2rem;">
-            Preserved all unaffected assignments while resolving call-outs.
+        <!-- Executive Summary Banner for Non-Technical Managers -->
+        <div id="diff-executive-banner" class="diff-executive-banner success">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+            <strong id="diff-banner-headline" style="color:var(--emerald-800); font-size:0.95rem;">
+              Call-Out Resolved & Coverage Rebalanced
+            </strong>
+            <span id="diff-banner-tag" class="brand-badge" style="background:#ffffff; color:var(--emerald-700); border-color:var(--emerald-300);">
+              Stability Preserved
+            </span>
+          </div>
+          <p id="diff-summary-stat" style="font-size:0.825rem; color:var(--slate-700); margin-top:0.35rem; line-height:1.45;">
+            Preserved all unaffected employee assignments while resolving call-outs.
           </p>
+          <div class="diff-meta-grid" id="diff-summary-meta">
+            <!-- Dynamically populated key facts: Unavailable employee, affected shift, replacement found, roster stability, remaining open slots -->
+          </div>
         </div>
 
-        <h4 style="font-size:0.875rem; font-weight:700; color:var(--slate-800); margin-bottom:0.6rem;">Schedule Changes:</h4>
+        <h4 style="font-size:0.875rem; font-weight:700; color:var(--slate-800); margin-bottom:0.6rem;">Itemized Assignment Changes:</h4>
         <div class="diff-list" id="diff-items-container">
           <!-- Dynamically populated change items -->
         </div>
@@ -2243,12 +3057,24 @@
         callouts: [],          // [{ employeeId, day, shiftId }]
         previousSchedule: null,// Snapshot for regeneration diff
         lastDiff: null,        // [{ type, day, shiftId, role, oldEmp, newEmp, reason }]
+        lastRegenSummary: null,// Structured executive summary for non-technical managers
+        calculator: {          // Business impact calculator inputs
+          manualHours: null,
+          shiftyHours: null,
+          hourlyRate: null
+        },
+        guideDismissed: false,
         selectedConfigDay: 'Monday',
         activeMobileDay: 'Monday'
       };
 
       // Temporary state for callout modal
       let pendingCallout = null;
+
+      // Timer runtime state
+      let calcTimerInterval = null;
+      let calcTimerSeconds = 0;
+      let isCalcTimerRunning = false;
 
       /* ==========================================================================
          3. LOCAL STORAGE & PERSISTENCE
@@ -2262,7 +3088,10 @@
             uncoveredSlots: state.uncoveredSlots,
             callouts: state.callouts,
             previousSchedule: state.previousSchedule,
-            lastDiff: state.lastDiff
+            lastDiff: state.lastDiff,
+            lastRegenSummary: state.lastRegenSummary,
+            calculator: state.calculator,
+            guideDismissed: state.guideDismissed
           };
           localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
         } catch (e) {
@@ -2282,6 +3111,9 @@
             state.callouts = parsed.callouts || [];
             state.previousSchedule = parsed.previousSchedule || null;
             state.lastDiff = parsed.lastDiff || null;
+            state.lastRegenSummary = parsed.lastRegenSummary || null;
+            state.calculator = parsed.calculator || { manualHours: null, shiftyHours: null, hourlyRate: null };
+            state.guideDismissed = !!parsed.guideDismissed;
             return true;
           }
         } catch (e) {
@@ -2809,6 +3641,61 @@
         state.uncoveredSlots = newUncovered;
         state.lastDiff = diffLog;
 
+        if (isRegeneration) {
+          // Compute structured executive summary for non-technical managers
+          let prevSlotsTotal = 0;
+          let preservedCount = 0;
+          let otherChangedCount = 0;
+
+          DAYS.forEach(d => {
+            DEFAULT_SHIFTS.forEach(s => {
+              const prevList = (state.previousSchedule && state.previousSchedule[d] && state.previousSchedule[d][s.id]) || [];
+              const newList = (newSchedule[d] && newSchedule[d][s.id]) || [];
+              prevSlotsTotal += prevList.length;
+              prevList.forEach(id => {
+                if (newList.includes(id)) {
+                  preservedCount++;
+                } else {
+                  const wasCallout = state.callouts.some(c => c.employeeId === id && c.day === d && c.shiftId === s.id);
+                  if (!wasCallout) {
+                    otherChangedCount++;
+                  }
+                }
+              });
+            });
+          });
+
+          // Compile affected callouts & replacement outcomes
+          const calloutOutcomes = state.callouts.map(c => {
+            const emp = state.employees.find(e => e.id === c.employeeId);
+            const role = emp ? emp.role : 'Staff';
+            const newAssignedIds = newSchedule[c.day][c.shiftId] || [];
+            const prevAssignedIds = (state.previousSchedule && state.previousSchedule[c.day] && state.previousSchedule[c.day][c.shiftId]) || [];
+            const newEmpId = newAssignedIds.find(id => !prevAssignedIds.includes(id));
+            const newEmp = newEmpId ? state.employees.find(e => e.id === newEmpId) : null;
+            return {
+              empName: emp ? emp.name : 'Staff Member',
+              empRole: role,
+              day: c.day,
+              shiftId: c.shiftId,
+              replacementFound: !!newEmp,
+              replacementName: newEmp ? newEmp.name : null,
+              replacementRole: newEmp ? newEmp.role : null
+            };
+          });
+
+          state.lastRegenSummary = {
+            callouts: calloutOutcomes,
+            prevSlotsTotal,
+            preservedCount,
+            otherChangedCount,
+            unfilledCount: newUncovered.length,
+            timestamp: Date.now()
+          };
+        } else {
+          state.lastRegenSummary = null;
+        }
+
         saveToStorage();
         renderAll();
 
@@ -2879,6 +3766,34 @@
           });
         });
 
+        // Check if schedule assignments exist
+        const hasAssignments = totalAssignedSlots > 0;
+
+        // Determine Schedule Readiness Status
+        let readinessStatus = 'status-none';
+        let readinessTitle = 'No Schedule Generated';
+        let readinessDesc = 'Shift requirements configured. No employee shifts assigned yet. Click "Generate Schedule" to create your weekly roster.';
+        let readinessActionText = 'Generate Schedule Now';
+        let readinessActionType = 'generate';
+
+        if (hasAssignments) {
+          if (state.uncoveredSlots.length > 0 || state.callouts.length > 0) {
+            readinessStatus = 'status-attention';
+            readinessTitle = 'Needs Attention';
+            const openMsg = state.uncoveredSlots.length > 0 ? `${state.uncoveredSlots.length} required position(s) remain uncovered.` : '';
+            const callMsg = state.callouts.length > 0 ? `${state.callouts.length} active call-out(s) pending regeneration.` : '';
+            readinessDesc = `${openMsg} ${callMsg} Review conflicts before finalizing.`.trim();
+            readinessActionText = state.callouts.length > 0 ? 'Regenerate Schedule' : 'Review Conflicts';
+            readinessActionType = state.callouts.length > 0 ? 'regenerate' : 'conflicts';
+          } else {
+            readinessStatus = 'status-ready';
+            readinessTitle = 'Ready for Manager Review';
+            readinessDesc = 'All required positions are 100% staffed with zero hard-constraint violations detected. Ready for manager sign-off.';
+            readinessActionText = 'Review Weekly Board';
+            readinessActionType = 'schedule';
+          }
+        }
+
         return {
           totalEmployees: state.employees.length,
           totalRequiredHours,
@@ -2888,7 +3803,13 @@
           coveragePct,
           uncoveredCount: state.uncoveredSlots.length,
           conflictsCount,
-          empHours
+          empHours,
+          hasAssignments,
+          readinessStatus,
+          readinessTitle,
+          readinessDesc,
+          readinessActionText,
+          readinessActionType
         };
       }
 
@@ -2898,12 +3819,15 @@
       function renderAll() {
         const metrics = calculateMetrics();
         renderKPIs(metrics);
+        renderScheduleReadiness(metrics);
+        renderGettingStartedGuide();
         renderCalloutBanner();
         renderScheduleMatrix(metrics);
         renderEmployeesList(metrics);
         renderShiftRequirements();
         renderFairnessAnalytics(metrics);
         renderConflictReport(metrics);
+        renderBusinessImpact();
       }
 
       /* Render KPI Dashboard Cards */
@@ -2924,12 +3848,19 @@
 
         const covEl = document.getElementById('kpi-coverage-pct');
         covEl.textContent = metrics.coveragePct + '%';
-        covEl.style.color = metrics.coveragePct === 100 ? 'var(--emerald-600)' : (metrics.coveragePct > 80 ? 'var(--primary)' : 'var(--rose-600)');
+        covEl.style.color = !metrics.hasAssignments 
+          ? 'var(--slate-500)' 
+          : (metrics.coveragePct === 100 ? 'var(--emerald-600)' : (metrics.coveragePct > 80 ? 'var(--primary)' : 'var(--rose-600)'));
 
         document.getElementById('kpi-uncovered-count').textContent = metrics.uncoveredCount;
-        document.getElementById('kpi-uncovered-sub').textContent = metrics.uncoveredCount === 0 ? 'All shifts covered' : 'Needs attention';
+        document.getElementById('kpi-uncovered-sub').textContent = !metrics.hasAssignments 
+          ? 'Schedule not generated' 
+          : (metrics.uncoveredCount === 0 ? 'All shifts covered' : 'Needs attention');
 
         document.getElementById('kpi-conflicts-count').textContent = metrics.conflictsCount;
+        document.getElementById('kpi-conflicts-sub').textContent = !metrics.hasAssignments
+          ? 'Awaiting generation'
+          : (metrics.conflictsCount === 0 ? 'Zero conflicts' : 'Availability & hour caps');
         document.getElementById('badge-conflicts-count').textContent = metrics.conflictsCount;
       }
 
@@ -2946,6 +3877,191 @@
         } else {
           banner.classList.remove('active');
         }
+      }
+
+      /* Render Schedule Readiness Summary Banner */
+      function renderScheduleReadiness(metrics) {
+        const banner = document.getElementById('schedule-readiness-banner');
+        if (!banner) return;
+
+        banner.className = `schedule-readiness-banner ${metrics.readinessStatus}`;
+
+        const iconWrap = document.getElementById('readiness-icon-wrap');
+        if (iconWrap) {
+          if (metrics.readinessStatus === 'status-ready') {
+            iconWrap.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+          } else if (metrics.readinessStatus === 'status-attention') {
+            iconWrap.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+          } else {
+            iconWrap.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+          }
+        }
+
+        const badgeEl = document.getElementById('readiness-status-badge');
+        if (badgeEl) badgeEl.textContent = metrics.readinessTitle;
+
+        const descEl = document.getElementById('readiness-status-desc');
+        if (descEl) descEl.textContent = metrics.readinessDesc;
+
+        const covEl = document.getElementById('readiness-coverage-pct');
+        if (covEl) covEl.textContent = `${metrics.coveragePct}%`;
+
+        const uncovEl = document.getElementById('readiness-uncovered-count');
+        if (uncovEl) uncovEl.textContent = metrics.uncoveredCount;
+
+        const asgnEl = document.getElementById('readiness-assigned-hours');
+        if (asgnEl) asgnEl.textContent = formatHours(metrics.totalAssignedHours);
+
+        const confEl = document.getElementById('readiness-conflicts-count');
+        if (confEl) confEl.textContent = metrics.conflictsCount;
+
+        const actionBtn = document.getElementById('btn-readiness-action');
+        if (actionBtn) {
+          actionBtn.setAttribute('data-action', metrics.readinessActionType);
+          actionBtn.innerHTML = `
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            ${metrics.readinessActionText}
+          `;
+          if (metrics.readinessStatus === 'status-ready') {
+            actionBtn.className = 'btn btn-emerald btn-sm';
+          } else if (metrics.readinessStatus === 'status-attention') {
+            actionBtn.className = 'btn btn-primary btn-sm';
+          } else {
+            actionBtn.className = 'btn btn-primary btn-sm';
+          }
+        }
+      }
+
+      /* Render Getting Started Guide Visibility */
+      function renderGettingStartedGuide() {
+        const content = document.getElementById('getting-started-content');
+        const text = document.getElementById('guide-toggle-text');
+        if (!content || !text) return;
+
+        if (state.guideDismissed) {
+          content.style.display = 'none';
+          text.textContent = 'Show Guide';
+        } else {
+          content.style.display = 'block';
+          text.textContent = 'Hide Guide';
+        }
+      }
+
+      /* Render Business Impact Calculator */
+      function renderBusinessImpact() {
+        const manualInput = document.getElementById('calc-manual-hours');
+        const shiftyInput = document.getElementById('calc-shifty-hours');
+        const rateInput = document.getElementById('calc-hourly-rate');
+        if (!manualInput || !shiftyInput || !rateInput) return;
+
+        // Restore stored values if input fields are empty
+        if (state.calculator.manualHours !== null && manualInput.value === '') {
+          manualInput.value = state.calculator.manualHours;
+        }
+        if (state.calculator.shiftyHours !== null && shiftyInput.value === '') {
+          shiftyInput.value = state.calculator.shiftyHours;
+        }
+        if (state.calculator.hourlyRate !== null && rateInput.value === '') {
+          rateInput.value = state.calculator.hourlyRate;
+        }
+
+        const manual = parseFloat(manualInput.value);
+        const shifty = parseFloat(shiftyInput.value);
+        const rate = parseFloat(rateInput.value);
+
+        const emptyBox = document.getElementById('calc-results-empty');
+        const activeBox = document.getElementById('calc-results-active');
+
+        // Check if all inputs are valid numbers > 0
+        if (isNaN(manual) || manual <= 0 || isNaN(shifty) || shifty < 0 || isNaN(rate) || rate <= 0) {
+          if (emptyBox) emptyBox.style.display = 'block';
+          if (activeBox) activeBox.style.display = 'none';
+          return;
+        }
+
+        // Mathematical calculations
+        const weeklySaved = Math.max(0, manual - shifty);
+        const monthlySaved = weeklySaved * (52 / 12);
+        const monthlyValue = monthlySaved * rate;
+        const netValue = monthlyValue - 19.99;
+
+        if (emptyBox) emptyBox.style.display = 'none';
+        if (activeBox) activeBox.style.display = 'grid';
+
+        const weeklyEl = document.getElementById('res-weekly-saved');
+        if (weeklyEl) weeklyEl.textContent = `${weeklySaved.toFixed(1)}h`;
+
+        const weeklySub = document.getElementById('res-weekly-sub');
+        if (weeklySub) weeklySub.textContent = `${manual}h manual vs ${shifty}h GetShifty`;
+
+        const monthlyEl = document.getElementById('res-monthly-saved');
+        if (monthlyEl) monthlyEl.textContent = `${monthlySaved.toFixed(1)}h`;
+
+        const monthlyValEl = document.getElementById('res-monthly-val');
+        if (monthlyValEl) monthlyValEl.textContent = `$${monthlyValue.toFixed(2)}`;
+
+        const netEl = document.getElementById('res-net-val');
+        if (netEl) {
+          netEl.textContent = `$${netValue.toFixed(2)}`;
+          netEl.style.color = netValue >= 0 ? 'var(--emerald-700)' : 'var(--rose-600)';
+        }
+      }
+
+      /* Opt-in Live Scheduling Timer Functions */
+      function updateTimerDisplay() {
+        const mins = Math.floor(calcTimerSeconds / 60);
+        const secs = calcTimerSeconds % 60;
+        const disp = document.getElementById('calc-timer-display');
+        if (disp) {
+          disp.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+      }
+
+      function toggleCalcTimer() {
+        const btn = document.getElementById('btn-timer-toggle');
+        if (!isCalcTimerRunning) {
+          // Start timer
+          isCalcTimerRunning = true;
+          if (btn) {
+            btn.textContent = 'Stop & Record';
+            btn.className = 'btn btn-primary btn-sm';
+          }
+          calcTimerInterval = setInterval(() => {
+            calcTimerSeconds++;
+            updateTimerDisplay();
+          }, 1000);
+          showToast('Live scheduling timer started. Click "Stop & Record" when done.', 'info');
+        } else {
+          // Stop timer
+          isCalcTimerRunning = false;
+          clearInterval(calcTimerInterval);
+          if (btn) {
+            btn.textContent = 'Start Timer';
+            btn.className = 'btn btn-secondary btn-sm';
+          }
+          // Convert seconds to decimal hours (at least 0.05h / 3 minutes for realistic benchmark)
+          const decimalHours = Math.max(0.05, parseFloat((calcTimerSeconds / 3600).toFixed(2)));
+          const input = document.getElementById('calc-shifty-hours');
+          if (input) input.value = decimalHours;
+          state.calculator.shiftyHours = decimalHours;
+          saveToStorage();
+          renderBusinessImpact();
+          showToast(`Timer recorded ${calcTimerSeconds}s (${decimalHours}h) for GetShifty scheduling.`, 'success');
+        }
+      }
+
+      function resetCalcTimer() {
+        if (isCalcTimerRunning) {
+          clearInterval(calcTimerInterval);
+          isCalcTimerRunning = false;
+          const btn = document.getElementById('btn-timer-toggle');
+          if (btn) {
+            btn.textContent = 'Start Timer';
+            btn.className = 'btn btn-secondary btn-sm';
+          }
+        }
+        calcTimerSeconds = 0;
+        updateTimerDisplay();
       }
 
       /* Render Schedule Calendar Matrix */
@@ -3391,14 +4507,31 @@
           }
         });
 
+        // Check if schedule has not been generated yet
+        if (!metrics.hasAssignments) {
+          container.innerHTML = `
+            <div style="text-align:center; padding:2.5rem 1rem; color:var(--slate-500);">
+              <div class="empty-icon" style="background:var(--slate-100); color:var(--slate-600); margin:0 auto 0.75rem;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              </div>
+              <h3 class="empty-title" style="color:var(--slate-800);">No Schedule Generated Yet</h3>
+              <p class="empty-desc">Shift requirements and employee availability are defined, but shifts have not been assigned. Click 'Generate Schedule' to run optimization and detect bottlenecks.</p>
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('btn-generate').click()" style="margin-top:0.75rem;">
+                Generate Schedule Now
+              </button>
+            </div>
+          `;
+          return;
+        }
+
         if (allConflicts.length === 0) {
           container.innerHTML = `
             <div style="text-align:center; padding:2.5rem 1rem; color:var(--slate-500);">
-              <div class="empty-icon" style="background:var(--emerald-50); color:var(--emerald-600);">
+              <div class="empty-icon" style="background:var(--emerald-50); color:var(--emerald-600); margin:0 auto 0.75rem;">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               </div>
               <h3 class="empty-title" style="color:var(--emerald-800);">Zero Conflicts Detected!</h3>
-              <p class="empty-desc">All staffing requirements are satisfied with no overlapping shifts or hard constraint violations.</p>
+              <p class="empty-desc">All staffing requirements are 100% satisfied with no overlapping shifts or hard constraint violations.</p>
             </div>
           `;
           return;
@@ -3579,8 +4712,70 @@
         const container = document.getElementById('diff-items-container');
         container.innerHTML = '';
 
+        const banner = document.getElementById('diff-executive-banner');
+        const headline = document.getElementById('diff-banner-headline');
+        const tag = document.getElementById('diff-banner-tag');
+        const summaryStat = document.getElementById('diff-summary-stat');
+        const metaGrid = document.getElementById('diff-summary-meta');
+
+        const summary = state.lastRegenSummary;
+
+        if (summary && summary.callouts && summary.callouts.length > 0) {
+          const allReplaced = summary.callouts.every(c => c.replacementFound) && summary.unfilledCount === 0;
+
+          if (banner && headline && tag && summaryStat) {
+            if (allReplaced) {
+              banner.className = 'diff-executive-banner success';
+              headline.textContent = 'Qualified Replacement Confirmed & Coverage Restored';
+              headline.style.color = 'var(--emerald-800)';
+              tag.textContent = '100% Stability Preserved';
+              tag.style.color = 'var(--emerald-700)';
+              tag.style.borderColor = 'var(--emerald-300)';
+              summaryStat.textContent = `GetShifty identified eligible replacement coverage without disrupting unrelated employee schedules. All ${summary.preservedCount} unaffected assignments remain frozen.`;
+            } else {
+              banner.className = 'diff-executive-banner warning';
+              headline.textContent = 'Call-Out Processed — Open Position Requires Attention';
+              headline.style.color = 'var(--amber-900)';
+              tag.textContent = `${summary.unfilledCount} Uncovered Slot(s)`;
+              tag.style.color = 'var(--amber-700)';
+              tag.style.borderColor = 'var(--amber-400)';
+              summaryStat.textContent = `Call-out was processed while preserving ${summary.preservedCount} unaffected assignments. However, ${summary.unfilledCount} shift position(s) could not be filled under current availability and hour cap constraints.`;
+            }
+          }
+
+          if (metaGrid) {
+            const unavailableList = summary.callouts.map(c => `${c.empName} (${c.empRole})`).join(', ');
+            const shiftsList = summary.callouts.map(c => `${c.day} ${c.shiftId.toUpperCase()}`).join(', ');
+            const replacementsList = summary.callouts.map(c => c.replacementFound ? `${c.replacementName} (${c.replacementRole})` : 'None Available (Shift Open)').join(', ');
+
+            metaGrid.innerHTML = `
+              <div class="diff-meta-item">
+                <strong>Unavailable Staff:</strong> ${unavailableList}
+              </div>
+              <div class="diff-meta-item">
+                <strong>Affected Shift:</strong> ${shiftsList}
+              </div>
+              <div class="diff-meta-item">
+                <strong>Assigned Replacement:</strong> <span style="font-weight:700; color:${allReplaced ? 'var(--emerald-700)' : 'var(--rose-600)'};">${replacementsList}</span>
+              </div>
+              <div class="diff-meta-item">
+                <strong>Roster Stability:</strong> ${summary.otherChangedCount === 0 ? `100% (${summary.preservedCount} shifts unchanged, 0 unintended changes)` : `${summary.otherChangedCount} other shift(s) adjusted`}
+              </div>
+              <div class="diff-meta-item" style="grid-column: 1 / -1; border-top: 1px dashed rgba(0,0,0,0.08); padding-top: 0.35rem; margin-top: 0.2rem;">
+                <strong>Remaining Staffing Gaps:</strong> ${summary.unfilledCount === 0 ? 'Zero uncovered positions across the entire week.' : `<span style="color:var(--rose-600); font-weight:700;">${summary.unfilledCount} position(s) remain unfilled. Check the Conflict Report.</span>`}
+              </div>
+            `;
+          }
+        } else if (banner && headline && tag && summaryStat) {
+          banner.className = 'diff-executive-banner success';
+          headline.textContent = 'Schedule Regeneration Complete';
+          tag.textContent = 'Updated';
+          summaryStat.textContent = 'Preserved all unaffected assignments while updating the schedule.';
+          if (metaGrid) metaGrid.innerHTML = '';
+        }
+
         if (!state.lastDiff || state.lastDiff.length === 0) {
-          container.innerHTML = `<p style="color:var(--slate-500); font-size:0.85rem;">No assignment changes were necessary during regeneration.</p>`;
+          container.innerHTML = `<p style="color:var(--slate-500); font-size:0.85rem; padding:0.5rem 0;">No individual assignment changes were necessary during regeneration.</p>`;
         } else {
           state.lastDiff.forEach(diff => {
             const card = document.createElement('div');
@@ -3745,9 +4940,10 @@
             state.callouts = [];
             state.previousSchedule = null;
             state.lastDiff = null;
+            state.lastRegenSummary = null;
             saveToStorage();
             renderAll();
-            showToast('Schedule assignments reset.', 'info');
+            showToast('Schedule assignments reset. Click "Generate Schedule" to build a new roster.', 'info');
           }
         });
 
@@ -3762,6 +4958,10 @@
             state.callouts = [];
             state.previousSchedule = null;
             state.lastDiff = null;
+            state.lastRegenSummary = null;
+            state.calculator = { manualHours: null, shiftyHours: null, hourlyRate: null };
+            state.guideDismissed = false;
+            resetCalcTimer();
             renderAll();
             showToast('All local application data cleared.', 'info');
           }
@@ -3851,6 +5051,132 @@
           URL.revokeObjectURL(url);
           showToast('Conflict report downloaded.', 'success');
         });
+
+        // Getting Started Guide Toggle
+        const btnToggleGuide = document.getElementById('btn-toggle-getting-started');
+        if (btnToggleGuide) {
+          btnToggleGuide.addEventListener('click', () => {
+            state.guideDismissed = !state.guideDismissed;
+            saveToStorage();
+            renderGettingStartedGuide();
+          });
+        }
+
+        // Getting Started Quick Actions
+        const btnGuideDemo = document.getElementById('btn-guide-load-demo');
+        if (btnGuideDemo) {
+          btnGuideDemo.addEventListener('click', loadDemoScenario);
+        }
+
+        const btnGuideCalc = document.getElementById('btn-guide-calc-link');
+        if (btnGuideCalc) {
+          btnGuideCalc.addEventListener('click', () => {
+            const tabBtn = document.querySelector('.tab-btn[data-tab="tab-business"]');
+            if (tabBtn) tabBtn.click();
+          });
+        }
+
+        // Schedule Readiness Banner Quick Action
+        const btnReadiness = document.getElementById('btn-readiness-action');
+        if (btnReadiness) {
+          btnReadiness.addEventListener('click', () => {
+            const action = btnReadiness.getAttribute('data-action');
+            if (action === 'generate') {
+              runSchedulingEngine(false);
+            } else if (action === 'regenerate') {
+              runSchedulingEngine(true);
+            } else if (action === 'conflicts') {
+              const tabBtn = document.querySelector('.tab-btn[data-tab="tab-conflicts"]');
+              if (tabBtn) tabBtn.click();
+            } else {
+              const tabBtn = document.querySelector('.tab-btn[data-tab="tab-schedule"]');
+              if (tabBtn) tabBtn.click();
+            }
+          });
+        }
+
+        // Business Impact Calculator Controls
+        const btnCalcSample = document.getElementById('btn-calc-sample');
+        if (btnCalcSample) {
+          btnCalcSample.addEventListener('click', () => {
+            document.getElementById('calc-manual-hours').value = '4.5';
+            document.getElementById('calc-shifty-hours').value = '0.25';
+            document.getElementById('calc-hourly-rate').value = '28.00';
+            state.calculator.manualHours = 4.5;
+            state.calculator.shiftyHours = 0.25;
+            state.calculator.hourlyRate = 28.00;
+            saveToStorage();
+            renderBusinessImpact();
+            showToast('Benchmark scenario loaded: 4.5h manual vs 0.25h GetShifty @ $28/hr.', 'success');
+          });
+        }
+
+        const btnCalcClear = document.getElementById('btn-calc-clear');
+        if (btnCalcClear) {
+          btnCalcClear.addEventListener('click', () => {
+            document.getElementById('calc-manual-hours').value = '';
+            document.getElementById('calc-shifty-hours').value = '';
+            document.getElementById('calc-hourly-rate').value = '';
+            state.calculator.manualHours = null;
+            state.calculator.shiftyHours = null;
+            state.calculator.hourlyRate = null;
+            resetCalcTimer();
+            saveToStorage();
+            renderBusinessImpact();
+            showToast('Calculator inputs reset.', 'info');
+          });
+        }
+
+        const btnRunCalc = document.getElementById('btn-run-calc');
+        if (btnRunCalc) {
+          btnRunCalc.addEventListener('click', () => {
+            const m = parseFloat(document.getElementById('calc-manual-hours').value);
+            const s = parseFloat(document.getElementById('calc-shifty-hours').value);
+            const r = parseFloat(document.getElementById('calc-hourly-rate').value);
+            if (isNaN(m) || m <= 0) {
+              showToast('Please enter your average manual scheduling hours per week.', 'error');
+              return;
+            }
+            if (isNaN(s) || s < 0) {
+              showToast('Please enter scheduling hours with GetShifty (or use the timer).', 'error');
+              return;
+            }
+            if (isNaN(r) || r <= 0) {
+              showToast('Please enter an estimated manager hourly rate.', 'error');
+              return;
+            }
+            state.calculator.manualHours = m;
+            state.calculator.shiftyHours = s;
+            state.calculator.hourlyRate = r;
+            saveToStorage();
+            renderBusinessImpact();
+            showToast('Business impact calculation updated.', 'success');
+          });
+        }
+
+        // Live Calculator Input Listeners
+        ['calc-manual-hours', 'calc-shifty-hours', 'calc-hourly-rate'].forEach(id => {
+          const input = document.getElementById(id);
+          if (input) {
+            input.addEventListener('input', () => {
+              const m = parseFloat(document.getElementById('calc-manual-hours').value);
+              const s = parseFloat(document.getElementById('calc-shifty-hours').value);
+              const r = parseFloat(document.getElementById('calc-hourly-rate').value);
+              state.calculator.manualHours = isNaN(m) ? null : m;
+              state.calculator.shiftyHours = isNaN(s) ? null : s;
+              state.calculator.hourlyRate = isNaN(r) ? null : r;
+              saveToStorage();
+              renderBusinessImpact();
+            });
+          }
+        });
+
+        // Opt-in Timer Event Listeners
+        const btnTimerToggle = document.getElementById('btn-timer-toggle');
+        if (btnTimerToggle) btnTimerToggle.addEventListener('click', toggleCalcTimer);
+
+        const btnTimerReset = document.getElementById('btn-timer-reset');
+        if (btnTimerReset) btnTimerReset.addEventListener('click', resetCalcTimer);
       }
 
       /* ==========================================================================
