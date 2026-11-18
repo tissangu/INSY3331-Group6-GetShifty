@@ -1,0 +1,3880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetShifty — Smarter Scheduling. Happier Teams.</title>
+  <meta name="description" content="AI-assisted employee scheduling assistant for restaurant, café, and retail managers. Create fair, conflict-free weekly schedules in seconds.">
+  <style>
+    /* ==========================================================================
+       GetShifty Design System — Modern, Professional, Responsive
+       ========================================================================== */
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --primary-border: #c7d2fe;
+      
+      --secondary: #0f172a;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+
+      --emerald-50: #ecfdf5;
+      --emerald-100: #d1fae5;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+      --emerald-700: #047857;
+
+      --amber-50: #fffbeb;
+      --amber-100: #fef3c7;
+      --amber-500: #f59e0b;
+      --amber-600: #d97706;
+      --amber-700: #b45309;
+
+      --rose-50: #fff1f2;
+      --rose-100: #ffe4e6;
+      --rose-500: #f43f5e;
+      --rose-600: #e11d48;
+      --rose-700: #be123c;
+
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.12), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--slate-50);
+      color: var(--slate-800);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation Bar */
+    .top-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.35);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .brand-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      letter-spacing: 0.05em;
+    }
+
+    .brand-text p {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Common Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.95rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease-in-out;
+      text-decoration: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--primary-hover);
+      box-shadow: 0 4px 8px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-emerald {
+      background-color: var(--emerald-600);
+      color: #ffffff;
+      box-shadow: 0 2px 4px rgba(5, 150, 105, 0.25);
+    }
+
+    .btn-emerald:hover:not(:disabled) {
+      background-color: var(--emerald-700);
+    }
+
+    .btn-secondary {
+      background-color: #ffffff;
+      color: var(--slate-700);
+      border-color: var(--slate-300);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--slate-100);
+      border-color: var(--slate-400);
+      color: var(--slate-900);
+    }
+
+    .btn-danger {
+      background-color: #ffffff;
+      color: var(--rose-600);
+      border-color: var(--rose-200);
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background-color: var(--rose-50);
+      border-color: var(--rose-300);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.65rem;
+      font-size: 0.775rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Main Container */
+    .app-main {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.25rem;
+      flex: 1;
+    }
+
+    /* Callout Alert Banner */
+    .callout-banner {
+      display: none;
+      background: linear-gradient(90deg, #fff1f2 0%, #fef2f2 100%);
+      border: 1px solid var(--rose-300);
+      border-left: 5px solid var(--rose-600);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .callout-banner.active {
+      display: flex;
+    }
+
+    .callout-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .callout-icon {
+      color: var(--rose-600);
+      background: #ffe4e6;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .callout-text h4 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--rose-900);
+    }
+
+    .callout-text p {
+      font-size: 0.825rem;
+      color: var(--rose-700);
+    }
+
+    /* KPI Summary Cards Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .kpi-title {
+      font-size: 0.775rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--slate-500);
+    }
+
+    .kpi-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kpi-value {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-subtext {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Tab Navigation */
+    .tab-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-bottom: 1px solid var(--slate-200);
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .tab-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      background: rgba(79, 70, 229, 0.04);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: rgba(79, 70, 229, 0.06);
+    }
+
+    .tab-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: var(--slate-200);
+      color: var(--slate-700);
+    }
+
+    .tab-btn.active .tab-badge {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .tab-badge.badge-danger {
+      background: var(--rose-500) !important;
+      color: #ffffff !important;
+    }
+
+    /* Views container */
+    .tab-view {
+      display: none;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    .tab-view.active {
+      display: block;
+    }
+
+    /* Card Panels */
+    .panel {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .panel-header {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--slate-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      background: #ffffff;
+    }
+
+    .panel-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .panel-subtitle {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      font-weight: normal;
+      margin-top: 0.15rem;
+    }
+
+    .panel-body {
+      padding: 1.25rem;
+    }
+
+    /* ==========================================================================
+       VIEW 1: Visual Weekly Schedule Board
+       ========================================================================== */
+    .schedule-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      background: var(--slate-100);
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+    }
+
+    .schedule-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .schedule-legend {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.775rem;
+      color: var(--slate-600);
+      font-weight: 500;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    /* Mobile Day Picker */
+    .mobile-day-picker {
+      display: none;
+      overflow-x: auto;
+      gap: 0.4rem;
+      padding: 0.5rem 0;
+      margin-bottom: 1rem;
+      scrollbar-width: none;
+    }
+
+    .mobile-day-picker::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-day-btn {
+      padding: 0.5rem 0.85rem;
+      font-size: 0.825rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-300);
+      background: #ffffff;
+      color: var(--slate-700);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .mobile-day-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Schedule Calendar Matrix */
+    .schedule-calendar-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      background: #ffffff;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      min-width: 960px;
+    }
+
+    .schedule-table th, 
+    .schedule-table td {
+      border: 1px solid var(--slate-200);
+      vertical-align: top;
+    }
+
+    .schedule-table th {
+      background: var(--slate-100);
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+
+    .schedule-table th.col-shift {
+      width: 140px;
+      background: var(--slate-200);
+      color: var(--slate-700);
+      text-align: left;
+      padding-left: 0.85rem;
+    }
+
+    .day-header-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .day-header-sub {
+      font-size: 0.725rem;
+      color: var(--slate-500);
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+
+    .shift-header-cell {
+      background: var(--slate-50);
+      padding: 0.85rem;
+    }
+
+    .shift-title-block {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .shift-time-block {
+      font-size: 0.725rem;
+      color: var(--slate-500);
+      margin-top: 0.2rem;
+      font-weight: 500;
+    }
+
+    .shift-duration-badge {
+      display: inline-block;
+      font-size: 0.675rem;
+      font-weight: 700;
+      padding: 0.1rem 0.35rem;
+      border-radius: var(--radius-sm);
+      background: var(--slate-200);
+      color: var(--slate-700);
+      margin-top: 0.25rem;
+    }
+
+    .schedule-cell {
+      padding: 0.55rem;
+      background: #ffffff;
+      min-height: 120px;
+      transition: background-color 0.15s ease;
+    }
+
+    .schedule-cell:hover {
+      background-color: var(--slate-50);
+    }
+
+    .cell-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.45rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px dashed var(--slate-200);
+    }
+
+    .cell-staff-count {
+      font-size: 0.725rem;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      padding: 0.1rem 0.45rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .count-full {
+      background: var(--emerald-100);
+      color: var(--emerald-700);
+    }
+
+    .count-under {
+      background: var(--rose-100);
+      color: var(--rose-700);
+    }
+
+    .cell-assignments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* Assignment Chip */
+    .asgn-chip {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      padding: 0.35rem 0.5rem;
+      font-size: 0.775rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .asgn-chip:hover {
+      border-color: var(--primary-border);
+      background: var(--primary-light);
+    }
+
+    .asgn-chip.chip-manager {
+      border-left: 3px solid #7c3aed;
+    }
+
+    .asgn-chip.chip-barista {
+      border-left: 3px solid #d97706;
+    }
+
+    .asgn-chip.chip-server {
+      border-left: 3px solid #2563eb;
+    }
+
+    .asgn-chip.chip-cashier {
+      border-left: 3px solid #059669;
+    }
+
+    .asgn-chip-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .asgn-chip-name {
+      font-weight: 700;
+      color: var(--slate-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .asgn-chip-role {
+      font-size: 0.675rem;
+      color: var(--slate-500);
+      font-weight: 600;
+    }
+
+    .asgn-chip-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .btn-callout-trigger {
+      background: transparent;
+      border: none;
+      color: var(--slate-400);
+      cursor: pointer;
+      padding: 0.15rem 0.25rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .btn-callout-trigger:hover {
+      color: var(--rose-600);
+      background: var(--rose-50);
+    }
+
+    /* Uncovered Slot Alert Box */
+    .uncovered-slot-box {
+      background: var(--rose-50);
+      border: 1px dashed var(--rose-400);
+      border-radius: var(--radius-md);
+      padding: 0.35rem 0.5rem;
+      font-size: 0.725rem;
+      color: var(--rose-800);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25rem;
+    }
+
+    .uncovered-title {
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .uncovered-role {
+      font-size: 0.675rem;
+      color: var(--rose-700);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       VIEW 2: Employee Management & Availability
+       ========================================================================== */
+    .employee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .emp-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.18s ease;
+    }
+
+    .emp-card:hover {
+      border-color: var(--slate-300);
+      box-shadow: var(--shadow-md);
+    }
+
+    .emp-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .emp-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 2px solid #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .emp-header-details {
+      flex: 1;
+    }
+
+    .emp-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .role-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      text-transform: capitalize;
+    }
+
+    .role-manager { background: #f3e8ff; color: #7e22ce; }
+    .role-barista { background: #fef3c7; color: #b45309; }
+    .role-server { background: #dbeafe; color: #1d4ed8; }
+    .role-cashier { background: #d1fae5; color: #047857; }
+    .role-custom { background: var(--slate-100); color: var(--slate-700); }
+
+    .emp-hours-gauge {
+      margin: 0.75rem 0;
+      background: var(--slate-50);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--slate-200);
+    }
+
+    .gauge-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      margin-bottom: 0.35rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background-color: var(--slate-200);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.4s ease;
+    }
+
+    .fill-normal { background-color: var(--primary); }
+    .fill-optimal { background-color: var(--emerald-500); }
+    .fill-warning { background-color: var(--amber-500); }
+    .fill-max { background-color: var(--rose-500); }
+
+    .emp-availability-summary {
+      font-size: 0.75rem;
+      color: var(--slate-600);
+      margin-bottom: 0.85rem;
+    }
+
+    .avail-chips-row {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+
+    .day-avail-chip {
+      padding: 0.15rem 0.4rem;
+      font-size: 0.675rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+
+    .day-avail-chip.has-shifts {
+      background: var(--emerald-50);
+      color: var(--emerald-700);
+      border: 1px solid var(--emerald-200);
+    }
+
+    .day-avail-chip.no-shifts {
+      background: var(--slate-100);
+      color: var(--slate-400);
+      text-decoration: line-through;
+    }
+
+    .emp-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-top: 1px solid var(--slate-100);
+      padding-top: 0.75rem;
+    }
+
+    /* ==========================================================================
+       VIEW 3: Shift Requirements & Daily Rules
+       ========================================================================== */
+    .shift-rules-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    .shift-rules-table th,
+    .shift-rules-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--slate-200);
+      text-align: left;
+    }
+
+    .shift-rules-table th {
+      background: var(--slate-50);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .time-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .time-input {
+      padding: 0.35rem 0.5rem;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      background: #ffffff;
+    }
+
+    .role-req-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .req-stepper {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .req-stepper-btn {
+      background: var(--slate-100);
+      border: none;
+      width: 26px;
+      height: 28px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--slate-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease;
+    }
+
+    .req-stepper-btn:hover {
+      background: var(--slate-200);
+    }
+
+    .req-stepper-val {
+      width: 28px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .req-stepper-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0 0.4rem;
+      color: var(--slate-600);
+      background: var(--slate-50);
+      border-right: 1px solid var(--slate-200);
+    }
+
+    /* Shift Day Tabs */
+    .day-selector-tabs {
+      display: flex;
+      gap: 0.35rem;
+      margin-bottom: 1.25rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+    }
+
+    .day-tab-pill {
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--slate-300);
+      background: #ffffff;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .day-tab-pill.active {
+      background: var(--slate-900);
+      color: #ffffff;
+      border-color: var(--slate-900);
+    }
+
+    /* ==========================================================================
+       VIEW 4: Fairness & Hours Analytics
+       ========================================================================== */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .fairness-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .fairness-table th,
+    .fairness-table td {
+      padding: 0.75rem 0.85rem;
+      border-bottom: 1px solid var(--slate-200);
+      text-align: left;
+    }
+
+    .fairness-table th {
+      background: var(--slate-50);
+      font-size: 0.775rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-transform: uppercase;
+    }
+
+    .fairness-card-box {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1rem;
+    }
+
+    .fairness-card-box h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .variance-metric {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--emerald-600);
+      line-height: 1.1;
+      margin: 0.35rem 0;
+    }
+
+    .fairness-explanation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.75rem;
+    }
+
+    .explanation-item {
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-md);
+      background: var(--slate-50);
+      border-left: 3px solid var(--primary);
+      font-size: 0.8rem;
+      color: var(--slate-700);
+    }
+
+    .explanation-item strong {
+      color: var(--slate-900);
+    }
+
+    /* ==========================================================================
+       VIEW 5: Staffing Conflict & Diagnostic Report
+       ========================================================================== */
+    .conflict-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .conflict-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 1rem 1.15rem;
+      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .conflict-item.uncovered {
+      border-left: 4px solid var(--rose-600);
+      background: #fffafa;
+    }
+
+    .conflict-item.warning {
+      border-left: 4px solid var(--amber-500);
+      background: #fffdf5;
+    }
+
+    .conflict-item.resolved {
+      border-left: 4px solid var(--emerald-500);
+      background: #f8fdfa;
+    }
+
+    .conflict-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .conflict-details h4 {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 0.2rem;
+    }
+
+    .conflict-details p {
+      font-size: 0.825rem;
+      color: var(--slate-600);
+    }
+
+    .conflict-meta {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .conflict-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-sm);
+      background: var(--slate-200);
+      color: var(--slate-700);
+    }
+
+    /* ==========================================================================
+       Modals & Dialogs
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-xl);
+      transform: scale(0.96);
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: 1.15rem 1.4rem;
+      border-bottom: 1px solid var(--slate-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 5;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--slate-400);
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: var(--slate-700);
+      background: var(--slate-100);
+    }
+
+    .modal-body {
+      padding: 1.4rem;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.4rem;
+      border-top: 1px solid var(--slate-200);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.65rem;
+      background: var(--slate-50);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      color: var(--slate-900);
+      background: #ffffff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* 7x3 Availability Grid Picker in Modal */
+    .modal-avail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+    }
+
+    .modal-avail-table th,
+    .modal-avail-table td {
+      border: 1px solid var(--slate-200);
+      padding: 0.45rem 0.35rem;
+      text-align: center;
+    }
+
+    .modal-avail-table th {
+      background: var(--slate-100);
+      font-weight: 700;
+      color: var(--slate-700);
+    }
+
+    .avail-checkbox-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      height: 100%;
+      min-height: 28px;
+    }
+
+    .avail-checkbox {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Toast Notification System */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: var(--slate-800);
+      pointer-events: auto;
+      max-width: 380px;
+      animation: slideUp 0.25s ease;
+      transition: all 0.2s ease;
+    }
+
+    .toast-success {
+      border-left: 4px solid var(--emerald-600);
+    }
+
+    .toast-error {
+      border-left: 4px solid var(--rose-600);
+    }
+
+    .toast-info {
+      border-left: 4px solid var(--primary);
+    }
+
+    /* Change Diff Modal Styles */
+    .diff-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .diff-card {
+      padding: 0.75rem 0.95rem;
+      border-radius: var(--radius-md);
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      font-size: 0.825rem;
+    }
+
+    .diff-badge-replaced {
+      background: var(--emerald-100);
+      color: var(--emerald-800);
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+    }
+
+    .diff-badge-uncovered {
+      background: var(--rose-100);
+      color: var(--rose-800);
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.7rem;
+    }
+
+    /* Footer */
+    .app-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--slate-200);
+      padding: 1.5rem 1.25rem;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--slate-500);
+    }
+
+    .footer-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-disclaimers {
+      background: var(--slate-50);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: var(--slate-600);
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: var(--slate-500);
+    }
+
+    .empty-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 1rem;
+      color: var(--slate-400);
+      background: var(--slate-100);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      margin-bottom: 0.35rem;
+    }
+
+    .empty-desc {
+      font-size: 0.85rem;
+      max-width: 440px;
+      margin: 0 auto 1.25rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .mobile-day-picker {
+        display: flex;
+      }
+      .schedule-calendar-wrap {
+        border: none;
+      }
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .form-row-2 {
+        grid-template-columns: 1fr;
+      }
+      /* On mobile, collapse table into single active day column */
+      .schedule-table th:not(.col-shift),
+      .schedule-table td:not(.shift-header-cell) {
+        display: none;
+      }
+      .schedule-table th.mobile-active-day,
+      .schedule-table td.mobile-active-day {
+        display: table-cell !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header class="top-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="M8 14h.01"></path>
+            <path d="M12 14h.01"></path>
+            <path d="M16 14h.01"></path>
+            <path d="M8 18h.01"></path>
+            <path d="M12 18h.01"></path>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>GetShifty <span class="brand-badge">PROTOTYPE</span></h1>
+          <p>Smarter Scheduling. Happier Teams.</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="header-actions">
+        <button id="btn-load-demo" class="btn btn-secondary btn-sm" title="Populate 10 fictional employees and shift requirements">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Load Demo Scenario
+        </button>
+
+        <button id="btn-generate" class="btn btn-primary btn-sm" title="Run scheduling optimization based on constraints">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Generate Schedule
+        </button>
+
+        <button id="btn-regenerate" class="btn btn-emerald btn-sm" title="Re-solve schedule while preserving unaffected assignments">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Regenerate Schedule
+        </button>
+
+        <button id="btn-reset-schedule" class="btn btn-danger btn-sm" title="Clear schedule assignments">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          Reset Schedule
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-main">
+
+    <!-- Active Call-Out Alert Banner (Visible when an employee is marked unavailable) -->
+    <div id="callout-alert-banner" class="callout-banner">
+      <div class="callout-info">
+        <div class="callout-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        </div>
+        <div class="callout-text">
+          <h4 id="callout-banner-title">Employee Call-Out Recorded</h4>
+          <p id="callout-banner-desc">An employee called out. Click 'Regenerate Schedule' to find qualified replacement coverage while preserving existing assignments.</p>
+        </div>
+      </div>
+      <div style="display:flex; gap:0.5rem;">
+        <button id="btn-banner-regenerate" class="btn btn-emerald btn-sm">Regenerate Now</button>
+        <button id="btn-banner-dismiss" class="btn btn-secondary btn-sm">Clear Alert</button>
+      </div>
+    </div>
+
+    <!-- KPI Metric Dashboard Cards -->
+    <section class="kpi-grid">
+      <!-- 1. Total Employees -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Team Size</span>
+          <div class="kpi-icon-wrap" style="background:#e0e7ff; color:var(--primary);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-total-employees">0</div>
+        <div class="kpi-subtext" id="kpi-roles-summary">No employees loaded</div>
+      </div>
+
+      <!-- 2. Required Staffing Hours -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Required Hours</span>
+          <div class="kpi-icon-wrap" style="background:#f1f5f9; color:var(--slate-700);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-required-hours">0.0h</div>
+        <div class="kpi-subtext" id="kpi-slots-needed">0 total shift slots</div>
+      </div>
+
+      <!-- 3. Scheduled Working Hours -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Scheduled Hours</span>
+          <div class="kpi-icon-wrap" style="background:#ecfdf5; color:var(--emerald-600);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-assigned-hours">0.0h</div>
+        <div class="kpi-subtext" id="kpi-slots-assigned">0 slots filled</div>
+      </div>
+
+      <!-- 4. Staffing Coverage % -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Coverage Rate</span>
+          <div class="kpi-icon-wrap" style="background:#eff6ff; color:#2563eb;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-coverage-pct">0%</div>
+        <div class="kpi-subtext" id="kpi-coverage-label">Generated vs Required</div>
+      </div>
+
+      <!-- 5. Uncovered Positions -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Uncovered Shifts</span>
+          <div class="kpi-icon-wrap" style="background:#fff1f2; color:var(--rose-600);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-uncovered-count">0</div>
+        <div class="kpi-subtext" id="kpi-uncovered-sub">Understaffed slots</div>
+      </div>
+
+      <!-- 6. Conflicts / Warnings -->
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <span class="kpi-title">Active Conflicts</span>
+          <div class="kpi-icon-wrap" style="background:#fffbeb; color:var(--amber-600);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="kpi-conflicts-count">0</div>
+        <div class="kpi-subtext" id="kpi-conflicts-sub">Availability & hour caps</div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="tab-schedule">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Weekly Schedule Board
+      </button>
+
+      <button class="tab-btn" data-tab="tab-employees">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Staff & Availability
+        <span class="tab-badge" id="badge-emp-count">0</span>
+      </button>
+
+      <button class="tab-btn" data-tab="tab-shifts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        Shift Requirements
+      </button>
+
+      <button class="tab-btn" data-tab="tab-fairness">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+        Fairness & Hours Analytics
+      </button>
+
+      <button class="tab-btn" data-tab="tab-conflicts">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Staffing Conflict Report
+        <span class="tab-badge" id="badge-conflicts-count">0</span>
+      </button>
+    </nav>
+
+    <!-- ==========================================================================
+         VIEW 1: Visual Weekly Schedule Board
+         ========================================================================== -->
+    <div id="tab-schedule" class="tab-view active">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">
+              Weekly Schedule Calendar
+            </h2>
+            <p class="panel-subtitle">Monday through Sunday • Morning, Afternoon & Evening Shifts</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <button id="btn-print-schedule" class="btn btn-secondary btn-sm" title="Print this schedule or save as PDF">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print / PDF
+            </button>
+            <button id="btn-quick-callout-guide" class="btn btn-secondary btn-sm" title="Learn how to simulate employee callouts">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              How Call-Outs Work
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <!-- Calendar Legend & Help -->
+          <div class="schedule-toolbar">
+            <div class="schedule-legend">
+              <span class="legend-item"><span class="legend-dot" style="background:#10b981;"></span> Fully Staffed</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#f43f5e;"></span> Understaffed / Open</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#7c3aed;"></span> Manager</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#d97706;"></span> Barista</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#2563eb;"></span> Server</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#059669;"></span> Cashier</span>
+            </div>
+            <div style="font-size:0.775rem; color:var(--slate-500);">
+              💡 <em>Click the <strong style="color:var(--rose-600);">Call-Out icon</strong> on any assigned employee to test unavailability & regeneration.</em>
+            </div>
+          </div>
+
+          <!-- Mobile Day Switcher (Visible on screens <= 768px) -->
+          <div class="mobile-day-picker" id="mobile-day-picker">
+            <button class="mobile-day-btn active" data-day="Monday">Mon</button>
+            <button class="mobile-day-btn" data-day="Tuesday">Tue</button>
+            <button class="mobile-day-btn" data-day="Wednesday">Wed</button>
+            <button class="mobile-day-btn" data-day="Thursday">Thu</button>
+            <button class="mobile-day-btn" data-day="Friday">Fri</button>
+            <button class="mobile-day-btn" data-day="Saturday">Sat</button>
+            <button class="mobile-day-btn" data-day="Sunday">Sun</button>
+          </div>
+
+          <!-- Schedule Grid Table -->
+          <div class="schedule-calendar-wrap">
+            <table class="schedule-table" id="schedule-matrix-table">
+              <thead>
+                <tr>
+                  <th class="col-shift">Shift Window</th>
+                  <th data-col="Monday" class="mobile-active-day">
+                    <div class="day-header-title">Monday</div>
+                    <div class="day-header-sub" id="header-req-Monday">0h required</div>
+                  </th>
+                  <th data-col="Tuesday">
+                    <div class="day-header-title">Tuesday</div>
+                    <div class="day-header-sub" id="header-req-Tuesday">0h required</div>
+                  </th>
+                  <th data-col="Wednesday">
+                    <div class="day-header-title">Wednesday</div>
+                    <div class="day-header-sub" id="header-req-Wednesday">0h required</div>
+                  </th>
+                  <th data-col="Thursday">
+                    <div class="day-header-title">Thursday</div>
+                    <div class="day-header-sub" id="header-req-Thursday">0h required</div>
+                  </th>
+                  <th data-col="Friday">
+                    <div class="day-header-title">Friday</div>
+                    <div class="day-header-sub" id="header-req-Friday">0h required</div>
+                  </th>
+                  <th data-col="Saturday">
+                    <div class="day-header-title">Saturday</div>
+                    <div class="day-header-sub" id="header-req-Saturday">0h required</div>
+                  </th>
+                  <th data-col="Sunday">
+                    <div class="day-header-title">Sunday</div>
+                    <div class="day-header-sub" id="header-req-Sunday">0h required</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="schedule-matrix-tbody">
+                <!-- Dynamically rendered rows: Morning, Afternoon, Evening -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 2: Employee Management & Availability
+         ========================================================================== -->
+    <div id="tab-employees" class="tab-view">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Employee Roster & Availability</h2>
+            <p class="panel-subtitle">Manage employee roles, working hour caps, and weekly availability</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button id="btn-load-sample-employees" class="btn btn-secondary btn-sm">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              Load Sample Employees (10)
+            </button>
+            <button id="btn-add-employee" class="btn btn-primary btn-sm">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Employee
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <div id="employees-container" class="employee-grid">
+            <!-- Dynamically populated employee cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 3: Shift Requirements
+         ========================================================================== -->
+    <div id="tab-shifts" class="tab-view">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Staffing Requirements & Shift Configuration</h2>
+            <p class="panel-subtitle">Define shift start/end times and required staffing headcount by role for each day</p>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button id="btn-load-sample-shifts" class="btn btn-secondary btn-sm">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              Generate Sample Shift Structure
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-body">
+          <!-- Day Tabs for Shift Configuration -->
+          <div class="day-selector-tabs" id="shift-config-day-tabs">
+            <button class="day-tab-pill active" data-day="Monday">Monday</button>
+            <button class="day-tab-pill" data-day="Tuesday">Tuesday</button>
+            <button class="day-tab-pill" data-day="Wednesday">Wednesday</button>
+            <button class="day-tab-pill" data-day="Thursday">Thursday</button>
+            <button class="day-tab-pill" data-day="Friday">Friday</button>
+            <button class="day-tab-pill" data-day="Saturday">Saturday</button>
+            <button class="day-tab-pill" data-day="Sunday">Sunday</button>
+          </div>
+
+          <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <strong id="shift-config-current-day-title" style="color:var(--slate-900);">Monday Staffing Configuration</strong>
+              <div id="shift-config-day-hours-summary" style="font-size:0.8rem; color:var(--slate-500);">3 shifts • 36 required staffing hours</div>
+            </div>
+            <button id="btn-apply-to-all-days" class="btn btn-secondary btn-sm" title="Copy this day's shift requirements to all 7 days">
+              Copy to All Days
+            </button>
+          </div>
+
+          <!-- Shift requirements table -->
+          <div style="overflow-x:auto;">
+            <table class="shift-rules-table">
+              <thead>
+                <tr>
+                  <th style="width:160px;">Shift Name</th>
+                  <th style="width:240px;">Shift Times (Hours)</th>
+                  <th>Required Positions by Role</th>
+                  <th style="width:120px;">Staff Needed</th>
+                </tr>
+              </thead>
+              <tbody id="shift-config-tbody">
+                <!-- Dynamically populated for currently selected day -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Shift Overlap Warning Notice -->
+          <div id="shift-overlap-alert" style="display:none; margin-top:1rem; padding:0.85rem 1rem; background:var(--amber-50); border:1px solid var(--amber-500); border-radius:var(--radius-md); font-size:0.825rem; color:var(--amber-700);">
+            <strong>⚠️ Overlapping Shift Definition Detected:</strong> One or more shifts have overlapping working hours. GetShifty's hard constraint prevents employees from working overlapping shifts on the same day.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 4: Fairness & Hours Analytics
+         ========================================================================== -->
+    <div id="tab-fairness" class="tab-view">
+      <div class="analytics-grid">
+        <!-- Left: Employee Hours Comparison Table -->
+        <div class="panel" style="margin-bottom:0;">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Hours Distribution & Fairness Summary</h2>
+              <p class="panel-subtitle">Assigned Hours vs. Preferred Hours vs. Maximum Weekly Cap</p>
+            </div>
+          </div>
+          <div class="panel-body" style="padding:0; overflow-x:auto;">
+            <table class="fairness-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Role</th>
+                  <th>Assigned</th>
+                  <th>Preferred</th>
+                  <th>Max Cap</th>
+                  <th>Utilization</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="fairness-table-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Fairness Metric & Explanations -->
+        <div>
+          <!-- Fairness Score Box -->
+          <div class="fairness-card-box">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              Schedule Fairness Score
+            </h3>
+            <p style="font-size:0.8rem; color:var(--slate-500);">Average absolute deviation from preferred working hours across eligible employees.</p>
+            <div class="variance-metric" id="fairness-variance-metric">0.0h avg deviation</div>
+            <p id="fairness-quality-label" style="font-size:0.825rem; font-weight:600; color:var(--emerald-600);">Optimal distribution</p>
+          </div>
+
+          <!-- Transparent Explanations Box -->
+          <div class="fairness-card-box">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              Why Are Hours Distributed This Way?
+            </h3>
+            <p style="font-size:0.8rem; color:var(--slate-500);">Transparent breakdown explaining variance between team members:</p>
+            <div class="fairness-explanation-list" id="fairness-explanations-list">
+              <div class="explanation-item">Generate a schedule to view detailed fairness explanations.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 5: Staffing Conflict Report
+         ========================================================================== -->
+    <div id="tab-conflicts" class="tab-view">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h2 class="panel-title">Staffing Conflicts & Uncovered Shift Audit</h2>
+            <p class="panel-subtitle">Transparent explanations of hard constraint bottlenecks and unfilled positions</p>
+          </div>
+          <button id="btn-export-conflicts" class="btn btn-secondary btn-sm">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export Conflict Report
+          </button>
+        </div>
+
+        <div class="panel-body">
+          <div class="conflict-list" id="conflict-items-container">
+            <!-- Dynamically populated conflicts -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       MODAL 1: Add / Edit Employee Modal
+       ========================================================================== -->
+  <div id="modal-employee" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-employee-title">Add New Employee</h3>
+        <button class="modal-close" id="btn-close-emp-modal">&times;</button>
+      </div>
+      <form id="form-employee">
+        <input type="hidden" id="emp-form-id">
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label" for="emp-name">Employee Full Name *</label>
+            <input type="text" id="emp-name" class="form-input" placeholder="e.g. Jordan Taylor" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="emp-role">Primary Role *</label>
+            <select id="emp-role" class="form-select" required>
+              <option value="Manager">Manager</option>
+              <option value="Barista">Barista</option>
+              <option value="Server">Server</option>
+              <option value="Cashier">Cashier</option>
+            </select>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="emp-max-hours">Max Weekly Hours * (Hard Cap)</label>
+              <input type="number" id="emp-max-hours" class="form-input" min="1" max="60" value="35" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="emp-pref-hours">Preferred Weekly Hours (Target)</label>
+              <input type="number" id="emp-pref-hours" class="form-input" min="0" max="60" value="30">
+            </div>
+          </div>
+
+          <!-- Weekly Availability Picker -->
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+              <label class="form-label" style="margin-bottom:0;">Available Shifts by Day *</label>
+              <div style="display:flex; gap:0.4rem;">
+                <button type="button" id="btn-avail-all" class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.7rem;">Select All</button>
+                <button type="button" id="btn-avail-none" class="btn btn-secondary btn-sm" style="padding:0.2rem 0.5rem; font-size:0.7rem;">Clear All</button>
+              </div>
+            </div>
+            <table class="modal-avail-table">
+              <thead>
+                <tr>
+                  <th>Shift</th>
+                  <th>Mon</th>
+                  <th>Tue</th>
+                  <th>Wed</th>
+                  <th>Thu</th>
+                  <th>Fri</th>
+                  <th>Sat</th>
+                  <th>Sun</th>
+                </tr>
+              </thead>
+              <tbody id="modal-avail-tbody">
+                <!-- Checkbox rows for Morning, Afternoon, Evening -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-emp-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-save-employee">Save Employee</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 2: Call-Out / Unavailability Confirmation Modal
+       ========================================================================== -->
+  <div id="modal-callout" class="modal-overlay">
+    <div class="modal-container" style="max-width:500px;">
+      <div class="modal-header">
+        <h3 class="modal-title">Record Employee Call-Out</h3>
+        <button class="modal-close" id="btn-close-callout-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="display:flex; align-items:center; gap:0.75rem; background:var(--rose-50); border:1px solid var(--rose-200); padding:0.85rem; border-radius:var(--radius-md); margin-bottom:1rem;">
+          <div style="color:var(--rose-600);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          </div>
+          <div>
+            <h4 id="callout-modal-emp-name" style="font-size:0.95rem; font-weight:700; color:var(--rose-900);">Employee Name</h4>
+            <p id="callout-modal-shift-info" style="font-size:0.825rem; color:var(--rose-700);">Friday Evening (4:00 PM – 8:00 PM)</p>
+          </div>
+        </div>
+        <p style="font-size:0.85rem; color:var(--slate-600); line-height:1.5;">
+          Marking this employee unavailable will flag their shift as open. When you click <strong>"Regenerate Schedule"</strong>, GetShifty will find an available, qualified replacement without altering unrelated assignments.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-cancel-callout-modal">Cancel</button>
+        <button type="button" class="btn btn-danger" id="btn-confirm-callout">Mark Unavailable & Flag</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 3: Schedule Regeneration Diff & Summary Modal
+       ========================================================================== -->
+  <div id="modal-diff" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Schedule Regeneration Summary</h3>
+        <button class="modal-close" id="btn-close-diff-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:var(--emerald-50); border:1px solid var(--emerald-200); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem;">
+          <strong style="color:var(--emerald-800); font-size:0.9rem;">Stability-Preserving Regeneration Complete</strong>
+          <p id="diff-summary-stat" style="font-size:0.825rem; color:var(--emerald-700); margin-top:0.2rem;">
+            Preserved all unaffected assignments while resolving call-outs.
+          </p>
+        </div>
+
+        <h4 style="font-size:0.875rem; font-weight:700; color:var(--slate-800); margin-bottom:0.6rem;">Schedule Changes:</h4>
+        <div class="diff-list" id="diff-items-container">
+          <!-- Dynamically populated change items -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-accept-diff">Review Updated Schedule</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 4: How Callouts Work Guide Modal
+       ========================================================================== -->
+  <div id="modal-guide" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">How GetShifty Responds to Call-Outs</h3>
+        <button class="modal-close" id="btn-close-guide-modal">&times;</button>
+      </div>
+      <div class="modal-body" style="font-size:0.85rem; color:var(--slate-700); line-height:1.6;">
+        <h4 style="color:var(--slate-900); margin-bottom:0.4rem;">The Small-Business Manager Challenge</h4>
+        <p style="margin-bottom:0.8rem;">When an employee calls out sick for Friday evening, managers traditionally spend 45 minutes manually texting staff and checking who is free, who already worked 40 hours, and who has the right role.</p>
+        
+        <h4 style="color:var(--slate-900); margin-bottom:0.4rem;">How to test it in GetShifty:</h4>
+        <ol style="padding-left:1.25rem; display:flex; flex-direction:column; gap:0.45rem; margin-bottom:1rem;">
+          <li>Click <strong>"Load Demo Scenario"</strong> in the top header (creates 10 employees & a full week of shifts).</li>
+          <li>Click <strong>"Generate Schedule"</strong>. You will see all 7 days staffed.</li>
+          <li>Find <strong>Friday Evening</strong>. Notice assigned staff (e.g. Marcus Vance).</li>
+          <li>Click the small <span style="color:var(--rose-600); font-weight:700;">[Call-Out]</span> icon next to an assigned employee.</li>
+          <li>Confirm the call-out. The shift will be flagged as vacated.</li>
+          <li>Click <strong>"Regenerate Schedule"</strong>. GetShifty will find the best eligible replacement (e.g. Liam O'Connor) while keeping all other shifts frozen!</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btn-close-guide-btn">Got it, let's try it!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer with Responsible AI & Data Privacy Disclaimers -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div>
+          <strong style="color:var(--slate-800);">GetShifty</strong> — AI-Assisted Employee Scheduling Prototype
+          <div style="font-size:0.75rem; margin-top:0.25rem;">Developed for University AI for Business Shark Tank Project</div>
+        </div>
+        <div style="display:flex; gap:0.75rem;">
+          <button id="btn-clear-all-data" class="btn btn-danger btn-sm">Clear All Stored Data</button>
+        </div>
+      </div>
+
+      <div class="footer-disclaimers">
+        <strong>🔒 Client-Side Data Privacy:</strong> 
+        All employee profiles, roles, and schedules are stored solely within your web browser's <code>localStorage</code>. No employee information or personal data is transmitted to external servers, cloud databases, or third-party APIs.
+        <br><br>
+        <strong>⚖️ Responsible AI & Labor Compliance Notice:</strong> 
+        GetShifty utilizes deterministic heuristic optimization to schedule shifts based on entered constraints. Fairness is treated as an optimization objective, not an absolute guarantee. Managers remain responsible for ensuring schedules comply with applicable federal, state, and local labor regulations, mandatory rest breaks, minor working hour limits, overtime compensation, and collective bargaining agreements.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       APPLICATION LOGIC & SCHEDULING ENGINE (Vanilla JS)
+       ========================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ==========================================================================
+         1. CONSTANTS & DEFAULT CONFIGURATIONS
+         ========================================================================== */
+      const STORAGE_KEY = 'getshifty_store_v1';
+
+      const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+      const DEFAULT_SHIFTS = [
+        { id: 'morning', name: 'Morning', defaultStart: '08:00', defaultEnd: '12:00' },
+        { id: 'afternoon', name: 'Afternoon', defaultStart: '12:00', defaultEnd: '16:00' },
+        { id: 'evening', name: 'Evening', defaultStart: '16:00', defaultEnd: '20:00' }
+      ];
+
+      const ROLES = ['Manager', 'Barista', 'Server', 'Cashier'];
+
+      /* ==========================================================================
+         2. APPLICATION STATE
+         ========================================================================== */
+      let state = {
+        employees: [],
+        shiftRequirements: {}, // day -> { morning: { start, end, roles: { Manager: 1... } } }
+        activeSchedule: {},    // day -> { morning: [empId1, empId2], ... }
+        uncoveredSlots: [],    // [{ day, shiftId, role, reason }]
+        callouts: [],          // [{ employeeId, day, shiftId }]
+        previousSchedule: null,// Snapshot for regeneration diff
+        lastDiff: null,        // [{ type, day, shiftId, role, oldEmp, newEmp, reason }]
+        selectedConfigDay: 'Monday',
+        activeMobileDay: 'Monday'
+      };
+
+      // Temporary state for callout modal
+      let pendingCallout = null;
+
+      /* ==========================================================================
+         3. LOCAL STORAGE & PERSISTENCE
+         ========================================================================== */
+      function saveToStorage() {
+        try {
+          const payload = {
+            employees: state.employees,
+            shiftRequirements: state.shiftRequirements,
+            activeSchedule: state.activeSchedule,
+            uncoveredSlots: state.uncoveredSlots,
+            callouts: state.callouts,
+            previousSchedule: state.previousSchedule,
+            lastDiff: state.lastDiff
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        } catch (e) {
+          console.error('Storage save error:', e);
+        }
+      }
+
+      function loadFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            state.employees = parsed.employees || [];
+            state.shiftRequirements = parsed.shiftRequirements || generateDefaultShiftRequirements();
+            state.activeSchedule = parsed.activeSchedule || {};
+            state.uncoveredSlots = parsed.uncoveredSlots || [];
+            state.callouts = parsed.callouts || [];
+            state.previousSchedule = parsed.previousSchedule || null;
+            state.lastDiff = parsed.lastDiff || null;
+            return true;
+          }
+        } catch (e) {
+          console.error('Storage load error:', e);
+        }
+        return false;
+      }
+
+      function generateDefaultShiftRequirements() {
+        const req = {};
+        DAYS.forEach(day => {
+          req[day] = {
+            morning: {
+              start: '08:00',
+              end: '12:00',
+              roles: { Manager: 1, Barista: 1, Server: 1, Cashier: 1 }
+            },
+            afternoon: {
+              start: '12:00',
+              end: '16:00',
+              roles: { Manager: 1, Barista: 1, Server: 1, Cashier: 1 }
+            },
+            evening: {
+              start: '16:00',
+              end: '20:00',
+              roles: { Manager: 1, Barista: 1, Server: 2, Cashier: 1 }
+            }
+          };
+        });
+        return req;
+      }
+
+      /* ==========================================================================
+         4. TIME & DURATION HELPERS
+         ========================================================================== */
+      function parseTimeToHours(timeStr) {
+        if (!timeStr) return 0;
+        const [h, m] = timeStr.split(':').map(Number);
+        return h + (m || 0) / 60;
+      }
+
+      function calculateShiftDuration(startStr, endStr) {
+        const s = parseTimeToHours(startStr);
+        let e = parseTimeToHours(endStr);
+        if (e <= s) {
+          // Wrap around overnight shift support
+          e += 24;
+        }
+        return Math.max(0, e - s);
+      }
+
+      function formatHours(h) {
+        return (Math.round(h * 10) / 10).toFixed(1) + 'h';
+      }
+
+      function formatTimeDisplay(timeStr) {
+        if (!timeStr) return '';
+        const [hStr, mStr] = timeStr.split(':');
+        let h = parseInt(hStr, 10);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        return `${h}:${mStr} ${ampm}`;
+      }
+
+      /* ==========================================================================
+         5. DEMO SCENARIO DATA LOADER (10 EMPLOYEES & REALISTIC RESTAURANT NEEDS)
+         ========================================================================== */
+      function loadDemoScenario() {
+        // 10 realistic employees with diverse roles, student/full-time availability, and hour caps
+        state.employees = [
+          {
+            id: 'emp_1',
+            name: 'Elena Rostova',
+            role: 'Manager',
+            maxHours: 40,
+            preferredHours: 38,
+            availability: {
+              Monday:    { morning: true,  afternoon: true,  evening: false },
+              Tuesday:   { morning: true,  afternoon: true,  evening: false },
+              Wednesday: { morning: true,  afternoon: true,  evening: false },
+              Thursday:  { morning: true,  afternoon: true,  evening: false },
+              Friday:    { morning: true,  afternoon: true,  evening: false },
+              Saturday:  { morning: true,  afternoon: false, evening: false },
+              Sunday:    { morning: false, afternoon: false, evening: false }
+            }
+          },
+          {
+            id: 'emp_2',
+            name: 'David Kim',
+            role: 'Manager',
+            maxHours: 40,
+            preferredHours: 36,
+            availability: {
+              Monday:    { morning: false, afternoon: false, evening: false },
+              Tuesday:   { morning: false, afternoon: false, evening: false },
+              Wednesday: { morning: false, afternoon: true,  evening: true  },
+              Thursday:  { morning: false, afternoon: true,  evening: true  },
+              Friday:    { morning: false, afternoon: true,  evening: true  },
+              Saturday:  { morning: false, afternoon: true,  evening: true  },
+              Sunday:    { morning: false, afternoon: true,  evening: true  }
+            }
+          },
+          {
+            id: 'emp_3',
+            name: 'Maya Lin',
+            role: 'Barista',
+            maxHours: 35,
+            preferredHours: 30,
+            availability: {
+              Monday:    { morning: true,  afternoon: true,  evening: false },
+              Tuesday:   { morning: true,  afternoon: true,  evening: false },
+              Wednesday: { morning: false, afternoon: false, evening: false },
+              Thursday:  { morning: true,  afternoon: true,  evening: false },
+              Friday:    { morning: true,  afternoon: true,  evening: false },
+              Saturday:  { morning: true,  afternoon: true,  evening: false },
+              Sunday:    { morning: false, afternoon: false, evening: false }
+            }
+          },
+          {
+            id: 'emp_4',
+            name: 'Chloe Bennett',
+            role: 'Barista',
+            maxHours: 30,
+            preferredHours: 25,
+            availability: {
+              Monday:    { morning: false, afternoon: false, evening: false },
+              Tuesday:   { morning: true,  afternoon: true,  evening: false },
+              Wednesday: { morning: true,  afternoon: true,  evening: false },
+              Thursday:  { morning: true,  afternoon: true,  evening: false },
+              Friday:    { morning: false, afternoon: true,  evening: true  },
+              Saturday:  { morning: false, afternoon: true,  evening: true  },
+              Sunday:    { morning: true,  afternoon: true,  evening: false }
+            }
+          },
+          {
+            id: 'emp_5',
+            name: 'Samira Khan',
+            role: 'Barista',
+            maxHours: 25,
+            preferredHours: 20,
+            availability: {
+              Monday:    { morning: false, afternoon: false, evening: true  },
+              Tuesday:   { morning: false, afternoon: false, evening: false },
+              Wednesday: { morning: false, afternoon: false, evening: true  },
+              Thursday:  { morning: false, afternoon: false, evening: true  },
+              Friday:    { morning: false, afternoon: false, evening: true  },
+              Saturday:  { morning: false, afternoon: false, evening: true  },
+              Sunday:    { morning: false, afternoon: true,  evening: true  }
+            }
+          },
+          {
+            id: 'emp_6',
+            name: 'Marcus Vance',
+            role: 'Server',
+            maxHours: 25,
+            preferredHours: 20,
+            availability: {
+              Monday:    { morning: false, afternoon: false, evening: true  },
+              Tuesday:   { morning: false, afternoon: false, evening: true  },
+              Wednesday: { morning: false, afternoon: false, evening: true  },
+              Thursday:  { morning: false, afternoon: false, evening: true  },
+              Friday:    { morning: false, afternoon: false, evening: true  },
+              Saturday:  { morning: false, afternoon: true,  evening: true  },
+              Sunday:    { morning: false, afternoon: true,  evening: true  }
+            }
+          },
+          {
+            id: 'emp_7',
+            name: 'Liam O\'Connor',
+            role: 'Server',
+            maxHours: 35,
+            preferredHours: 32,
+            availability: {
+              Monday:    { morning: false, afternoon: true,  evening: true  },
+              Tuesday:   { morning: false, afternoon: true,  evening: true  },
+              Wednesday: { morning: false, afternoon: true,  evening: true  },
+              Thursday:  { morning: false, afternoon: true,  evening: true  },
+              Friday:    { morning: false, afternoon: true,  evening: true  },
+              Saturday:  { morning: false, afternoon: true,  evening: true  },
+              Sunday:    { morning: false, afternoon: false, evening: false }
+            }
+          },
+          {
+            id: 'emp_8',
+            name: 'Jordan Taylor',
+            role: 'Server',
+            maxHours: 30,
+            preferredHours: 26,
+            availability: {
+              Monday:    { morning: true,  afternoon: true,  evening: false },
+              Tuesday:   { morning: true,  afternoon: true,  evening: false },
+              Wednesday: { morning: true,  afternoon: true,  evening: false },
+              Thursday:  { morning: true,  afternoon: true,  evening: false },
+              Friday:    { morning: true,  afternoon: true,  evening: false },
+              Saturday:  { morning: true,  afternoon: false, evening: false },
+              Sunday:    { morning: true,  afternoon: true,  evening: false }
+            }
+          },
+          {
+            id: 'emp_9',
+            name: 'Aiden Reed',
+            role: 'Cashier',
+            maxHours: 32,
+            preferredHours: 28,
+            availability: {
+              Monday:    { morning: true,  afternoon: true,  evening: false },
+              Tuesday:   { morning: true,  afternoon: true,  evening: false },
+              Wednesday: { morning: true,  afternoon: true,  evening: false },
+              Thursday:  { morning: true,  afternoon: true,  evening: false },
+              Friday:    { morning: true,  afternoon: true,  evening: false },
+              Saturday:  { morning: false, afternoon: false, evening: false },
+              Sunday:    { morning: false, afternoon: false, evening: false }
+            }
+          },
+          {
+            id: 'emp_10',
+            name: 'Zoe Martin',
+            role: 'Cashier',
+            maxHours: 28,
+            preferredHours: 24,
+            availability: {
+              Monday:    { morning: false, afternoon: false, evening: false },
+              Tuesday:   { morning: false, afternoon: false, evening: false },
+              Wednesday: { morning: false, afternoon: false, evening: true  },
+              Thursday:  { morning: false, afternoon: true,  evening: true  },
+              Friday:    { morning: false, afternoon: true,  evening: true  },
+              Saturday:  { morning: true,  afternoon: true,  evening: true  },
+              Sunday:    { morning: true,  afternoon: true,  evening: true  }
+            }
+          }
+        ];
+
+        // Shift requirements with realistic restaurant distribution (Friday & Saturday busy peaks)
+        state.shiftRequirements = {};
+        DAYS.forEach(day => {
+          const isWeekend = (day === 'Saturday' || day === 'Sunday');
+          const isFriday = (day === 'Friday');
+
+          state.shiftRequirements[day] = {
+            morning: {
+              start: '08:00',
+              end: '12:00',
+              roles: {
+                Manager: 1,
+                Barista: isWeekend ? 2 : 1,
+                Server: isWeekend ? 1 : 0,
+                Cashier: 1
+              }
+            },
+            afternoon: {
+              start: '12:00',
+              end: '16:00',
+              roles: {
+                Manager: 1,
+                Barista: 1,
+                Server: isWeekend ? 2 : 1,
+                Cashier: 1
+              }
+            },
+            evening: {
+              start: '16:00',
+              end: '20:00',
+              roles: {
+                Manager: 1,
+                Barista: 1,
+                Server: (isFriday || isWeekend) ? 2 : 1,
+                Cashier: (isFriday || isWeekend) ? 1 : 0
+              }
+            }
+          };
+        });
+
+        // Reset assignments
+        state.activeSchedule = {};
+        state.uncoveredSlots = [];
+        state.callouts = [];
+        state.previousSchedule = null;
+        state.lastDiff = null;
+
+        saveToStorage();
+        renderAll();
+        showToast('Demo Scenario Loaded: 10 employees & restaurant staffing requirements configured!', 'info');
+      }
+
+      /* ==========================================================================
+         6. CORE SCHEDULING ALGORITHM (Deterministic Heuristic Engine)
+         ========================================================================== */
+      /**
+       * Runs the constraint satisfaction algorithm.
+       * @param {boolean} isRegeneration - If true, applies high stability weight to preserve untouched slots
+       */
+      function runSchedulingEngine(isRegeneration = false) {
+        if (!state.employees || state.employees.length === 0) {
+          showToast('Cannot generate schedule: Please add or load employees first.', 'error');
+          return;
+        }
+
+        // Snapshot previous schedule if regenerating
+        if (isRegeneration) {
+          state.previousSchedule = JSON.parse(JSON.stringify(state.activeSchedule));
+        } else {
+          state.previousSchedule = null;
+          state.lastDiff = null;
+        }
+
+        // Track assigned hours per employee
+        const assignedHours = {};
+        state.employees.forEach(e => { assignedHours[e.id] = 0; });
+
+        // Build list of all required shift slots across the entire week
+        const allSlots = [];
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+            if (!shiftData) return;
+
+            const duration = calculateShiftDuration(shiftData.start, shiftData.end);
+
+            Object.entries(shiftData.roles).forEach(([role, count]) => {
+              for (let i = 0; i < count; i++) {
+                allSlots.push({
+                  id: `${day}_${shiftId}_${role}_${i}`,
+                  day,
+                  shiftId,
+                  shiftData,
+                  role,
+                  slotIndex: i,
+                  duration
+                });
+              }
+            });
+          });
+        });
+
+        // Calculate candidate availability difficulty for each slot (Most-Constrained-Variable heuristic)
+        allSlots.forEach(slot => {
+          let eligibleCount = 0;
+          state.employees.forEach(emp => {
+            if (emp.role === slot.role && emp.availability[slot.day] && emp.availability[slot.day][slot.shiftId]) {
+              eligibleCount++;
+            }
+          });
+          slot.difficultyScore = eligibleCount; // Fewer eligible = higher difficulty
+        });
+
+        // Sort slots: Hardest-to-fill shifts first (e.g. specialized roles or low-availability shifts)
+        allSlots.sort((a, b) => a.difficultyScore - b.difficultyScore);
+
+        const newSchedule = {};
+        DAYS.forEach(d => {
+          newSchedule[d] = { morning: [], afternoon: [], evening: [] };
+        });
+
+        const newUncovered = [];
+        const diffLog = [];
+
+        // Check if employee has called out for this specific day & shift
+        function hasCalledOut(empId, day, shiftId) {
+          return state.callouts.some(c => c.employeeId === empId && c.day === day && c.shiftId === shiftId);
+        }
+
+        // Check for time overlap on the same day
+        function hasOverlappingShift(empId, day, shiftData) {
+          const dayShifts = newSchedule[day];
+          for (const sId of Object.keys(dayShifts)) {
+            if (dayShifts[sId].includes(empId)) {
+              const otherShift = state.shiftRequirements[day][sId];
+              const s1 = parseTimeToHours(shiftData.start);
+              const e1 = parseTimeToHours(shiftData.end);
+              const s2 = parseTimeToHours(otherShift.start);
+              const e2 = parseTimeToHours(otherShift.end);
+
+              // Standard interval overlap condition: max(s1, s2) < min(e1, e2)
+              if (Math.max(s1, s2) < Math.min(e1, e2)) {
+                return true;
+              }
+              // In addition, standard practice: maximum 1 shift per day per person to avoid burnout
+              return true;
+            }
+          }
+          return false;
+        }
+
+        // Process each required slot
+        allSlots.forEach(slot => {
+          const { day, shiftId, shiftData, role, duration } = slot;
+
+          // 1. HARD CONSTRAINTS FILTERING
+          const eligibleCandidates = [];
+          const disqualificationReasons = {};
+
+          state.employees.forEach(emp => {
+            // Must have correct role
+            if (emp.role !== role) {
+              return;
+            }
+
+            // Must have declared availability
+            if (!emp.availability[day] || !emp.availability[day][shiftId]) {
+              disqualificationReasons[emp.id] = 'Not available on ' + day + ' ' + shiftId;
+              return;
+            }
+
+            // Must not have called out
+            if (hasCalledOut(emp.id, day, shiftId)) {
+              disqualificationReasons[emp.id] = 'Employee marked unavailable / called out';
+              return;
+            }
+
+            // Must not exceed maximum weekly hours
+            if (assignedHours[emp.id] + duration > emp.maxHours + 0.001) {
+              disqualificationReasons[emp.id] = `Would exceed max hours cap (${emp.maxHours}h max, already has ${formatHours(assignedHours[emp.id])})`;
+              return;
+            }
+
+            // Must not already be assigned to another shift on this day (overlap / double-booking)
+            if (hasOverlappingShift(emp.id, day, shiftData)) {
+              disqualificationReasons[emp.id] = 'Already scheduled on ' + day;
+              return;
+            }
+
+            eligibleCandidates.push(emp);
+          });
+
+          // 2. SOFT CONSTRAINTS SCORING
+          if (eligibleCandidates.length > 0) {
+            eligibleCandidates.sort((a, b) => {
+              // Priority 1: Hour Deficit relative to preferred hours (Fairness)
+              const deficitA = (a.preferredHours || a.maxHours) - assignedHours[a.id];
+              const deficitB = (b.preferredHours || b.maxHours) - assignedHours[b.id];
+
+              // Priority 2: Buffer under maximum hours
+              const bufferA = a.maxHours - assignedHours[a.id];
+              const bufferB = b.maxHours - assignedHours[b.id];
+
+              // Priority 3: Stability Weight if regenerating
+              let stabilityA = 0;
+              let stabilityB = 0;
+              if (isRegeneration && state.previousSchedule && state.previousSchedule[day]) {
+                const prevAssigned = state.previousSchedule[day][shiftId] || [];
+                if (prevAssigned.includes(a.id)) stabilityA = 1000;
+                if (prevAssigned.includes(b.id)) stabilityB = 1000;
+              }
+
+              const scoreA = (deficitA * 2.5) + bufferA + stabilityA;
+              const scoreB = (deficitB * 2.5) + bufferB + stabilityB;
+
+              return scoreB - scoreA;
+            });
+
+            // Assign best candidate
+            const selectedEmp = eligibleCandidates[0];
+            newSchedule[day][shiftId].push(selectedEmp.id);
+            assignedHours[selectedEmp.id] += duration;
+
+            // Log regeneration change if different from previous schedule
+            if (isRegeneration && state.previousSchedule && state.previousSchedule[day]) {
+              const prevList = state.previousSchedule[day][shiftId] || [];
+              if (!prevList.includes(selectedEmp.id)) {
+                // Find who was replaced
+                const previousCalledOut = state.callouts.find(c => c.day === day && c.shiftId === shiftId);
+                const oldEmpName = previousCalledOut ? (state.employees.find(e => e.id === previousCalledOut.employeeId)?.name || 'Previous Staff') : 'Open Slot';
+                
+                diffLog.push({
+                  type: 'replacement',
+                  day,
+                  shiftId,
+                  role,
+                  oldEmp: oldEmpName,
+                  newEmp: selectedEmp.name,
+                  reason: `Replaced unavailable worker. Assigned ${formatHours(duration)} (now ${formatHours(assignedHours[selectedEmp.id])} / ${selectedEmp.maxHours}h max).`
+                });
+              }
+            }
+          } else {
+            // Record Uncovered Slot with detailed diagnostic explanation
+            let specificReason = 'No qualified employees available.';
+            const matchingRoleEmps = state.employees.filter(e => e.role === role);
+
+            if (matchingRoleEmps.length === 0) {
+              specificReason = `No employees configured with role: ${role}.`;
+            } else {
+              const availableOnDay = matchingRoleEmps.filter(e => e.availability[day] && e.availability[day][shiftId]);
+              if (availableOnDay.length === 0) {
+                specificReason = `None of the ${matchingRoleEmps.length} ${role}(s) are available on ${day} ${shiftId}.`;
+              } else {
+                const calloutCount = availableOnDay.filter(e => hasCalledOut(e.id, day, shiftId)).length;
+                const maxHourCount = availableOnDay.filter(e => assignedHours[e.id] + duration > e.maxHours).length;
+                const alreadyWorkingCount = availableOnDay.filter(e => hasOverlappingShift(e.id, day, shiftData)).length;
+
+                const reasons = [];
+                if (calloutCount > 0) reasons.push(`${calloutCount} called out`);
+                if (maxHourCount > 0) reasons.push(`${maxHourCount} reached weekly hour cap`);
+                if (alreadyWorkingCount > 0) reasons.push(`${alreadyWorkingCount} already scheduled on ${day}`);
+                specificReason = `All ${availableOnDay.length} available ${role}(s) unavailable: ` + reasons.join(', ') + '.';
+              }
+            }
+
+            newUncovered.push({
+              day,
+              shiftId,
+              role,
+              slotIndex: slot.slotIndex,
+              reason: specificReason
+            });
+
+            if (isRegeneration) {
+              const previousCalledOut = state.callouts.find(c => c.day === day && c.shiftId === shiftId);
+              diffLog.push({
+                type: 'uncovered',
+                day,
+                shiftId,
+                role,
+                oldEmp: previousCalledOut ? (state.employees.find(e => e.id === previousCalledOut.employeeId)?.name || 'Staff') : 'None',
+                newEmp: 'None (UNCOVERED)',
+                reason: specificReason
+              });
+            }
+          }
+        });
+
+        // Save generated schedule to state
+        state.activeSchedule = newSchedule;
+        state.uncoveredSlots = newUncovered;
+        state.lastDiff = diffLog;
+
+        saveToStorage();
+        renderAll();
+
+        if (isRegeneration) {
+          openDiffModal();
+        } else {
+          if (newUncovered.length === 0) {
+            showToast('Schedule Generated Successfully! All 100% of shifts are staffed.', 'success');
+          } else {
+            showToast(`Schedule Generated with ${newUncovered.length} uncovered shift(s). Check the Conflict Report for details.`, 'info');
+          }
+        }
+      }
+
+      /* ==========================================================================
+         7. METRIC & KPI CALCULATIONS
+         ========================================================================== */
+      function calculateMetrics() {
+        let totalRequiredHours = 0;
+        let totalAssignedHours = 0;
+        let totalRequiredSlots = 0;
+        let totalAssignedSlots = 0;
+
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+            if (!shiftData) return;
+
+            const duration = calculateShiftDuration(shiftData.start, shiftData.end);
+
+            // Total required
+            Object.values(shiftData.roles).forEach(count => {
+              totalRequiredSlots += count;
+              totalRequiredHours += (count * duration);
+            });
+
+            // Total assigned
+            const assignedList = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+            totalAssignedSlots += assignedList.length;
+            totalAssignedHours += (assignedList.length * duration);
+          });
+        });
+
+        const coveragePct = totalRequiredHours > 0 
+          ? Math.min(100, Math.round((totalAssignedHours / totalRequiredHours) * 100))
+          : 0;
+
+        // Conflicts: uncovered slots + employees at or exceeding max hours + active callouts
+        let conflictsCount = state.uncoveredSlots.length + state.callouts.length;
+
+        // Compute individual employee total assigned hours
+        const empHours = {};
+        state.employees.forEach(e => { empHours[e.id] = 0; });
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const duration = calculateShiftDuration(
+              state.shiftRequirements[day][shiftId].start,
+              state.shiftRequirements[day][shiftId].end
+            );
+            const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+            assigned.forEach(id => {
+              if (empHours[id] !== undefined) {
+                empHours[id] += duration;
+              }
+            });
+          });
+        });
+
+        return {
+          totalEmployees: state.employees.length,
+          totalRequiredHours,
+          totalAssignedHours,
+          totalRequiredSlots,
+          totalAssignedSlots,
+          coveragePct,
+          uncoveredCount: state.uncoveredSlots.length,
+          conflictsCount,
+          empHours
+        };
+      }
+
+      /* ==========================================================================
+         8. RENDERING FUNCTIONS
+         ========================================================================== */
+      function renderAll() {
+        const metrics = calculateMetrics();
+        renderKPIs(metrics);
+        renderCalloutBanner();
+        renderScheduleMatrix(metrics);
+        renderEmployeesList(metrics);
+        renderShiftRequirements();
+        renderFairnessAnalytics(metrics);
+        renderConflictReport(metrics);
+      }
+
+      /* Render KPI Dashboard Cards */
+      function renderKPIs(metrics) {
+        document.getElementById('kpi-total-employees').textContent = metrics.totalEmployees;
+        document.getElementById('badge-emp-count').textContent = metrics.totalEmployees;
+
+        const roleCounts = {};
+        state.employees.forEach(e => { roleCounts[e.role] = (roleCounts[e.role] || 0) + 1; });
+        const roleSummary = Object.entries(roleCounts).map(([r, c]) => `${c} ${r}s`).join(', ') || 'No employees';
+        document.getElementById('kpi-roles-summary').textContent = roleSummary;
+
+        document.getElementById('kpi-required-hours').textContent = formatHours(metrics.totalRequiredHours);
+        document.getElementById('kpi-slots-needed').textContent = `${metrics.totalRequiredSlots} shift positions needed`;
+
+        document.getElementById('kpi-assigned-hours').textContent = formatHours(metrics.totalAssignedHours);
+        document.getElementById('kpi-slots-assigned').textContent = `${metrics.totalAssignedSlots} positions filled`;
+
+        const covEl = document.getElementById('kpi-coverage-pct');
+        covEl.textContent = metrics.coveragePct + '%';
+        covEl.style.color = metrics.coveragePct === 100 ? 'var(--emerald-600)' : (metrics.coveragePct > 80 ? 'var(--primary)' : 'var(--rose-600)');
+
+        document.getElementById('kpi-uncovered-count').textContent = metrics.uncoveredCount;
+        document.getElementById('kpi-uncovered-sub').textContent = metrics.uncoveredCount === 0 ? 'All shifts covered' : 'Needs attention';
+
+        document.getElementById('kpi-conflicts-count').textContent = metrics.conflictsCount;
+        document.getElementById('badge-conflicts-count').textContent = metrics.conflictsCount;
+      }
+
+      /* Render Call-Out Alert Banner */
+      function renderCalloutBanner() {
+        const banner = document.getElementById('callout-alert-banner');
+        if (state.callouts.length > 0) {
+          banner.classList.add('active');
+          const lastCallout = state.callouts[state.callouts.length - 1];
+          const emp = state.employees.find(e => e.id === lastCallout.employeeId);
+          document.getElementById('callout-banner-title').textContent = `${state.callouts.length} Active Call-Out(s) Logged`;
+          document.getElementById('callout-banner-desc').textContent = 
+            `${emp ? emp.name : 'An employee'} called out for ${lastCallout.day} ${lastCallout.shiftId}. Click 'Regenerate Schedule' to find qualified coverage.`;
+        } else {
+          banner.classList.remove('active');
+        }
+      }
+
+      /* Render Schedule Calendar Matrix */
+      function renderScheduleMatrix(metrics) {
+        // Update header daily required hours
+        DAYS.forEach(day => {
+          let dayReq = 0;
+          DEFAULT_SHIFTS.forEach(s => {
+            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][s.id] : null;
+            if (shiftData) {
+              const dur = calculateShiftDuration(shiftData.start, shiftData.end);
+              const count = Object.values(shiftData.roles).reduce((a, b) => a + b, 0);
+              dayReq += (dur * count);
+            }
+          });
+          const headerSub = document.getElementById(`header-req-${day}`);
+          if (headerSub) headerSub.textContent = formatHours(dayReq) + ' req';
+        });
+
+        const tbody = document.getElementById('schedule-matrix-tbody');
+        tbody.innerHTML = '';
+
+        DEFAULT_SHIFTS.forEach(shiftDef => {
+          const shiftId = shiftDef.id;
+          const tr = document.createElement('tr');
+
+          // First Column: Shift Name & Timing
+          const th = document.createElement('td');
+          th.className = 'shift-header-cell';
+          const sampleTiming = state.shiftRequirements['Monday'][shiftId];
+          const duration = calculateShiftDuration(sampleTiming.start, sampleTiming.end);
+
+          th.innerHTML = `
+            <div class="shift-title-block">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              ${shiftDef.name}
+            </div>
+            <div class="shift-time-block">${formatTimeDisplay(sampleTiming.start)} – ${formatTimeDisplay(sampleTiming.end)}</div>
+            <span class="shift-duration-badge">${duration} hrs</span>
+          `;
+          tr.appendChild(th);
+
+          // Columns for Monday through Sunday
+          DAYS.forEach(day => {
+            const td = document.createElement('td');
+            td.className = 'schedule-cell';
+            td.setAttribute('data-col', day);
+
+            if (day === state.activeMobileDay) {
+              td.classList.add('mobile-active-day');
+            }
+
+            const shiftData = state.shiftRequirements[day][shiftId];
+            const requiredCount = Object.values(shiftData.roles).reduce((a, b) => a + b, 0);
+            const assignedIds = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+            const isFullyStaffed = assignedIds.length >= requiredCount && requiredCount > 0;
+
+            // Status bar
+            let statusHtml = `
+              <div class="cell-status-bar">
+                <span class="cell-staff-count ${isFullyStaffed ? 'count-full' : 'count-under'}">
+                  ${assignedIds.length} / ${requiredCount} Staffed
+                </span>
+                <span style="font-size:0.675rem; color:var(--slate-400);">${formatHours(duration)}</span>
+              </div>
+            `;
+
+            // List of assigned employees
+            let assignmentsHtml = '<div class="cell-assignments-list">';
+            assignedIds.forEach(empId => {
+              const emp = state.employees.find(e => e.id === empId);
+              if (!emp) return;
+
+              const roleClass = `chip-${emp.role.toLowerCase()}`;
+              assignmentsHtml += `
+                <div class="asgn-chip ${roleClass}">
+                  <div class="asgn-chip-info">
+                    <span class="asgn-chip-name">${emp.name}</span>
+                    <span class="asgn-chip-role">${emp.role}</span>
+                  </div>
+                  <div class="asgn-chip-actions">
+                    <button class="btn-callout-trigger" title="Mark ${emp.name} unavailable (Call-Out)" onclick="window.triggerCalloutModal('${emp.id}', '${day}', '${shiftId}')">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                    </button>
+                  </div>
+                </div>
+              `;
+            });
+
+            // If understaffed, show open/uncovered slot placeholders
+            const uncoveredInShift = state.uncoveredSlots.filter(u => u.day === day && u.shiftId === shiftId);
+            uncoveredInShift.forEach(u => {
+              assignmentsHtml += `
+                <div class="uncovered-slot-box" title="${u.reason}">
+                  <div class="uncovered-title">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <span>Open Position</span>
+                  </div>
+                  <span class="uncovered-role">${u.role}</span>
+                </div>
+              `;
+            });
+
+            // If completely empty and no schedule has been generated yet
+            if (assignedIds.length === 0 && uncoveredInShift.length === 0 && requiredCount > 0) {
+              assignmentsHtml += `
+                <div style="font-size:0.725rem; color:var(--slate-400); text-align:center; padding:0.5rem 0;">
+                  ${requiredCount} ${requiredCount === 1 ? 'person' : 'people'} needed
+                </div>
+              `;
+            }
+
+            assignmentsHtml += '</div>';
+
+            td.innerHTML = statusHtml + assignmentsHtml;
+            tr.appendChild(td);
+          });
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      /* Render Employee Cards */
+      function renderEmployeesList(metrics) {
+        const container = document.getElementById('employees-container');
+        container.innerHTML = '';
+
+        if (state.employees.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state" style="grid-column: 1 / -1;">
+              <div class="empty-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <h3 class="empty-title">No Employees Found</h3>
+              <p class="empty-desc">Get started by loading sample employees or adding your team members manually.</p>
+              <button class="btn btn-primary btn-sm" onclick="document.getElementById('btn-load-sample-employees').click()">
+                Load Sample Employees
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        state.employees.forEach(emp => {
+          const assigned = metrics.empHours[emp.id] || 0;
+          const max = emp.maxHours;
+          const pref = emp.preferredHours || max;
+          const pct = Math.min(100, Math.round((assigned / max) * 100));
+
+          let fillClass = 'fill-normal';
+          if (assigned >= max) fillClass = 'fill-max';
+          else if (assigned >= pref) fillClass = 'fill-optimal';
+          else if (assigned > 0) fillClass = 'fill-normal';
+
+          // Availability chips
+          let availChipsHtml = '';
+          DAYS.forEach(day => {
+            const hasShift = emp.availability[day] && 
+              (emp.availability[day].morning || emp.availability[day].afternoon || emp.availability[day].evening);
+            availChipsHtml += `
+              <span class="day-avail-chip ${hasShift ? 'has-shifts' : 'no-shifts'}">
+                ${day.slice(0, 3)}
+              </span>
+            `;
+          });
+
+          const initials = emp.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+          const roleClass = `role-${emp.role.toLowerCase()}`;
+
+          const card = document.createElement('div');
+          card.className = 'emp-card';
+          card.innerHTML = `
+            <div>
+              <div class="emp-card-header">
+                <div class="emp-avatar">${initials}</div>
+                <div class="emp-header-details">
+                  <div class="emp-name">
+                    ${emp.name}
+                  </div>
+                  <span class="role-badge ${roleClass}">${emp.role}</span>
+                </div>
+              </div>
+
+              <!-- Scheduled Hours vs Max Hours Gauge -->
+              <div class="emp-hours-gauge">
+                <div class="gauge-label">
+                  <span><strong>${formatHours(assigned)}</strong> scheduled</span>
+                  <span>Target: ${pref}h / Max: ${max}h</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill ${fillClass}" style="width: ${pct}%;"></div>
+                </div>
+              </div>
+
+              <!-- Weekly Availability Summary -->
+              <div class="emp-availability-summary">
+                <strong>Available Days:</strong>
+                <div class="avail-chips-row">${availChipsHtml}</div>
+              </div>
+            </div>
+
+            <div class="emp-actions">
+              <button class="btn btn-secondary btn-sm" style="flex:1;" onclick="window.openEditEmployeeModal('${emp.id}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                Edit
+              </button>
+              <button class="btn btn-danger btn-sm" onclick="window.deleteEmployee('${emp.id}')" title="Delete employee">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      /* Render Shift Requirements Editor for Selected Day */
+      function renderShiftRequirements() {
+        const day = state.selectedConfigDay;
+        document.getElementById('shift-config-current-day-title').textContent = `${day} Staffing Configuration`;
+
+        const tbody = document.getElementById('shift-config-tbody');
+        tbody.innerHTML = '';
+
+        let dayTotalHours = 0;
+        let dayTotalSlots = 0;
+
+        DEFAULT_SHIFTS.forEach(shiftDef => {
+          const shiftId = shiftDef.id;
+          const shiftData = state.shiftRequirements[day][shiftId];
+          const duration = calculateShiftDuration(shiftData.start, shiftData.end);
+
+          const tr = document.createElement('tr');
+
+          // Shift Name
+          let nameHtml = `<strong>${shiftDef.name}</strong>`;
+
+          // Shift Times
+          let timeHtml = `
+            <div class="time-input-group">
+              <input type="time" class="time-input" value="${shiftData.start}" onchange="window.updateShiftTiming('${day}', '${shiftId}', 'start', this.value)">
+              <span>to</span>
+              <input type="time" class="time-input" value="${shiftData.end}" onchange="window.updateShiftTiming('${day}', '${shiftId}', 'end', this.value)">
+              <span class="shift-duration-badge">${duration}h</span>
+            </div>
+          `;
+
+          // Steppers for roles
+          let rolesHtml = '<div class="role-req-pills">';
+          let shiftStaffCount = 0;
+
+          ROLES.forEach(role => {
+            const count = shiftData.roles[role] || 0;
+            shiftStaffCount += count;
+            rolesHtml += `
+              <div class="req-stepper">
+                <span class="req-stepper-label">${role}</span>
+                <button class="req-stepper-btn" onclick="window.updateRoleCount('${day}', '${shiftId}', '${role}', ${Math.max(0, count - 1)})">−</button>
+                <span class="req-stepper-val">${count}</span>
+                <button class="req-stepper-btn" onclick="window.updateRoleCount('${day}', '${shiftId}', '${role}', ${count + 1})">+</button>
+              </div>
+            `;
+          });
+          rolesHtml += '</div>';
+
+          dayTotalSlots += shiftStaffCount;
+          dayTotalHours += (shiftStaffCount * duration);
+
+          tr.innerHTML = `
+            <td>${nameHtml}</td>
+            <td>${timeHtml}</td>
+            <td>${rolesHtml}</td>
+            <td><strong>${shiftStaffCount} staff</strong></td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        document.getElementById('shift-config-day-hours-summary').textContent = 
+          `3 shifts • ${dayTotalSlots} positions needed • ${formatHours(dayTotalHours)} required staffing`;
+
+        // Check for shift overlaps on the current day
+        checkShiftOverlapAlert(day);
+      }
+
+      function checkShiftOverlapAlert(day) {
+        const shifts = state.shiftRequirements[day];
+        const intervals = [
+          { name: 'Morning', s: parseTimeToHours(shifts.morning.start), e: parseTimeToHours(shifts.morning.end) },
+          { name: 'Afternoon', s: parseTimeToHours(shifts.afternoon.start), e: parseTimeToHours(shifts.afternoon.end) },
+          { name: 'Evening', s: parseTimeToHours(shifts.evening.start), e: parseTimeToHours(shifts.evening.end) }
+        ];
+
+        let overlap = false;
+        for (let i = 0; i < intervals.length; i++) {
+          for (let j = i + 1; j < intervals.length; j++) {
+            if (Math.max(intervals[i].s, intervals[j].s) < Math.min(intervals[i].e, intervals[j].e)) {
+              overlap = true;
+              break;
+            }
+          }
+        }
+
+        const alertEl = document.getElementById('shift-overlap-alert');
+        alertEl.style.display = overlap ? 'block' : 'none';
+      }
+
+      /* Render Fairness & Hours Analytics */
+      function renderFairnessAnalytics(metrics) {
+        const tbody = document.getElementById('fairness-table-tbody');
+        tbody.innerHTML = '';
+
+        if (state.employees.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:1.5rem; color:var(--slate-500);">No employees to analyze.</td></tr>`;
+          document.getElementById('fairness-variance-metric').textContent = '0.0h';
+          return;
+        }
+
+        let totalDeviation = 0;
+        const explanations = [];
+
+        state.employees.forEach(emp => {
+          const assigned = metrics.empHours[emp.id] || 0;
+          const pref = emp.preferredHours || emp.maxHours;
+          const max = emp.maxHours;
+          const diff = assigned - pref;
+          totalDeviation += Math.abs(diff);
+
+          const utilPct = Math.min(100, Math.round((assigned / max) * 100));
+
+          let statusBadge = '';
+          if (assigned === 0) {
+            statusBadge = '<span style="color:var(--slate-500); font-weight:600;">0 Hours</span>';
+          } else if (assigned > max) {
+            statusBadge = '<span style="color:var(--rose-600); font-weight:700;">Over Max!</span>';
+          } else if (Math.abs(diff) <= 2) {
+            statusBadge = '<span style="color:var(--emerald-600); font-weight:700;">Balanced</span>';
+          } else if (diff < 0) {
+            statusBadge = `<span style="color:var(--amber-600); font-weight:600;">-${formatHours(Math.abs(diff))} below target</span>`;
+          } else {
+            statusBadge = `<span style="color:var(--primary); font-weight:600;">+${formatHours(diff)} above target</span>`;
+          }
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><strong>${emp.name}</strong></td>
+            <td><span class="role-badge role-${emp.role.toLowerCase()}">${emp.role}</span></td>
+            <td><strong>${formatHours(assigned)}</strong></td>
+            <td>${pref}h</td>
+            <td>${max}h</td>
+            <td>
+              <div style="display:flex; align-items:center; gap:0.4rem;">
+                <div class="progress-bar" style="width:60px;">
+                  <div class="progress-fill ${assigned >= max ? 'fill-max' : 'fill-normal'}" style="width:${utilPct}%;"></div>
+                </div>
+                <span style="font-size:0.75rem;">${utilPct}%</span>
+              </div>
+            </td>
+            <td>${statusBadge}</td>
+          `;
+          tbody.appendChild(tr);
+
+          // Build transparent explanations
+          if (assigned < pref) {
+            // Count open days
+            let openDays = 0;
+            DAYS.forEach(d => {
+              if (emp.availability[d] && (emp.availability[d].morning || emp.availability[d].afternoon || emp.availability[d].evening)) {
+                openDays++;
+              }
+            });
+
+            if (openDays <= 3) {
+              explanations.push(`<strong>${emp.name}</strong> received ${formatHours(assigned)} (${pref}h target) primarily due to limited availability (available on only ${openDays} days).`);
+            } else if (assigned === 0 && openDays > 0) {
+              explanations.push(`<strong>${emp.name}</strong> was not scheduled because required shifts for ${emp.role} were filled by peers with higher hour deficits, or shifts coincided with days they were unavailable.`);
+            }
+          }
+        });
+
+        const avgDeviation = state.employees.length > 0 ? (totalDeviation / state.employees.length).toFixed(1) : '0.0';
+        document.getElementById('fairness-variance-metric').textContent = `±${avgDeviation}h avg variance`;
+
+        const qualityLabel = document.getElementById('fairness-quality-label');
+        if (parseFloat(avgDeviation) <= 2.5) {
+          qualityLabel.textContent = 'Excellent fairness balance across available roster';
+          qualityLabel.style.color = 'var(--emerald-600)';
+        } else if (parseFloat(avgDeviation) <= 6.0) {
+          qualityLabel.textContent = 'Moderate variance due to differing employee availability constraints';
+          qualityLabel.style.color = 'var(--amber-600)';
+        } else {
+          qualityLabel.textContent = 'High variance driven by heavy part-time restrictions vs full-time hour caps';
+          qualityLabel.style.color = 'var(--slate-600)';
+        }
+
+        const expListEl = document.getElementById('fairness-explanations-list');
+        if (explanations.length === 0) {
+          expListEl.innerHTML = `<div class="explanation-item" style="border-left-color:var(--emerald-500);">All scheduled employees received hours aligned closely with their preferred targets and availability profiles.</div>`;
+        } else {
+          expListEl.innerHTML = explanations.map(e => `<div class="explanation-item">${e}</div>`).join('');
+        }
+      }
+
+      /* Render Staffing Conflict Report */
+      function renderConflictReport(metrics) {
+        const container = document.getElementById('conflict-items-container');
+        container.innerHTML = '';
+
+        const allConflicts = [];
+
+        // 1. Uncovered shifts
+        state.uncoveredSlots.forEach(slot => {
+          allConflicts.push({
+            type: 'uncovered',
+            title: `Understaffed Shift: ${slot.day} ${slot.shiftId.toUpperCase()} (${slot.role})`,
+            desc: slot.reason,
+            meta: [`Day: ${slot.day}`, `Shift: ${slot.shiftId}`, `Role: ${slot.role}`],
+            severity: 'uncovered'
+          });
+        });
+
+        // 2. Active callouts
+        state.callouts.forEach(c => {
+          const emp = state.employees.find(e => e.id === c.employeeId);
+          allConflicts.push({
+            type: 'callout',
+            title: `Unavailability Call-Out: ${emp ? emp.name : 'Employee'}`,
+            desc: `Called out for ${c.day} ${c.shiftId}. Needs schedule regeneration to re-solve coverage.`,
+            meta: [`Day: ${c.day}`, `Shift: ${c.shiftId}`, `Employee: ${emp ? emp.name : 'Unknown'}`],
+            severity: 'warning'
+          });
+        });
+
+        // 3. Employees reaching max hours
+        state.employees.forEach(emp => {
+          const assigned = metrics.empHours[emp.id] || 0;
+          if (assigned >= emp.maxHours && emp.maxHours > 0) {
+            allConflicts.push({
+              type: 'hour_cap',
+              title: `Hour Cap Reached: ${emp.name}`,
+              desc: `Employee is at 100% capacity (${formatHours(assigned)} / ${emp.maxHours}h max). No further shifts can be assigned under hard constraints.`,
+              meta: [`Role: ${emp.role}`, `Assigned: ${formatHours(assigned)}`, `Cap: ${emp.maxHours}h`],
+              severity: 'warning'
+            });
+          }
+        });
+
+        if (allConflicts.length === 0) {
+          container.innerHTML = `
+            <div style="text-align:center; padding:2.5rem 1rem; color:var(--slate-500);">
+              <div class="empty-icon" style="background:var(--emerald-50); color:var(--emerald-600);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <h3 class="empty-title" style="color:var(--emerald-800);">Zero Conflicts Detected!</h3>
+              <p class="empty-desc">All staffing requirements are satisfied with no overlapping shifts or hard constraint violations.</p>
+            </div>
+          `;
+          return;
+        }
+
+        allConflicts.forEach(item => {
+          const div = document.createElement('div');
+          div.className = `conflict-item ${item.severity}`;
+          div.innerHTML = `
+            <div class="conflict-icon" style="background:${item.severity === 'uncovered' ? '#ffe4e6' : '#fef3c7'}; color:${item.severity === 'uncovered' ? 'var(--rose-600)' : 'var(--amber-600)'};">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div class="conflict-details" style="flex:1;">
+              <h4>${item.title}</h4>
+              <p>${item.desc}</p>
+              <div class="conflict-meta">
+                ${item.meta.map(m => `<span class="conflict-tag">${m}</span>`).join('')}
+              </div>
+            </div>
+          `;
+          container.appendChild(div);
+        });
+      }
+
+      /* ==========================================================================
+         9. MODAL ACTIONS & EVENT HANDLERS
+         ========================================================================== */
+
+      /* Employee Modal Logic */
+      window.openAddEmployeeModal = function () {
+        document.getElementById('modal-employee-title').textContent = 'Add New Employee';
+        document.getElementById('emp-form-id').value = '';
+        document.getElementById('emp-name').value = '';
+        document.getElementById('emp-role').value = 'Server';
+        document.getElementById('emp-max-hours').value = '35';
+        document.getElementById('emp-pref-hours').value = '30';
+        renderModalAvailabilityCheckboxes();
+        document.getElementById('modal-employee').classList.add('active');
+      };
+
+      window.openEditEmployeeModal = function (empId) {
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+
+        document.getElementById('modal-employee-title').textContent = `Edit Employee: ${emp.name}`;
+        document.getElementById('emp-form-id').value = emp.id;
+        document.getElementById('emp-name').value = emp.name;
+        document.getElementById('emp-role').value = emp.role;
+        document.getElementById('emp-max-hours').value = emp.maxHours;
+        document.getElementById('emp-pref-hours').value = emp.preferredHours || emp.maxHours;
+        renderModalAvailabilityCheckboxes(emp.availability);
+        document.getElementById('modal-employee').classList.add('active');
+      };
+
+      function closeEmployeeModal() {
+        document.getElementById('modal-employee').classList.remove('active');
+      }
+
+      function renderModalAvailabilityCheckboxes(currentAvail = null) {
+        const tbody = document.getElementById('modal-avail-tbody');
+        tbody.innerHTML = '';
+
+        DEFAULT_SHIFTS.forEach(shiftDef => {
+          const shiftId = shiftDef.id;
+          const tr = document.createElement('tr');
+          let rowHtml = `<td style="font-weight:700; background:var(--slate-50); text-align:left; padding-left:0.5rem;">${shiftDef.name}</td>`;
+
+          DAYS.forEach(day => {
+            const isChecked = currentAvail ? (currentAvail[day] && currentAvail[day][shiftId]) : true;
+            rowHtml += `
+              <td>
+                <label class="avail-checkbox-label">
+                  <input type="checkbox" class="avail-checkbox" data-day="${day}" data-shift="${shiftId}" ${isChecked ? 'checked' : ''}>
+                </label>
+              </td>
+            `;
+          });
+          tr.innerHTML = rowHtml;
+          tbody.appendChild(tr);
+        });
+      }
+
+      function handleEmployeeFormSubmit(e) {
+        e.preventDefault();
+        const id = document.getElementById('emp-form-id').value || ('emp_' + Date.now());
+        const name = document.getElementById('emp-name').value.trim();
+        const role = document.getElementById('emp-role').value;
+        const maxHours = parseFloat(document.getElementById('emp-max-hours').value) || 35;
+        const preferredHours = parseFloat(document.getElementById('emp-pref-hours').value) || maxHours;
+
+        if (!name) {
+          showToast('Please enter an employee name.', 'error');
+          return;
+        }
+
+        // Build availability map from checkboxes
+        const availability = {};
+        DAYS.forEach(day => {
+          availability[day] = {};
+          DEFAULT_SHIFTS.forEach(s => {
+            const cb = document.querySelector(`.avail-checkbox[data-day="${day}"][data-shift="${s.id}"]`);
+            availability[day][s.id] = cb ? cb.checked : false;
+          });
+        });
+
+        const existingIndex = state.employees.findIndex(emp => emp.id === id);
+        const empPayload = { id, name, role, maxHours, preferredHours, availability };
+
+        if (existingIndex >= 0) {
+          state.employees[existingIndex] = empPayload;
+          showToast(`Updated employee: ${name}`, 'success');
+        } else {
+          state.employees.push(empPayload);
+          showToast(`Added employee: ${name}`, 'success');
+        }
+
+        saveToStorage();
+        closeEmployeeModal();
+        renderAll();
+      }
+
+      window.deleteEmployee = function (empId) {
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+        if (confirm(`Are you sure you want to delete ${emp.name}?`)) {
+          state.employees = state.employees.filter(e => e.id !== empId);
+          // Remove from callouts
+          state.callouts = state.callouts.filter(c => c.employeeId !== empId);
+          saveToStorage();
+          renderAll();
+          showToast(`Deleted employee: ${emp.name}`, 'info');
+        }
+      };
+
+      /* Call-Out Modal Logic */
+      window.triggerCalloutModal = function (empId, day, shiftId) {
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+
+        pendingCallout = { employeeId: empId, day, shiftId };
+        document.getElementById('callout-modal-emp-name').textContent = emp.name + ` (${emp.role})`;
+        document.getElementById('callout-modal-shift-info').textContent = `${day} ${shiftId.toUpperCase()} Shift`;
+        document.getElementById('modal-callout').classList.add('active');
+      };
+
+      function confirmCalloutAction() {
+        if (!pendingCallout) return;
+        const { employeeId, day, shiftId } = pendingCallout;
+
+        // Add to callouts
+        if (!state.callouts.some(c => c.employeeId === employeeId && c.day === day && c.shiftId === shiftId)) {
+          state.callouts.push({ employeeId, day, shiftId, timestamp: Date.now() });
+        }
+
+        // Vacate slot in active schedule
+        if (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) {
+          state.activeSchedule[day][shiftId] = state.activeSchedule[day][shiftId].filter(id => id !== employeeId);
+        }
+
+        // Add temporary uncovered note
+        const emp = state.employees.find(e => e.id === employeeId);
+        state.uncoveredSlots.push({
+          day,
+          shiftId,
+          role: emp ? emp.role : 'Staff',
+          slotIndex: 0,
+          reason: `${emp ? emp.name : 'Employee'} called out. Ready for schedule regeneration.`
+        });
+
+        document.getElementById('modal-callout').classList.remove('active');
+        saveToStorage();
+        renderAll();
+        showToast(`${emp ? emp.name : 'Employee'} marked unavailable for ${day} ${shiftId}. Click 'Regenerate Schedule' to find replacement coverage.`, 'warning');
+      }
+
+      /* Regeneration Diff Modal Logic */
+      function openDiffModal() {
+        const container = document.getElementById('diff-items-container');
+        container.innerHTML = '';
+
+        if (!state.lastDiff || state.lastDiff.length === 0) {
+          container.innerHTML = `<p style="color:var(--slate-500); font-size:0.85rem;">No assignment changes were necessary during regeneration.</p>`;
+        } else {
+          state.lastDiff.forEach(diff => {
+            const card = document.createElement('div');
+            card.className = 'diff-card';
+
+            if (diff.type === 'replacement') {
+              card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                  <strong>${diff.day} ${diff.shiftId.toUpperCase()} (${diff.role})</strong>
+                  <span class="diff-badge-replaced">Replacement Found</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--slate-800);">
+                  <span style="text-decoration:line-through; color:var(--rose-600);">${diff.oldEmp}</span>
+                  &nbsp;➔&nbsp;
+                  <span style="font-weight:700; color:var(--emerald-700);">${diff.newEmp}</span>
+                </div>
+                <p style="font-size:0.75rem; color:var(--slate-500); margin-top:0.25rem;">${diff.reason}</p>
+              `;
+            } else {
+              card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                  <strong>${diff.day} ${diff.shiftId.toUpperCase()} (${diff.role})</strong>
+                  <span class="diff-badge-uncovered">Slot Uncovered</span>
+                </div>
+                <div style="font-size:0.85rem; color:var(--rose-700); font-weight:600;">
+                  No qualified replacement was available.
+                </div>
+                <p style="font-size:0.75rem; color:var(--slate-600); margin-top:0.25rem;">${diff.reason}</p>
+              `;
+            }
+            container.appendChild(card);
+          });
+        }
+
+        document.getElementById('modal-diff').classList.add('active');
+      }
+
+      /* Shift Requirements Editor Updaters */
+      window.updateRoleCount = function (day, shiftId, role, newCount) {
+        if (!state.shiftRequirements[day] || !state.shiftRequirements[day][shiftId]) return;
+        state.shiftRequirements[day][shiftId].roles[role] = newCount;
+        saveToStorage();
+        renderShiftRequirements();
+        renderKPIs(calculateMetrics());
+      };
+
+      window.updateShiftTiming = function (day, shiftId, field, value) {
+        if (!state.shiftRequirements[day] || !state.shiftRequirements[day][shiftId]) return;
+        state.shiftRequirements[day][shiftId][field] = value;
+        saveToStorage();
+        renderShiftRequirements();
+        renderScheduleMatrix(calculateMetrics());
+      };
+
+      /* Toast Notification */
+      function showToast(message, type = 'info') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        
+        let iconSvg = '';
+        if (type === 'success') {
+          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--emerald-600);"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        } else if (type === 'error') {
+          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--rose-600);"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+        } else if (type === 'warning') {
+          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--amber-600);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>';
+        } else {
+          iconSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--primary);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+        }
+
+        toast.innerHTML = `
+          ${iconSvg}
+          <div style="flex:1;">${message}</div>
+        `;
+
+        container.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(10px)';
+          setTimeout(() => toast.remove(), 250);
+        }, 4000);
+      }
+
+      /* ==========================================================================
+         10. EVENT LISTENERS INITIALIZATION
+         ========================================================================== */
+      function setupEventListeners() {
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
+            btn.classList.add('active');
+            const target = btn.getAttribute('data-tab');
+            document.getElementById(target).classList.add('active');
+          });
+        });
+
+        // Mobile Day Switcher
+        document.querySelectorAll('.mobile-day-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.mobile-day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const day = btn.getAttribute('data-day');
+            state.activeMobileDay = day;
+
+            document.querySelectorAll('#schedule-matrix-table th, #schedule-matrix-table td').forEach(el => {
+              if (el.classList.contains('col-shift') || el.classList.contains('shift-header-cell')) return;
+              if (el.getAttribute('data-col') === day) {
+                el.classList.add('mobile-active-day');
+              } else {
+                el.classList.remove('mobile-active-day');
+              }
+            });
+          });
+        });
+
+        // Shift Config Day Tabs
+        document.querySelectorAll('#shift-config-day-tabs .day-tab-pill').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('#shift-config-day-tabs .day-tab-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            state.selectedConfigDay = btn.getAttribute('data-day');
+            renderShiftRequirements();
+          });
+        });
+
+        // Copy shift requirements to all days
+        document.getElementById('btn-apply-to-all-days').addEventListener('click', () => {
+          const srcDay = state.selectedConfigDay;
+          const srcConfig = state.shiftRequirements[srcDay];
+          DAYS.forEach(day => {
+            state.shiftRequirements[day] = JSON.parse(JSON.stringify(srcConfig));
+          });
+          saveToStorage();
+          renderShiftRequirements();
+          renderAll();
+          showToast(`Copied ${srcDay}'s shift staffing rules to all 7 days.`, 'success');
+        });
+
+        // Primary Buttons
+        document.getElementById('btn-load-demo').addEventListener('click', loadDemoScenario);
+        document.getElementById('btn-load-sample-employees').addEventListener('click', loadDemoScenario);
+        document.getElementById('btn-load-sample-shifts').addEventListener('click', loadDemoScenario);
+
+        document.getElementById('btn-generate').addEventListener('click', () => runSchedulingEngine(false));
+        document.getElementById('btn-regenerate').addEventListener('click', () => runSchedulingEngine(true));
+        document.getElementById('btn-banner-regenerate').addEventListener('click', () => runSchedulingEngine(true));
+
+        document.getElementById('btn-banner-dismiss').addEventListener('click', () => {
+          state.callouts = [];
+          saveToStorage();
+          renderCalloutBanner();
+        });
+
+        // Reset Schedule Button
+        document.getElementById('btn-reset-schedule').addEventListener('click', () => {
+          if (confirm('Are you sure you want to reset current schedule assignments? Employee profiles will be preserved.')) {
+            state.activeSchedule = {};
+            state.uncoveredSlots = [];
+            state.callouts = [];
+            state.previousSchedule = null;
+            state.lastDiff = null;
+            saveToStorage();
+            renderAll();
+            showToast('Schedule assignments reset.', 'info');
+          }
+        });
+
+        // Clear All Data
+        document.getElementById('btn-clear-all-data').addEventListener('click', () => {
+          if (confirm('Clear all stored employee profiles, shift requirements, and schedules? This action cannot be undone.')) {
+            localStorage.removeItem(STORAGE_KEY);
+            state.employees = [];
+            state.shiftRequirements = generateDefaultShiftRequirements();
+            state.activeSchedule = {};
+            state.uncoveredSlots = [];
+            state.callouts = [];
+            state.previousSchedule = null;
+            state.lastDiff = null;
+            renderAll();
+            showToast('All local application data cleared.', 'info');
+          }
+        });
+
+        // Add Employee Modal
+        document.getElementById('btn-add-employee').addEventListener('click', window.openAddEmployeeModal);
+        document.getElementById('btn-close-emp-modal').addEventListener('click', closeEmployeeModal);
+        document.getElementById('btn-cancel-emp-modal').addEventListener('click', closeEmployeeModal);
+        document.getElementById('form-employee').addEventListener('submit', handleEmployeeFormSubmit);
+
+        // Availability Select All / None in Modal
+        document.getElementById('btn-avail-all').addEventListener('click', () => {
+          document.querySelectorAll('.avail-checkbox').forEach(cb => cb.checked = true);
+        });
+        document.getElementById('btn-avail-none').addEventListener('click', () => {
+          document.querySelectorAll('.avail-checkbox').forEach(cb => cb.checked = false);
+        });
+
+        // Call-Out Modal
+        document.getElementById('btn-close-callout-modal').addEventListener('click', () => {
+          document.getElementById('modal-callout').classList.remove('active');
+        });
+        document.getElementById('btn-cancel-callout-modal').addEventListener('click', () => {
+          document.getElementById('modal-callout').classList.remove('active');
+        });
+        document.getElementById('btn-confirm-callout').addEventListener('click', confirmCalloutAction);
+
+        // Diff Modal
+        document.getElementById('btn-close-diff-modal').addEventListener('click', () => {
+          document.getElementById('modal-diff').classList.remove('active');
+        });
+        document.getElementById('btn-accept-diff').addEventListener('click', () => {
+          document.getElementById('modal-diff').classList.remove('active');
+        });
+
+        // Guide Modal
+        document.getElementById('btn-quick-callout-guide').addEventListener('click', () => {
+          document.getElementById('modal-guide').classList.add('active');
+        });
+        document.getElementById('btn-close-guide-modal').addEventListener('click', () => {
+          document.getElementById('modal-guide').classList.remove('active');
+        });
+        document.getElementById('btn-close-guide-btn').addEventListener('click', () => {
+          document.getElementById('modal-guide').classList.remove('active');
+        });
+
+        // Print Schedule
+        document.getElementById('btn-print-schedule').addEventListener('click', () => {
+          window.print();
+        });
+
+        // Export Conflict Report
+        document.getElementById('btn-export-conflicts').addEventListener('click', () => {
+          const reportLines = [
+            'GetShifty - Staffing Conflict Audit Report',
+            `Exported: ${new Date().toLocaleString()}`,
+            '==========================================\n'
+          ];
+
+          if (state.uncoveredSlots.length === 0 && state.callouts.length === 0) {
+            reportLines.push('Status: No active conflicts. All shifts 100% staffed.\n');
+          } else {
+            reportLines.push(`Uncovered Positions: ${state.uncoveredSlots.length}`);
+            state.uncoveredSlots.forEach((u, i) => {
+              reportLines.push(`${i+1}. [${u.day} - ${u.shiftId.toUpperCase()}] Role: ${u.role}`);
+              reportLines.push(`   Reason: ${u.reason}\n`);
+            });
+
+            if (state.callouts.length > 0) {
+              reportLines.push(`Active Call-Outs: ${state.callouts.length}`);
+              state.callouts.forEach(c => {
+                const emp = state.employees.find(e => e.id === c.employeeId);
+                reportLines.push(`- ${emp ? emp.name : 'Staff'}: ${c.day} ${c.shiftId}`);
+              });
+            }
+          }
+
+          const blob = new Blob([reportLines.join('\n')], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `GetShifty-Conflict-Report-${Date.now()}.txt`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          showToast('Conflict report downloaded.', 'success');
+        });
+      }
+
+      /* ==========================================================================
+         11. APP BOOTSTRAP
+         ========================================================================== */
+      function init() {
+        const hasExistingData = loadFromStorage();
+        if (!hasExistingData || state.employees.length === 0) {
+          // Initialize with default demo scenario for smooth first-time user experience
+          loadDemoScenario();
+        } else {
+          renderAll();
+        }
+        setupEventListeners();
+      }
+
+      // Start application when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+    })();
+  </script>
+</body>
+</html>
