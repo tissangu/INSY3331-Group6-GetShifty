@@ -2471,7 +2471,212 @@
       border-color: var(--primary);
       color: #ffffff;
     }
-    </style>
+    
+    /* ==========================================================================
+       Employee Self-Service Mobile Portal Styles (Option 2)
+       ========================================================================== */
+    .self-service-container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .self-service-toolbar {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .self-service-profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .self-service-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    }
+    .self-service-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .self-service-emp-picker {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .self-service-select {
+      padding: 0.45rem 0.85rem;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      background: #ffffff;
+      cursor: pointer;
+    }
+    .self-service-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .self-service-stat-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .self-service-stat-card.highlight {
+      background: #ecfdf5;
+      border-color: #a7f3d0;
+    }
+    .self-service-stat-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--slate-500);
+      margin-bottom: 0.25rem;
+    }
+    .self-service-stat-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.2;
+    }
+    .self-service-stat-card.highlight .self-service-stat-val {
+      color: var(--emerald-700);
+    }
+    .self-service-stat-sub {
+      font-size: 0.725rem;
+      color: var(--slate-500);
+      margin-top: 0.2rem;
+    }
+    .self-service-days-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+    .my-day-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      transition: all 0.2s ease;
+    }
+    .my-day-card.working {
+      border-left: 5px solid var(--primary);
+    }
+    .my-day-card.off {
+      background: var(--slate-50);
+      border-left: 5px solid var(--slate-300);
+      opacity: 0.85;
+    }
+    .my-day-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .my-day-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--slate-100);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--slate-800);
+      line-height: 1.1;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .my-day-card.working .my-day-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .my-day-details h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 0.15rem;
+    }
+    .my-day-details p {
+      font-size: 0.775rem;
+      color: var(--slate-500);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .coworkers-badge {
+      font-size: 0.7rem;
+      background: var(--slate-100);
+      padding: 0.15rem 0.45rem;
+      border-radius: var(--radius-sm);
+      color: var(--slate-600);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-top: 0.25rem;
+    }
+    .my-day-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .self-service-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .self-service-banner h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .self-service-banner p {
+      font-size: 0.8rem;
+      color: var(--slate-300);
+    }
+    
+  </style>
 </head>
 <body>
 
@@ -2851,6 +3056,12 @@
       <button class="tab-btn" data-tab="tab-business">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         Business Impact & ROI
+      </button>
+
+      <button class="tab-btn" data-tab="tab-self-service">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        Employee Portal
+        <span class="tab-badge" style="background:#eef2ff; color:var(--primary);">Mobile View</span>
       </button>
     </nav>
 
@@ -3399,6 +3610,103 @@
         </div>
       </section>
 
+    </div>
+
+      <!-- ==========================================================================
+         VIEW 7: Employee Self-Service Mobile Portal (Option 2)
+         ========================================================================== -->
+    <div id="tab-self-service" class="tab-view">
+      <div class="self-service-container">
+        
+        <!-- Onboarding / Welcome Banner -->
+        <div class="self-service-banner">
+          <div>
+            <h3>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              Employee Self-Service Portal
+            </h3>
+            <p>Empowering team members with real-time personal schedule access, calendar exports, and instant call-out reporting.</p>
+          </div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button id="btn-export-calendar-ics" class="btn btn-emerald btn-sm" title="Add your schedule to Apple Calendar, Google Calendar, or Outlook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Export to Calendar (.ics)
+            </button>
+            <button id="btn-open-timeoff-modal" class="btn btn-secondary btn-sm" title="Submit a request for an upcoming shift">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              Request Time Off
+            </button>
+          </div>
+        </div>
+
+        <!-- Employee Profile & Switcher Toolbar -->
+        <div class="self-service-toolbar">
+          <div class="self-service-profile">
+            <div class="self-service-avatar" id="portal-avatar">ER</div>
+            <div>
+              <div class="self-service-name">
+                <span id="portal-emp-name">Elena Rostova</span>
+                <span id="portal-role-badge" class="role-badge role-manager">Manager</span>
+              </div>
+              <p style="font-size:0.775rem; color:var(--slate-500); margin:0;" id="portal-emp-subtext">Part-Time • Target: 38h/wk (Max: 40h/wk)</p>
+            </div>
+          </div>
+
+          <div class="self-service-emp-picker">
+            <label for="self-service-emp-select" style="font-size:0.75rem; font-weight:700; color:var(--slate-500); text-transform:uppercase;">View As Staff:</label>
+            <select id="self-service-emp-select" class="self-service-select" title="Switch employee self-service view">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Personal Summary Metrics Grid -->
+        <div class="self-service-stats-grid">
+          <div class="self-service-stat-card">
+            <div class="self-service-stat-label">Shifts This Week</div>
+            <div class="self-service-stat-val" id="portal-shift-count">0</div>
+            <div class="self-service-stat-sub" id="portal-shift-sub">Scheduled work shifts</div>
+          </div>
+
+          <div class="self-service-stat-card highlight">
+            <div class="self-service-stat-label">Assigned Weekly Hours</div>
+            <div class="self-service-stat-val" id="portal-assigned-hours">0.0h</div>
+            <div class="self-service-stat-sub" id="portal-hours-sub">vs. 38h preferred target</div>
+          </div>
+
+          <div class="self-service-stat-card">
+            <div class="self-service-stat-label">Est. Gross Earnings</div>
+            <div class="self-service-stat-val" id="portal-earnings" style="color:var(--primary);">$0.00</div>
+            <div class="self-service-stat-sub" id="portal-earnings-sub">Based on $15.00/hr wage</div>
+          </div>
+
+          <div class="self-service-stat-card">
+            <div class="self-service-stat-label">Attendance Status</div>
+            <div class="self-service-stat-val" id="portal-attendance" style="color:var(--emerald-600); font-size:1.15rem;">Active & Ready</div>
+            <div class="self-service-stat-sub" id="portal-attendance-sub">Zero active call-outs</div>
+          </div>
+        </div>
+
+        <!-- 7-Day Chronological Personal Schedule -->
+        <div class="panel" style="margin-bottom:1.5rem;">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">My 7-Day Weekly Schedule</h2>
+              <p class="panel-subtitle">Review your assigned shift times, breaks, and coworkers on duty.</p>
+            </div>
+            <button id="btn-print-personal" class="btn btn-secondary btn-sm" onclick="window.print()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print Personal Schedule
+            </button>
+          </div>
+          <div class="panel-body">
+            <div class="self-service-days-list" id="portal-days-list">
+              <!-- Dynamically populated personal shifts -->
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </main>
@@ -4859,6 +5167,262 @@
       /* ==========================================================================
          8. RENDERING FUNCTIONS
          ========================================================================== */
+      
+      /* ==========================================================================
+         EMPLOYEE SELF-SERVICE PORTAL & CALENDAR EXPORT (Option 2)
+         ========================================================================== */
+      function renderEmployeeSelfService() {
+        const selectEl = document.getElementById('self-service-emp-select');
+        if (!selectEl) return;
+
+        if (!state.employees || state.employees.length === 0) {
+          selectEl.innerHTML = '<option value="">No Employees Available</option>';
+          document.getElementById('portal-days-list').innerHTML = '<div style="text-align:center; padding:2rem; color:var(--slate-500);">Load demo employees to explore the staff self-service view.</div>';
+          return;
+        }
+
+        // Keep existing selected ID or default to first employee
+        let currentEmpId = selectEl.value;
+        if (!currentEmpId || !state.employees.some(e => e.id === currentEmpId)) {
+          currentEmpId = state.employees[0].id;
+        }
+
+        // Populate dropdown
+        selectEl.innerHTML = state.employees.map(e => 
+          `<option value="${e.id}" ${e.id === currentEmpId ? 'selected' : ''}>${e.name} (${e.role})</option>`
+        ).join('');
+
+        const emp = state.employees.find(e => e.id === currentEmpId);
+        if (!emp) return;
+
+        // Update profile header
+        const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        document.getElementById('portal-avatar').textContent = initials;
+        document.getElementById('portal-emp-name').textContent = emp.name;
+        
+        const roleBadge = document.getElementById('portal-role-badge');
+        roleBadge.textContent = emp.role;
+        roleBadge.className = `role-badge role-${emp.role.toLowerCase().replace(/\s+/g, '-')}`;
+
+        const prefHours = emp.preferredHours || emp.maxHours;
+        document.getElementById('portal-emp-subtext').textContent = `Target: ${prefHours}h/wk (Max Cap: ${emp.maxHours}h/wk)`;
+
+        // Calculate assigned shifts and hours
+        let totalAssignedHours = 0;
+        let shiftCount = 0;
+        const myShiftsByDay = {};
+
+        DAYS.forEach(day => {
+          myShiftsByDay[day] = [];
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+            if (assigned.includes(emp.id)) {
+              const req = (state.shiftRequirements[day] && state.shiftRequirements[day][shiftId]) || {};
+              const duration = calculateShiftDuration(req.start || shiftDef.defaultStart, req.end || shiftDef.defaultEnd);
+              totalAssignedHours += duration;
+              shiftCount++;
+
+              // Find coworkers on this shift
+              const coworkers = assigned
+                .filter(id => id !== emp.id)
+                .map(id => state.employees.find(e => e.id === id)?.name || 'Staff')
+                .slice(0, 3);
+
+              myShiftsByDay[day].push({
+                shiftId,
+                name: shiftDef.name,
+                start: req.start || shiftDef.defaultStart,
+                end: req.end || shiftDef.defaultEnd,
+                duration,
+                coworkers
+              });
+            }
+          });
+        });
+
+        // Update stat cards
+        document.getElementById('portal-shift-count').textContent = `${shiftCount} shifts`;
+        document.getElementById('portal-assigned-hours').textContent = `${totalAssignedHours.toFixed(1)}h`;
+        document.getElementById('portal-hours-sub').textContent = `vs. ${prefHours}h preferred target (${Math.min(100, Math.round((totalAssignedHours / prefHours) * 100))}% fulfilled)`;
+
+        const wage = (state.roi && state.roi.staffWage) ? state.roi.staffWage : 15.00;
+        const grossPay = (totalAssignedHours * wage).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        document.getElementById('portal-earnings').textContent = grossPay;
+        document.getElementById('portal-earnings-sub').textContent = `${totalAssignedHours.toFixed(1)}h × $${wage.toFixed(2)}/hr wage`;
+
+        // Attendance status
+        const hasCallout = state.callouts && state.callouts.some(c => c.employeeId === emp.id);
+        const attendEl = document.getElementById('portal-attendance');
+        const attendSubEl = document.getElementById('portal-attendance-sub');
+        if (hasCallout) {
+          attendEl.textContent = 'Active Call-Out';
+          attendEl.style.color = 'var(--rose-600)';
+          attendSubEl.textContent = 'Reported unavailable for a scheduled shift';
+        } else {
+          attendEl.textContent = 'Active & Ready';
+          attendEl.style.color = 'var(--emerald-600)';
+          attendSubEl.textContent = '100% attendance confirmation';
+        }
+
+        // Render 7-day chronological cards
+        const daysListEl = document.getElementById('portal-days-list');
+        daysListEl.innerHTML = '';
+
+        DAYS.forEach(day => {
+          const shifts = myShiftsByDay[day];
+          const isWorking = shifts.length > 0;
+          const dayShort = day.substring(0, 3);
+
+          const card = document.createElement('div');
+          card.className = `my-day-card ${isWorking ? 'working' : 'off'}`;
+
+          if (isWorking) {
+            const shiftInfo = shifts.map(s => `
+              <div style="margin-bottom:0.25rem;">
+                <strong>${s.name} (${s.start} – ${s.end})</strong> • <span class="shift-duration-badge">${s.duration}h</span>
+                ${s.coworkers.length > 0 ? `<div class="coworkers-badge">👥 On duty with: ${s.coworkers.join(', ')}</div>` : ''}
+              </div>
+            `).join('');
+
+            card.innerHTML = `
+              <div class="my-day-info">
+                <div class="my-day-badge">
+                  <span>${dayShort}</span>
+                  <span style="font-size:0.6rem;">ON</span>
+                </div>
+                <div class="my-day-details">
+                  <h4>${day} — Scheduled Shift</h4>
+                  <div>${shiftInfo}</div>
+                </div>
+              </div>
+              <div class="my-day-actions">
+                <button class="btn btn-danger btn-xs" onclick="window.triggerEmployeeSelfCallout('${emp.id}', '${day}', '${shifts[0].shiftId}')">
+                  Report Call-Out
+                </button>
+              </div>
+            `;
+          } else {
+            card.innerHTML = `
+              <div class="my-day-info">
+                <div class="my-day-badge">
+                  <span>${dayShort}</span>
+                  <span style="font-size:0.6rem; color:var(--slate-400);">OFF</span>
+                </div>
+                <div class="my-day-details">
+                  <h4 style="color:var(--slate-600);">${day} — Scheduled Day Off</h4>
+                  <p style="color:var(--slate-400);">🌴 No shifts scheduled. Rest or off-duty day.</p>
+                </div>
+              </div>
+              <div class="my-day-actions">
+                <span style="font-size:0.75rem; color:var(--slate-400); font-weight:600;">Rest Day</span>
+              </div>
+            `;
+          }
+
+          daysListEl.appendChild(card);
+        });
+      }
+
+      // Quick trigger for call-out directly from employee portal
+      window.triggerEmployeeSelfCallout = function(empId, day, shiftId) {
+        openCalloutModal(empId, day, shiftId);
+      };
+
+      // Export RFC 5545 iCalendar (.ics) format for phone and desktop calendar sync
+      function exportEmployeeCalendarICS() {
+        const selectEl = document.getElementById('self-service-emp-select');
+        const empId = selectEl ? selectEl.value : (state.employees[0] ? state.employees[0].id : null);
+        if (!empId) {
+          showToast('No employee selected to export.', 'error');
+          return;
+        }
+
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+
+        const dayOffsets = {
+          Monday: 0, Tuesday: 1, Wednesday: 2, Thursday: 3, Friday: 4, Saturday: 5, Sunday: 6
+        };
+
+        // Base date: Monday of current week
+        const now = new Date();
+        const currentDayOfWeek = now.getDay(); // 0 is Sun, 1 is Mon...
+        const distanceToMonday = (currentDayOfWeek + 6) % 7;
+        const mondayDate = new Date(now);
+        mondayDate.setDate(now.getDate() - distanceToMonday);
+
+        const icsEvents = [];
+
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+            if (assigned.includes(emp.id)) {
+              const req = (state.shiftRequirements[day] && state.shiftRequirements[day][shiftId]) || {};
+              const startTime = req.start || shiftDef.defaultStart;
+              const endTime = req.end || shiftDef.defaultEnd;
+
+              const shiftDate = new Date(mondayDate);
+              shiftDate.setDate(mondayDate.getDate() + dayOffsets[day]);
+
+              const [sHour, sMin] = startTime.split(':').map(Number);
+              const [eHour, eMin] = endTime.split(':').map(Number);
+
+              const startDate = new Date(shiftDate);
+              startDate.setHours(sHour, sMin, 0, 0);
+
+              const endDate = new Date(shiftDate);
+              endDate.setHours(eHour, eMin, 0, 0);
+
+              function formatICSDate(d) {
+                return d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+              }
+
+              icsEvents.push([
+                'BEGIN:VEVENT',
+                `UID:getshifty-${emp.id}-${day}-${shiftId}-${Date.now()}@getshifty.app`,
+                `DTSTAMP:${formatICSDate(new Date())}`,
+                `DTSTART:${formatICSDate(startDate)}`,
+                `DTEND:${formatICSDate(endDate)}`,
+                `SUMMARY:GetShifty Shift: ${emp.role} (${shiftDef.name})`,
+                `DESCRIPTION:Scheduled shift for ${emp.name} as ${emp.role} at GetShifty. Coworkers on duty: ${assigned.length} staff.`,
+                'LOCATION:Store Workplace',
+                'STATUS:CONFIRMED',
+                'END:VEVENT'
+              ].join('\r\n'));
+            }
+          });
+        });
+
+        if (icsEvents.length === 0) {
+          showToast(`No active shifts scheduled for ${emp.name} to export.`, 'info');
+          return;
+        }
+
+        const icsContent = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//GetShifty//Employee Scheduling Assistant//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          `X-WR-CALNAME:GetShifty - ${emp.name}`,
+          ...icsEvents,
+          'END:VCALENDAR'
+        ].join('\r\n');
+
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `GetShifty-${emp.name.replace(/\s+/g, '_')}-Schedule.ics`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast(`Calendar file downloaded! Open it to add shifts to Apple or Google Calendar.`, 'success');
+      }
+    
       function renderAll() {
         const metrics = calculateMetrics();
         renderKPIs(metrics);
@@ -4870,6 +5434,7 @@
         renderShiftRequirements();
         renderFairnessAnalytics(metrics);
         renderConflictReport(metrics);
+        renderEmployeeSelfService();
         renderBusinessImpact();
       }
 
@@ -6150,6 +6715,62 @@
          ========================================================================== */
       function setupEventListeners() {
 
+        // Employee Self-Service Switcher (Option 2)
+        const empPicker = document.getElementById('self-service-emp-select');
+        if (empPicker) {
+          empPicker.addEventListener('change', renderEmployeeSelfService);
+        }
+
+        // Calendar Export Button (.ics)
+        const btnIcs = document.getElementById('btn-export-calendar-ics');
+        if (btnIcs) {
+          btnIcs.addEventListener('click', exportEmployeeCalendarICS);
+        }
+
+        // Time Off Modal Listeners
+        const btnOpenTimeoff = document.getElementById('btn-open-timeoff-modal');
+        if (btnOpenTimeoff) {
+          btnOpenTimeoff.addEventListener('click', () => {
+            document.getElementById('modal-time-off').classList.add('active');
+          });
+        }
+        const btnCloseTimeoff = document.getElementById('btn-close-timeoff-modal');
+        if (btnCloseTimeoff) {
+          btnCloseTimeoff.addEventListener('click', () => {
+            document.getElementById('modal-time-off').classList.remove('active');
+          });
+        }
+        const btnCancelTimeoff = document.getElementById('btn-cancel-timeoff-modal');
+        if (btnCancelTimeoff) {
+          btnCancelTimeoff.addEventListener('click', () => {
+            document.getElementById('modal-time-off').classList.remove('active');
+          });
+        }
+        const btnConfirmTimeoff = document.getElementById('btn-confirm-timeoff');
+        if (btnConfirmTimeoff) {
+          btnConfirmTimeoff.addEventListener('click', () => {
+            const day = document.getElementById('timeoff-day-select').value;
+            const shiftId = document.getElementById('timeoff-shift-select').value;
+            const reason = document.getElementById('timeoff-reason').value.trim() || 'Personal time-off request';
+            const selectEl = document.getElementById('self-service-emp-select');
+            const empId = selectEl ? selectEl.value : null;
+
+            if (empId) {
+              state.callouts.push({
+                employeeId: empId,
+                day,
+                shiftId,
+                reason,
+                timestamp: new Date().toISOString()
+              });
+              saveToStorage();
+              renderAll();
+              document.getElementById('modal-time-off').classList.remove('active');
+              showToast(`Time-off request for ${day} ${shiftId} submitted to manager.`, 'success');
+            }
+          });
+        }
+    
         // Industry Preset Selector (Customer Lead)
         const industrySelect = document.getElementById('select-industry-preset');
         if (industrySelect) {
@@ -6674,6 +7295,54 @@
           <button id="btn-cancel-tester-modal" class="btn btn-secondary">Close</button>
           <button id="btn-save-tester-review" class="btn btn-primary">Save Tester Review</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 6: Employee Time-Off Request Modal (Option 2)
+       ========================================================================== -->
+  <div id="modal-time-off" class="modal-overlay">
+    <div class="modal-container" style="max-width: 520px;">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          Submit Time-Off / Absence Request
+        </h3>
+        <button class="modal-close" id="btn-close-timeoff-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--slate-600); margin-bottom:1rem;">
+          Request time off or report an upcoming conflict. The manager will be alerted to review and re-solve coverage.
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="timeoff-day-select">Select Day *</label>
+          <select id="timeoff-day-select" class="form-select">
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="timeoff-shift-select">Select Shift Interval *</label>
+          <select id="timeoff-shift-select" class="form-select">
+            <option value="morning">Morning Shift</option>
+            <option value="afternoon">Afternoon Shift</option>
+            <option value="evening">Evening Shift</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="timeoff-reason">Reason / Notes for Manager *</label>
+          <textarea id="timeoff-reason" class="form-input" rows="3" placeholder="e.g. Doctor's appointment, university exam, family emergency..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-cancel-timeoff-modal" class="btn btn-secondary">Cancel</button>
+        <button id="btn-confirm-timeoff" class="btn btn-primary">Submit Request</button>
       </div>
     </div>
   </div>
