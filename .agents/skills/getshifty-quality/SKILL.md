@@ -116,5 +116,38 @@ When professor feedback, user testing, or team retrospectives identify areas to 
 ### Revision History
 | Version | Date | Author | Summary of Improvement / Rationale |
 |:---:|:---:|:---:|:---|
-| **v1.0** | Current | INSY 3331 Group 6 | Initial baseline shared team skill: technical constraints, scheduling heuristics, UI standards, privacy, testing, and team protocols for Shark Tank project. |
-| **v1.1** | *Pending* | *Assigned Member* | *Document professor-requested improvement here (e.g., overtime threshold constraints, employee fatigue/clopening rules, or multi-skill matching).* |
+| **v1.0** | Baseline | INSY 3331 Group 6 | Initial baseline shared team skill: technical constraints, scheduling heuristics, UI standards, privacy, testing, and team protocols for Shark Tank project. |
+| **v1.1** | Nov 18, 2026 | Customer Lead (INSY 3331 Group 6) | Implemented Customer Testing & Usability Protocol: added standardized 3-minute testing workflow, multi-industry tester recruitment presets (Café, Restaurant, Retail), automated benchmark stopwatch (<15s vs 3.5h manual), quantitative stability & preferred hour fulfillment tracking, financial & labor ROI calculations, and in-app session feedback export for Shark Tank slide deck. |
+
+---
+
+## 9. Customer Testing & Usability Protocol (v1.1 Addition)
+
+Established by the Customer Lead to ensure rigorous statistical validation, multi-industry tester recruitment, and empirical usability evidence for the Shark Tank presentation:
+
+### 1. Standardized 3-Minute User Evaluation Workflow
+Every external usability session or team test must follow the 4-stage guided walkthrough:
+- **Phase 1: Availability Audit:** Guide the tester to inspect employee availability profiles and maximum weekly hour caps in the roster.
+- **Phase 2: Automated Schedule Generation:** Trigger `runSchedulingEngine` to demonstrate constraint satisfaction solving under 2 seconds.
+- **Phase 3: Emergency Call-Out Simulation:** Record an unscheduled absence on a peak shift (e.g. Friday evening) to demonstrate rapid conflict detection.
+- **Phase 4: Regeneration & Stability Review:** Execute schedule regeneration, verifying that unaffected shifts remain locked in place through the stability bonus while finding a qualified replacement.
+
+### 2. Empirical Benchmark Stopwatch Standards
+- Real-time stopwatch instrumentation must measure and log:
+  - Exact time-to-schedule generation ($T_{\text{gen}} \le 2.0\text{s}$).
+  - Time-to-resolution for unexpected call-outs ($T_{\text{regen}} \le 1.5\text{s}$).
+  - Total user test session duration.
+- Statistical comparisons must highlight the administrative leap from traditional manual methods ($3.5\text{ hours/week} = 12,600\text{s}$) to GetShifty ($<15\text{s}$ total interaction), representing an approximate **$99.8\%$ time reduction**.
+
+### 3. Multi-Industry Recruitment Presets
+To ensure generalizability beyond a single café scenario, testing sessions must be reproducible across three representative small-business presets:
+- **Café / Coffee Shop:** Early morning openings ($06:30\text{am}$), split student availability, specialized Barista & Shift Lead roles.
+- **Full-Service Restaurant:** Lunch prep & high-volume dinner rushes ($18:00 - 23:00$), server tip allocations, Floor Manager & Line Cook staffing constraints.
+- **Retail Store / Boutique:** Weekend inventory restocks, mid-day customer surges, Keyholder opening/closing responsibilities, and Sales Associate coverage.
+
+### 4. Shark Tank Financial & Labor ROI Standards
+To ground the Shark Tank pitch in sound small-business unit economics:
+- **Zero-Overtime Guarantee:** Strictly verify that hard constraints cap all staff at $\le 40\text{h/week}$, eliminating $1.5\times$ penalty payroll leaks.
+- **Annual Management Savings Model:** Standard formula for labor ROI:
+  $$\text{Annual Savings} = 3.5\text{ hrs saved/week} \times 52\text{ weeks} \times \text{Manager Hourly Rate } (\$25.00/\text{hr}) = \$4,550.00/\text{year}$$
+- **Data Export Integrity:** Tester evaluations, Likert usability ratings, Net Promoter Scores (NPS), and quantitative stability rates must be exportable to timestamped `.txt` audit reports for verification and slide deck inclusion.
