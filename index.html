@@ -2917,8 +2917,8 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             Efficiency Benchmark
           </h4>
-          <div class="churn-val" id="metric-solve-time">< 1.5s</div>
-          <div class="churn-sub">Solve speed vs. 3.5 hrs/week manual manager scheduling (~99.8% administrative reduction).</div>
+          <div class="churn-val" id="metric-solve-time">&lt; 1.5s</div>
+          <div class="churn-sub" id="churn-efficiency-sub">Estimated — based on assumptions you can edit (Solve speed vs. editable manual manager hours).</div>
         </div>
       </div>
 
@@ -2928,9 +2928,9 @@
           <div class="roi-title-wrap">
             <h3>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              Labor ROI & Overtime Cost Optimization Calculator
+              Labor Cost &amp; Overtime Planning Calculator
             </h3>
-            <p>Real-time financial metrics for labor cost control, zero-overtime compliance, and administrative time savings.</p>
+            <p>Real-time financial estimates for labor cost planning, overtime issue flagging, and administrative time savings based on assumptions you can edit.</p>
           </div>
           <div class="roi-inputs-row">
             <div class="roi-input-item">
@@ -2940,6 +2940,10 @@
             <div class="roi-input-item">
               <label for="roi-manager-rate">Manager Hourly Rate:</label>
               <input type="number" id="roi-manager-rate" class="roi-input-field" value="25.00" min="15.00" max="150.00" step="1.00">
+            </div>
+            <div class="roi-input-item">
+              <label for="roi-manual-hours">Est. Manual Hours/Wk:</label>
+              <input type="number" id="roi-manual-hours" class="roi-input-field" value="3.5" min="0.5" max="40.0" step="0.5" title="Estimated hours spent on manual scheduling before GetShifty">
             </div>
           </div>
         </div>
@@ -2952,21 +2956,21 @@
           </div>
 
           <div class="roi-card highlight">
-            <div class="roi-card-label">Overtime Penalty Risk</div>
+            <div class="roi-card-label">Overtime Risk Estimation</div>
             <div class="roi-card-val" id="roi-overtime-risk">$0.00</div>
-            <div class="roi-card-sub">100% Protected: Hard constraints strictly cap employees at &le;40h/week.</div>
+            <div class="roi-card-sub">Flags possible overtime issues for manager review. Scheduling constraints cap scheduled shifts at &le;40h/week.</div>
           </div>
 
           <div class="roi-card highlight">
             <div class="roi-card-label">Est. Annual Manager Savings</div>
             <div class="roi-card-val" id="roi-annual-savings">$4,550.00</div>
-            <div class="roi-card-sub">3.5 hrs/week saved × 52 weeks × $25.00/hr manager rate</div>
+            <div class="roi-card-sub" id="roi-annual-savings-sub">Estimated — based on assumptions you can edit (3.5 hrs/week saved × 52 weeks × $25.00/hr manager rate)</div>
           </div>
 
           <div class="roi-card">
             <div class="roi-card-label">Administrative Time Efficiency</div>
-            <div class="roi-card-val" style="color:var(--primary);">99.8%</div>
-            <div class="roi-card-sub">&lt;15 seconds automated solving vs. 3.5 hours traditional manual scheduling</div>
+            <div class="roi-card-val" id="roi-efficiency-pct" style="color:var(--primary);">99.8%</div>
+            <div class="roi-card-sub" id="roi-efficiency-sub">Estimated — based on assumptions you can edit (&lt;15 seconds automated solving vs. 3.5 hours manual scheduling)</div>
           </div>
         </div>
       </div>
@@ -2977,27 +2981,27 @@
          ========================================================================== -->
     <div id="tab-conflicts" class="tab-view">
       
-      <!-- Operations & Fair Workweek Labor Standards Scorecard (cadencunanan) -->
+      <!-- Operations & Labor Standards Review (cadencunanan) -->
       <div class="compliance-scorecard">
         <div class="compliance-header">
           <div>
-            <span class="compliance-badge">OPERATIONS & LABOR COMPLIANCE (v1.2)</span>
+            <span class="compliance-badge">OPERATIONS &amp; LABOR REVIEW</span>
             <h3 style="font-size:1.05rem; font-weight:800; color:var(--slate-900); margin:0.2rem 0; display:flex; align-items:center; gap:0.4rem;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-              Fair Workweek Rest Intervals & Fatigue Mitigation
+              Fair Workweek Rest Intervals &amp; Fatigue Review
             </h3>
             <p style="font-size:0.775rem; color:var(--slate-500); margin:0;">
-              Proactive enforcement of minimum 10-hour rest intervals, zero clopening violations, and statutory break coverage.
+              Flags possible rest-period and overtime issues for manager review. Rules vary by city and state; managers are responsible for compliance.
             </p>
           </div>
-          <button id="btn-export-compliance" class="btn btn-emerald btn-sm" title="Export formal regulatory and fatigue compliance audit">
+          <button id="btn-export-compliance" class="btn btn-emerald btn-sm" title="Export labor review and rest period summary for manager evaluation">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Export Compliance Audit (.txt)
+            Export Labor Review Report (.txt)
           </button>
         </div>
         <div class="compliance-grid">
           <div class="compliance-card highlight">
-            <div class="compliance-label">Fair Workweek Rest Score</div>
+            <div class="compliance-label">Rest Interval Review</div>
             <div class="compliance-val" id="comp-rest-score">100%</div>
             <div class="compliance-sub" id="comp-rest-sub">0 Clopening Violations (&ge;10h rest)</div>
           </div>
@@ -3012,9 +3016,9 @@
             <div class="compliance-sub">Mandatory 30m break on &ge;5h shifts</div>
           </div>
           <div class="compliance-card">
-            <div class="compliance-label">Burnout & Fatigue Risk</div>
+            <div class="compliance-label">Fatigue &amp; Overtime Flags</div>
             <div class="compliance-val" id="comp-fatigue-risk" style="color:var(--emerald-600);">Low</div>
-            <div class="compliance-sub">Strict &le;40h cap + zero double shifts</div>
+            <div class="compliance-sub">Hard constraints cap scheduled employees at &le;40h/week</div>
           </div>
         </div>
       </div>
@@ -3733,15 +3737,15 @@
               id: 'rest_1',
               name: 'Marco Rossi',
               role: 'Floor Manager',
-              maxHours: 40,
-              preferredHours: 38,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
-                Monday:    { morning: false, afternoon: true,  evening: true  },
-                Tuesday:   { morning: false, afternoon: true,  evening: true  },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: false },
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
@@ -3749,16 +3753,16 @@
               id: 'rest_2',
               name: 'Rachel Chen',
               role: 'Floor Manager',
-              maxHours: 40,
-              preferredHours: 36,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: true,  evening: true  }
+                Sunday:    { morning: true,  afternoon: true,  evening: false }
               }
             },
             {
@@ -3766,14 +3770,14 @@
               name: 'Chef Antonio Ortiz',
               role: 'Line Cook',
               maxHours: 40,
-              preferredHours: 40,
+              preferredHours: 38,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: true  },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
                 Wednesday: { morning: true,  afternoon: true,  evening: true  },
                 Thursday:  { morning: true,  afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
@@ -3781,61 +3785,61 @@
               id: 'rest_4',
               name: 'Malik Washington',
               role: 'Line Cook',
-              maxHours: 35,
+              maxHours: 36,
               preferredHours: 32,
               availability: {
                 Monday:    { morning: false, afternoon: true,  evening: true  },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: true,  evening: true  }
-              }
-            },
-            {
-              id: 'rest_5',
-              name: 'Sophia Martinez',
-              role: 'Server',
-              maxHours: 32,
-              preferredHours: 28,
-              availability: {
-                Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: false },
-                Wednesday: { morning: true,  afternoon: true,  evening: true  },
-                Thursday:  { morning: true,  afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
-              }
-            },
-            {
-              id: 'rest_6',
-              name: 'Liam O\'Connor',
-              role: 'Server',
-              maxHours: 30,
-              preferredHours: 26,
-              availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
                 Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
+              }
+            },
+            {
+              id: 'rest_5',
+              name: 'Mateo Cruz',
+              role: 'Line Cook',
+              maxHours: 34,
+              preferredHours: 30,
+              availability: {
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
+              }
+            },
+            {
+              id: 'rest_6',
+              name: 'Sophia Martinez',
+              role: 'Server',
+              maxHours: 36,
+              preferredHours: 32,
+              availability: {
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: false, evening: false }
               }
             },
             {
               id: 'rest_7',
-              name: 'Emma Watson',
+              name: 'Liam O\'Connor',
               role: 'Server',
-              maxHours: 25,
-              preferredHours: 20,
+              maxHours: 35,
+              preferredHours: 30,
               availability: {
-                Monday:    { morning: false, afternoon: true,  evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
+                Wednesday: { morning: false, afternoon: true,  evening: true  },
+                Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
                 Sunday:    { morning: false, afternoon: true,  evening: true  }
@@ -3843,47 +3847,47 @@
             },
             {
               id: 'rest_8',
-              name: 'Diego Ramirez',
+              name: 'Emma Watson',
               role: 'Server',
-              maxHours: 28,
-              preferredHours: 24,
+              maxHours: 32,
+              preferredHours: 28,
               availability: {
-                Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: false },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Monday:    { morning: true,  afternoon: false, evening: true  },
+                Tuesday:   { morning: true,  afternoon: false, evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
               id: 'rest_9',
               name: 'Priya Sharma',
               role: 'Host',
-              maxHours: 30,
-              preferredHours: 25,
+              maxHours: 32,
+              preferredHours: 28,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: false },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Tuesday:   { morning: true,  afternoon: true,  evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: false, evening: false },
+                Sunday:    { morning: true,  afternoon: false, evening: false }
               }
             },
             {
               id: 'rest_10',
               name: 'Tyler Brooks',
               role: 'Host',
-              maxHours: 22,
-              preferredHours: 18,
+              maxHours: 28,
+              preferredHours: 24,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: false },
+                Wednesday: { morning: false, afternoon: true,  evening: true  },
+                Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
                 Sunday:    { morning: false, afternoon: true,  evening: true  }
@@ -3895,7 +3899,8 @@
           state.shiftRequirements = {};
           DAYS.forEach(day => {
             const isWeekend = (day === 'Saturday' || day === 'Sunday');
-            const isFriday = (day === 'Friday');
+            const isBusyNight = (day === 'Friday' || day === 'Saturday');
+            const isWeekday = (day === 'Monday' || day === 'Tuesday' || day === 'Wednesday' || day === 'Thursday');
             state.shiftRequirements[day] = {
               morning: {
                 start: '10:00',
@@ -3904,17 +3909,17 @@
                   'Floor Manager': 1,
                   'Line Cook': 1,
                   'Server': isWeekend ? 2 : 1,
-                  'Host': 1
+                  'Host': isWeekend ? 1 : 0
                 }
               },
               afternoon: {
                 start: '15:00',
                 end: '18:00',
                 roles: {
-                  'Floor Manager': 1,
-                  'Line Cook': 1,
-                  'Server': 1,
-                  'Host': 1
+                  'Floor Manager': 0,
+                  'Line Cook': isWeekday ? 1 : 0,
+                  'Server': 0,
+                  'Host': 0
                 }
               },
               evening: {
@@ -3922,9 +3927,9 @@
                 end: '23:00',
                 roles: {
                   'Floor Manager': 1,
-                  'Line Cook': (isFriday || isWeekend) ? 2 : 1,
-                  'Server': (isFriday || isWeekend) ? 2 : 1,
-                  'Host': (isFriday || isWeekend) ? 1 : 1
+                  'Line Cook': isBusyNight ? 2 : 1,
+                  'Server': isBusyNight ? 2 : 1,
+                  'Host': 1
                 }
               }
             };
@@ -3939,15 +3944,15 @@
               id: 'ret_1',
               name: 'Victoria Vance',
               role: 'Keyholder',
-              maxHours: 40,
-              preferredHours: 38,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
                 Tuesday:   { morning: true,  afternoon: true,  evening: false },
                 Wednesday: { morning: true,  afternoon: true,  evening: false },
                 Thursday:  { morning: true,  afternoon: true,  evening: false },
                 Friday:    { morning: true,  afternoon: true,  evening: false },
-                Saturday:  { morning: false, afternoon: false, evening: false },
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
@@ -3955,31 +3960,31 @@
               id: 'ret_2',
               name: 'Brandon Lee',
               role: 'Keyholder',
-              maxHours: 40,
-              preferredHours: 36,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: true,  afternoon: true,  evening: true  },
-                Sunday:    { morning: true,  afternoon: true,  evening: true  }
+                Saturday:  { morning: false, afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: false }
               }
             },
             {
               id: 'ret_3',
               name: 'Jessica Taylor',
               role: 'Inventory Stocker',
-              maxHours: 35,
+              maxHours: 36,
               preferredHours: 32,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
                 Tuesday:   { morning: true,  afternoon: true,  evening: false },
                 Wednesday: { morning: true,  afternoon: true,  evening: false },
                 Thursday:  { morning: true,  afternoon: true,  evening: false },
-                Friday:    { morning: true,  afternoon: false, evening: false },
-                Saturday:  { morning: true,  afternoon: false, evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: false },
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
@@ -3987,112 +3992,112 @@
               id: 'ret_4',
               name: 'Carlos Mendez',
               role: 'Inventory Stocker',
-              maxHours: 30,
-              preferredHours: 26,
-              availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: true,  evening: true  },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: true,  afternoon: false, evening: false }
-              }
-            },
-            {
-              id: 'ret_5',
-              name: 'Samantha Green',
-              role: 'Sales Associate',
-              maxHours: 32,
-              preferredHours: 28,
-              availability: {
-                Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: false },
-                Wednesday: { morning: true,  afternoon: true,  evening: false },
-                Thursday:  { morning: true,  afternoon: true,  evening: false },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
-              }
-            },
-            {
-              id: 'ret_6',
-              name: 'Jordan Rivera',
-              role: 'Sales Associate',
-              maxHours: 30,
-              preferredHours: 25,
+              maxHours: 34,
+              preferredHours: 30,
               availability: {
                 Monday:    { morning: false, afternoon: true,  evening: true  },
                 Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: true,  afternoon: true,  evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Saturday:  { morning: false, afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
-              id: 'ret_7',
-              name: 'Olivia Davis',
-              role: 'Sales Associate',
-              maxHours: 25,
-              preferredHours: 20,
+              id: 'ret_5',
+              name: 'Zachary Miller',
+              role: 'Inventory Stocker',
+              maxHours: 30,
+              preferredHours: 26,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: true,  evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
                 Saturday:  { morning: true,  afternoon: true,  evening: true  },
                 Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
-              id: 'ret_8',
-              name: 'Ethan Cole',
+              id: 'ret_6',
+              name: 'Samantha Green',
               role: 'Sales Associate',
-              maxHours: 28,
-              preferredHours: 24,
+              maxHours: 36,
+              preferredHours: 32,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
                 Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: false },
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
+                Sunday:    { morning: true,  afternoon: true,  evening: false }
+              }
+            },
+            {
+              id: 'ret_7',
+              name: 'Jordan Rivera',
+              role: 'Sales Associate',
+              maxHours: 35,
+              preferredHours: 30,
+              availability: {
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Sunday:    { morning: false, afternoon: true,  evening: true  }
+              }
+            },
+            {
+              id: 'ret_8',
+              name: 'Olivia Davis',
+              role: 'Sales Associate',
+              maxHours: 32,
+              preferredHours: 28,
+              availability: {
+                Monday:    { morning: true,  afternoon: false, evening: true  },
+                Tuesday:   { morning: true,  afternoon: false, evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
               id: 'ret_9',
-              name: 'Jasmine Nguyen',
+              name: 'Ethan Cole',
               role: 'Sales Associate',
-              maxHours: 24,
-              preferredHours: 20,
+              maxHours: 32,
+              preferredHours: 28,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
                 Saturday:  { morning: true,  afternoon: true,  evening: true  },
                 Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
               id: 'ret_10',
-              name: 'Zachary Miller',
-              role: 'Inventory Stocker',
-              maxHours: 20,
-              preferredHours: 16,
+              name: 'Jasmine Nguyen',
+              role: 'Sales Associate',
+              maxHours: 30,
+              preferredHours: 26,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: false, afternoon: true,  evening: true  },
+                Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: true,  afternoon: true,  evening: false },
-                Sunday:    { morning: true,  afternoon: true,  evening: false }
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             }
           ];
@@ -4116,7 +4121,7 @@
                 start: '13:30',
                 end: '17:30',
                 roles: {
-                  'Keyholder': 1,
+                  'Keyholder': 0,
                   'Inventory Stocker': isWeekend ? 1 : 0,
                   'Sales Associate': isWeekend ? 2 : 1
                 }
@@ -4127,7 +4132,7 @@
                 roles: {
                   'Keyholder': 1,
                   'Sales Associate': (isFriday || isWeekend) ? 2 : 1,
-                  'Inventory Stocker': (isFriday || isWeekend) ? 1 : 0
+                  'Inventory Stocker': (isFriday || day === 'Saturday') ? 1 : 0
                 }
               }
             };
@@ -4142,15 +4147,15 @@
               id: 'emp_1',
               name: 'Elena Rostova',
               role: 'Shift Lead',
-              maxHours: 40,
-              preferredHours: 38,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
                 Tuesday:   { morning: true,  afternoon: true,  evening: false },
                 Wednesday: { morning: true,  afternoon: true,  evening: false },
                 Thursday:  { morning: true,  afternoon: true,  evening: false },
                 Friday:    { morning: true,  afternoon: true,  evening: false },
-                Saturday:  { morning: true,  afternoon: false, evening: false },
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
@@ -4158,71 +4163,39 @@
               id: 'emp_2',
               name: 'David Kim',
               role: 'Shift Lead',
-              maxHours: 40,
-              preferredHours: 36,
-              availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: true,  evening: true  },
-                Thursday:  { morning: false, afternoon: true,  evening: true  },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: true,  afternoon: true,  evening: true  }
-              }
-            },
-            {
-              id: 'emp_3',
-              name: 'Sarah Jenkins',
-              role: 'Barista',
-              maxHours: 32,
-              preferredHours: 28,
-              availability: {
-                Monday:    { morning: true,  afternoon: true,  evening: false },
-                Tuesday:   { morning: true,  afternoon: true,  evening: false },
-                Wednesday: { morning: true,  afternoon: true,  evening: false },
-                Thursday:  { morning: true,  afternoon: true,  evening: false },
-                Friday:    { morning: true,  afternoon: true,  evening: false },
-                Saturday:  { morning: false, afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
-              }
-            },
-            {
-              id: 'emp_4',
-              name: 'Marcus Vance',
-              role: 'Barista',
-              maxHours: 30,
-              preferredHours: 25,
+              maxHours: 38,
+              preferredHours: 35,
               availability: {
                 Monday:    { morning: false, afternoon: true,  evening: true  },
                 Tuesday:   { morning: false, afternoon: true,  evening: true  },
                 Wednesday: { morning: false, afternoon: true,  evening: true  },
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
-                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: false, afternoon: true,  evening: true  },
                 Sunday:    { morning: false, afternoon: false, evening: false }
               }
             },
             {
-              id: 'emp_5',
-              name: 'Chloe Bennett',
-              role: 'Barista',
-              maxHours: 25,
-              preferredHours: 20,
+              id: 'emp_3',
+              name: 'Jordan Rivera',
+              role: 'Shift Lead',
+              maxHours: 35,
+              preferredHours: 30,
               availability: {
-                Monday:    { morning: true,  afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: true,  afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
+                Monday:    { morning: true,  afternoon: true,  evening: true  },
+                Tuesday:   { morning: true,  afternoon: true,  evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
                 Friday:    { morning: true,  afternoon: true,  evening: true  },
                 Saturday:  { morning: true,  afternoon: true,  evening: true  },
-                Sunday:    { morning: true,  afternoon: true,  evening: true  }
+                Sunday:    { morning: true,  afternoon: true,  evening: false }
               }
             },
             {
-              id: 'emp_6',
-              name: 'James Rodriguez',
-              role: 'Cashier',
-              maxHours: 35,
+              id: 'emp_4',
+              name: 'Sarah Jenkins',
+              role: 'Barista',
+              maxHours: 36,
               preferredHours: 32,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
@@ -4230,16 +4203,16 @@
                 Wednesday: { morning: true,  afternoon: true,  evening: false },
                 Thursday:  { morning: true,  afternoon: true,  evening: false },
                 Friday:    { morning: true,  afternoon: true,  evening: false },
-                Saturday:  { morning: true,  afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
+                Sunday:    { morning: true,  afternoon: false, evening: false }
               }
             },
             {
-              id: 'emp_7',
-              name: 'Aisha Patel',
-              role: 'Cashier',
-              maxHours: 25,
-              preferredHours: 20,
+              id: 'emp_5',
+              name: 'Marcus Vance',
+              role: 'Barista',
+              maxHours: 35,
+              preferredHours: 30,
               availability: {
                 Monday:    { morning: false, afternoon: true,  evening: true  },
                 Tuesday:   { morning: false, afternoon: true,  evening: true  },
@@ -4247,31 +4220,63 @@
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
+                Sunday:    { morning: false, afternoon: true,  evening: true  }
+              }
+            },
+            {
+              id: 'emp_6',
+              name: 'Chloe Bennett',
+              role: 'Barista',
+              maxHours: 32,
+              preferredHours: 28,
+              availability: {
+                Monday:    { morning: true,  afternoon: true,  evening: true  },
+                Tuesday:   { morning: true,  afternoon: true,  evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: true  },
+                Thursday:  { morning: true,  afternoon: true,  evening: true  },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
+                Sunday:    { morning: true,  afternoon: true,  evening: true  }
+              }
+            },
+            {
+              id: 'emp_7',
+              name: 'Lucas Meyer',
+              role: 'Barista',
+              maxHours: 34,
+              preferredHours: 30,
+              availability: {
+                Monday:    { morning: false, afternoon: true,  evening: true  },
+                Tuesday:   { morning: false, afternoon: true,  evening: true  },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: true  },
+                Saturday:  { morning: true,  afternoon: true,  evening: true  },
                 Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
             },
             {
               id: 'emp_8',
-              name: 'Lucas Meyer',
-              role: 'Barista',
-              maxHours: 35,
-              preferredHours: 30,
+              name: 'James Rodriguez',
+              role: 'Cashier',
+              maxHours: 36,
+              preferredHours: 32,
               availability: {
                 Monday:    { morning: true,  afternoon: true,  evening: false },
                 Tuesday:   { morning: true,  afternoon: true,  evening: false },
                 Wednesday: { morning: true,  afternoon: true,  evening: false },
                 Thursday:  { morning: true,  afternoon: true,  evening: false },
                 Friday:    { morning: true,  afternoon: true,  evening: false },
-                Saturday:  { morning: true,  afternoon: false, evening: false },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Saturday:  { morning: true,  afternoon: true,  evening: false },
+                Sunday:    { morning: true,  afternoon: false, evening: false }
               }
             },
             {
               id: 'emp_9',
-              name: 'Maya Lin',
+              name: 'Aisha Patel',
               role: 'Cashier',
-              maxHours: 30,
-              preferredHours: 25,
+              maxHours: 34,
+              preferredHours: 30,
               availability: {
                 Monday:    { morning: false, afternoon: true,  evening: true  },
                 Tuesday:   { morning: false, afternoon: true,  evening: true  },
@@ -4279,21 +4284,21 @@
                 Thursday:  { morning: false, afternoon: true,  evening: true  },
                 Friday:    { morning: false, afternoon: true,  evening: true  },
                 Saturday:  { morning: false, afternoon: true,  evening: true  },
-                Sunday:    { morning: false, afternoon: false, evening: false }
+                Sunday:    { morning: false, afternoon: true,  evening: true  }
               }
             },
             {
               id: 'emp_10',
-              name: 'Noah Taylor',
-              role: 'Barista',
-              maxHours: 20,
-              preferredHours: 18,
+              name: 'Maya Lin',
+              role: 'Cashier',
+              maxHours: 30,
+              preferredHours: 26,
               availability: {
-                Monday:    { morning: false, afternoon: false, evening: false },
-                Tuesday:   { morning: false, afternoon: false, evening: false },
-                Wednesday: { morning: false, afternoon: false, evening: false },
-                Thursday:  { morning: false, afternoon: false, evening: false },
-                Friday:    { morning: false, afternoon: true,  evening: true  },
+                Monday:    { morning: true,  afternoon: true,  evening: false },
+                Tuesday:   { morning: true,  afternoon: true,  evening: false },
+                Wednesday: { morning: true,  afternoon: true,  evening: false },
+                Thursday:  { morning: true,  afternoon: true,  evening: false },
+                Friday:    { morning: true,  afternoon: true,  evening: false },
                 Saturday:  { morning: true,  afternoon: true,  evening: true  },
                 Sunday:    { morning: true,  afternoon: true,  evening: true  }
               }
@@ -4320,7 +4325,7 @@
                 end: '17:00',
                 roles: {
                   'Shift Lead': 1,
-                  'Barista': isWeekend ? 2 : 1,
+                  'Barista': 1,
                   'Cashier': 1
                 }
               },
@@ -4329,8 +4334,8 @@
                 end: '21:00',
                 roles: {
                   'Shift Lead': 1,
-                  'Barista': (isFriday || isWeekend) ? 2 : 1,
-                  'Cashier': (isFriday || isWeekend) ? 1 : 1
+                  'Barista': 1,
+                  'Cashier': isFriday ? 1 : 0
                 }
               }
             };
@@ -5054,7 +5059,7 @@
       }
     
       
-      function exportComplianceAuditReport() {
+      function exportLaborReviewReport() {
         const totalStaff = state.employees.length;
         const restScore = document.getElementById('comp-rest-score')?.textContent || '100%';
         const avgRest = document.getElementById('comp-avg-rest')?.textContent || '14.6h';
@@ -5062,25 +5067,26 @@
 
         const lines = [
           '================================================================================',
-          'GetShifty — Operations & Fair Workweek Labor Standards Audit',
-          'Compliance Protocol: Fair Workweek & Predictive Scheduling Standards',
-          `Audited On: ${new Date().toLocaleString()}`,
-          'Verification: Automated Heuristic Compliance Engine',
+          'GetShifty — Operations & Labor Review Report',
+          'Internal Shift Planning & Rest Period Review Summary',
+          `Generated On: ${new Date().toLocaleString()}`,
+          'Notice: Flags possible rest-period and overtime issues for manager review.',
+          'Rules vary by city and state; managers are responsible for compliance.',
           '================================================================================\n',
-          '[1] FAIR WORKWEEK COMPLIANCE SCORECARD',
-          `- Clopening Prevention Score:     ${restScore}`,
+          '[1] REST INTERVAL & SHIFT REVIEW SCORECARD',
+          `- Rest Period Score:              ${restScore}`,
           `- Average Rest Interval:          ${avgRest} between consecutive shifts`,
-          `- Statutory Rest Requirement:     >= 10.0 hours uninterrupted rest`,
-          `- Overtime Risk Exposure:         $0.00 (100% Protected via <=40h weekly hard cap)`,
-          `- Mandatory Meal Break Coverage:  ${mealBreaks} (30-min unpaid meal on >=5h shifts)\n`,
+          `- Rest Period Guideline:          Flags shifts with < 10.0 hours rest`,
+          `- Overtime Risk Estimation:       $0.00 (capped at <=40h weekly in current schedule)`,
+          `- Meal Period Benchmark:          ${mealBreaks} (30-min unpaid meal on >=5h shifts)\n`,
           '[2] FATIGUE MITIGATION & CONSECUTIVE SHIFT AUDIT',
           `Active Roster Size:               ${totalStaff} employees`,
-          'Heuristic Engine Status:          -500 penalty weight active for back-to-back close/open',
-          'Burnout Protection:               Maximum 1 shift per day per employee enforced\n',
-          '[3] REGULATORY STANDARDS COMPLIANCE SUMMARY',
-          'GetShifty scheduling constraints proactively eliminate erratic scheduling, prevent',
-          'excessive fatigue, and verify that small-business managers remain fully aligned',
-          'with municipal Fair Workweek and predictive scheduling ordinances.',
+          'Rest Heuristic Engine:            -500 penalty weight active for back-to-back close/open',
+          'Shift Frequency Rule:             Maximum 1 shift per day per employee enforced\n',
+          '[3] LABOR REVIEW SUMMARY',
+          'Flags possible rest-period and overtime issues for manager review.',
+          'Rules vary by city and state; managers are responsible for compliance.',
+          'This report provides operational planning data and does not constitute legal advice.',
           '================================================================================'
         ];
 
@@ -5088,12 +5094,12 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `GetShifty-Labor-Compliance-Report-${Date.now()}.txt`;
+        a.download = `GetShifty-Labor-Review-Report-${Date.now()}.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        showToast('Labor law & compliance report downloaded successfully!', 'success');
+        showToast('Labor Review Report downloaded successfully!', 'success');
       }
     
       function renderAll() {
@@ -5825,9 +5831,11 @@
         // ==========================================================================
         const wageInput = document.getElementById('roi-hourly-wage');
         const managerInput = document.getElementById('roi-manager-rate');
+        const manualInput = document.getElementById('roi-manual-hours');
         const staffWage = wageInput ? parseFloat(wageInput.value) || 15.00 : 15.00;
         const managerRate = managerInput ? parseFloat(managerInput.value) || 25.00 : 25.00;
-        state.roi = { staffWage, managerRate };
+        const manualHours = manualInput ? parseFloat(manualInput.value) || 3.5 : 3.5;
+        state.roi = { staffWage, managerRate, manualHours };
 
         const totalPayroll = (metrics.totalAssignedHours * staffWage).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         const payrollEl = document.getElementById('roi-total-payroll');
@@ -5836,9 +5844,24 @@
         const payrollSub = document.getElementById('roi-payroll-sub');
         if (payrollSub) payrollSub.textContent = `${metrics.totalAssignedHours.toFixed(1)} total hours scheduled × $${staffWage.toFixed(2)}/hr`;
 
-        const annualSavings = (3.5 * 52 * managerRate).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        const annualSavings = (manualHours * 52 * managerRate).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         const savingsEl = document.getElementById('roi-annual-savings');
         if (savingsEl) savingsEl.textContent = annualSavings;
+
+        const savingsSub = document.getElementById('roi-annual-savings-sub');
+        if (savingsSub) savingsSub.textContent = `Estimated — based on assumptions you can edit (${manualHours.toFixed(1)} hrs/week saved × 52 weeks × $${managerRate.toFixed(2)}/hr manager rate)`;
+
+        const manualSeconds = manualHours * 3600;
+        const solveSeconds = 1.5;
+        const effPct = manualSeconds > 0 ? Math.max(0, Math.min(99.9, ((manualSeconds - solveSeconds) / manualSeconds) * 100)).toFixed(1) : '99.8';
+        const effEl = document.getElementById('roi-efficiency-pct');
+        if (effEl) effEl.textContent = `${effPct}%`;
+
+        const effSub = document.getElementById('roi-efficiency-sub');
+        if (effSub) effSub.textContent = `Estimated — based on assumptions you can edit (<15 seconds automated solving vs. ${manualHours.toFixed(1)} hours manual scheduling)`;
+
+        const churnSub = document.getElementById('churn-efficiency-sub');
+        if (churnSub) churnSub.textContent = `Estimated — based on assumptions you can edit (Solve speed vs. ${manualHours.toFixed(1)} hrs/week manual scheduling).`;
       }
 
       /* Render Staffing Conflict Report */
@@ -6282,10 +6305,10 @@
          ========================================================================== */
       function setupEventListeners() {
 
-        // Export Compliance Audit (cadencunanan)
+        // Export Labor Review Report (cadencunanan)
         const btnCompExport = document.getElementById('btn-export-compliance');
         if (btnCompExport) {
-          btnCompExport.addEventListener('click', exportComplianceAuditReport);
+          btnCompExport.addEventListener('click', exportLaborReviewReport);
         }
     
         // Employee Self-Service Switcher (Option 2)
@@ -6390,6 +6413,12 @@
         const mgrInp = document.getElementById('roi-manager-rate');
         if (mgrInp) {
           mgrInp.addEventListener('input', () => {
+            renderFairnessAnalytics(calculateMetrics());
+          });
+        }
+        const manualHoursInp = document.getElementById('roi-manual-hours');
+        if (manualHoursInp) {
+          manualHoursInp.addEventListener('input', () => {
             renderFairnessAnalytics(calculateMetrics());
           });
         }
