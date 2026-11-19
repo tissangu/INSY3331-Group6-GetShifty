@@ -118,6 +118,7 @@ When professor feedback, user testing, or team retrospectives identify areas to 
 |:---:|:---:|:---:|:---|
 | **v1.0** | Baseline | INSY 3331 Group 6 | Initial baseline shared team skill: technical constraints, scheduling heuristics, UI standards, privacy, testing, and team protocols for Shark Tank project. |
 | **v1.1** | Nov 18, 2026 | Customer Lead (INSY 3331 Group 6) | Implemented Customer Testing & Usability Protocol: added standardized 3-minute testing workflow, multi-industry tester recruitment presets (Café, Restaurant, Retail), automated benchmark stopwatch (<15s vs 3.5h manual), quantitative stability & preferred hour fulfillment tracking, financial & labor ROI calculations, and in-app session feedback export for Shark Tank slide deck. |
+| **v1.2** | Nov 18, 2026 | Operations & Compliance Lead (cadencunanan) | Implemented Fair Workweek Compliance & Fatigue Mitigation Protocol: added heuristic rest interval enforcement (minimum 10-hour rest between closing and opening shifts to eliminate "clopenings"), meal/rest break compliance audit, labor law scorecard, and regulatory audit export. |
 
 ---
 
@@ -151,3 +152,21 @@ To ground the Shark Tank pitch in sound small-business unit economics:
 - **Annual Management Savings Model:** Standard formula for labor ROI:
   $$\text{Annual Savings} = 3.5\text{ hrs saved/week} \times 52\text{ weeks} \times \text{Manager Hourly Rate } (\$25.00/\text{hr}) = \$4,550.00/\text{year}$$
 - **Data Export Integrity:** Tester evaluations, Likert usability ratings, Net Promoter Scores (NPS), and quantitative stability rates must be exportable to timestamped `.txt` audit reports for verification and slide deck inclusion.
+
+---
+
+## 10. Operations & Fair Workweek Compliance Protocol (v1.2 Addition)
+
+Established by the Operations & Compliance Lead (`cadencunanan`) to ensure ethical labor scheduling, mitigate staff fatigue, and comply with Fair Workweek standards:
+
+### 1. "Clopening" Prevention & Fatigue Mitigation Rule
+- **Definition:** A "clopening" occurs when an employee is assigned to an evening closing shift followed by the next morning's opening shift with less than 10 hours of uninterrupted rest between shifts.
+- **Engine Enforcement:** `runSchedulingEngine` evaluates consecutive calendar days. When filling a morning shift, candidates who closed on the prior evening receive an automatic $-500$ penalty score, heavily prioritizing well-rested candidates.
+- **Diagnostic Logging:** If severe understaffing forces a rest interval under 10 hours, the engine explicitly logs a `Fatigue Warning: Rest Interval < 10h` in the Staffing Conflict & Compliance Report.
+
+### 2. Fair Workweek & Regulatory Scorecard
+The manager dashboard must continuously calculate and report:
+- **Clopening Rate:** Percentage of shifts with $\ge 10$h rest interval (Target: $100\%$).
+- **Average Weekly Rest Interval:** Average hours elapsed between consecutive shifts across the team.
+- **Meal & Rest Break Mandates:** Automatic tracking of required 30-minute meal periods for shifts exceeding 5 hours and 15-minute rest breaks.
+- **Compliance Export:** Managers can download an official `GetShifty-Labor-Compliance-Report-[Date].txt` for audit trails and regulatory verification.
