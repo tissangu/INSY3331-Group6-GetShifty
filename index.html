@@ -289,39 +289,50 @@
     /* KPI Summary Cards Grid */
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
     }
 
     .kpi-card {
       background: #ffffff;
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.15rem;
-      border: 1px solid var(--slate-200);
-      box-shadow: var(--shadow-sm);
+      border-radius: 0;
+      padding: 0.65rem 0.95rem;
+      border: none;
+      border-right: 1px solid var(--slate-100);
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition: background-color 0.15s ease;
+    }
+
+    .kpi-card:last-child {
+      border-right: none;
     }
 
     .kpi-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      background-color: var(--slate-50);
+      transform: none;
+      box-shadow: none;
     }
 
     .kpi-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
     }
 
     .kpi-title {
-      font-size: 0.775rem;
+      font-size: 0.68rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -329,28 +340,32 @@
     }
 
     .kpi-icon-wrap {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--radius-md);
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .kpi-value {
-      font-size: 1.7rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--slate-900);
       line-height: 1.1;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
+      letter-spacing: -0.02em;
     }
 
     .kpi-subtext {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--slate-500);
       display: flex;
       align-items: center;
       gap: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Tab Navigation */
@@ -676,38 +691,121 @@
 
     /* Assignment Chip */
     .asgn-chip {
-      background: var(--slate-100);
-      border: 1px solid var(--slate-300);
-      border-radius: var(--radius-md);
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
       padding: 0.35rem 0.5rem;
       font-size: 0.775rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.35rem;
+      gap: 0.4rem;
       position: relative;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       transition: all 0.15s ease;
     }
 
     .asgn-chip:hover {
       border-color: var(--primary-border);
-      background: var(--primary-light);
+      box-shadow: 0 2px 6px rgba(79, 70, 229, 0.12);
+      transform: translateY(-1px);
     }
 
-    .asgn-chip.chip-manager {
+    .asgn-chip-main {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .asgn-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--slate-100);
+      color: var(--slate-700);
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--slate-200);
+    }
+
+    .asgn-chip.chip-manager,
+    .asgn-chip.chip-floor-manager,
+    .asgn-chip.chip-store-manager {
       border-left: 3px solid #7c3aed;
+    }
+    .asgn-chip.chip-manager .asgn-avatar,
+    .asgn-chip.chip-floor-manager .asgn-avatar,
+    .asgn-chip.chip-store-manager .asgn-avatar {
+      background: #ede9fe;
+      color: #6d28d9;
     }
 
     .asgn-chip.chip-barista {
       border-left: 3px solid #d97706;
     }
+    .asgn-chip.chip-barista .asgn-avatar {
+      background: #fef3c7;
+      color: #b45309;
+    }
 
     .asgn-chip.chip-server {
       border-left: 3px solid #2563eb;
     }
+    .asgn-chip.chip-server .asgn-avatar {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
 
     .asgn-chip.chip-cashier {
       border-left: 3px solid #059669;
+    }
+    .asgn-chip.chip-cashier .asgn-avatar {
+      background: #d1fae5;
+      color: #047857;
+    }
+
+    .asgn-chip.chip-line-cook {
+      border-left: 3px solid #ea580c;
+    }
+    .asgn-chip.chip-line-cook .asgn-avatar {
+      background: #ffedd5;
+      color: #c2410c;
+    }
+
+    .asgn-chip.chip-host {
+      border-left: 3px solid #0d9488;
+    }
+    .asgn-chip.chip-host .asgn-avatar {
+      background: #ccfbf1;
+      color: #0f766e;
+    }
+
+    .asgn-chip.chip-sales-associate {
+      border-left: 3px solid #db2777;
+    }
+    .asgn-chip.chip-sales-associate .asgn-avatar {
+      background: #fce7f3;
+      color: #be185d;
+    }
+
+    .asgn-chip.chip-inventory-stocker,
+    .asgn-chip.chip-stocker {
+      border-left: 3px solid #475569;
+    }
+    .asgn-chip.chip-inventory-stocker .asgn-avatar,
+    .asgn-chip.chip-stocker .asgn-avatar {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .asgn-chip.chip-keyholder {
+      border-left: 3px solid #9333ea;
     }
 
     .asgn-chip-info {
@@ -722,12 +820,15 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 0.775rem;
     }
 
     .asgn-chip-role {
-      font-size: 0.675rem;
+      font-size: 0.65rem;
       color: var(--slate-500);
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
     .asgn-chip-actions {
@@ -1572,231 +1673,6 @@
        Business Lead Enhancements: Getting Started, Schedule Readiness,
        Business Impact Calculator, and Value Proposition Styling
        ========================================================================== */
-    /* Getting Started Card */
-    .getting-started-card {
-      background: #ffffff;
-      border: 1px solid var(--primary-border);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.25rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
-    }
-    .getting-started-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .getting-started-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .getting-started-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      border-radius: var(--radius-full);
-      background: var(--primary-light);
-      color: var(--primary);
-      border: 1px solid var(--primary-border);
-      letter-spacing: 0.04em;
-    }
-    .getting-started-value-quote {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--slate-800);
-      line-height: 1.45;
-      margin-bottom: 1rem;
-      padding: 0.65rem 0.95rem;
-      background: #ffffff;
-      border-left: 4px solid var(--primary);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    }
-    .getting-started-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.15rem;
-    }
-    .step-card {
-      background: #ffffff;
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      padding: 0.9rem;
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      box-shadow: var(--shadow-sm);
-      transition: border-color 0.15s ease;
-    }
-    .step-card:hover {
-      border-color: var(--primary-border);
-    }
-    .step-number {
-      width: 28px;
-      height: 28px;
-      border-radius: var(--radius-full);
-      background: var(--primary-light);
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid var(--primary-border);
-    }
-    .step-body h4 {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--slate-900);
-      margin-bottom: 0.2rem;
-    }
-    .step-body p {
-      font-size: 0.775rem;
-      color: var(--slate-600);
-      line-height: 1.4;
-    }
-    .getting-started-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--slate-200);
-    }
-    .getting-started-collapse-btn {
-      background: none;
-      border: none;
-      color: var(--slate-500);
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius-sm);
-    }
-    .getting-started-collapse-btn:hover {
-      color: var(--slate-800);
-      background: var(--slate-100);
-    }
-
-    /* Schedule Readiness Banner */
-    .schedule-readiness-banner {
-      background: #ffffff;
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-lg);
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease-in-out;
-    }
-    .readiness-main-col {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex: 1;
-      min-width: 280px;
-    }
-    .readiness-icon-wrap {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .readiness-text h3 {
-      font-size: 1rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.15rem;
-    }
-    .readiness-text p {
-      font-size: 0.8rem;
-      color: var(--slate-600);
-      line-height: 1.35;
-    }
-    .readiness-stats-strip {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-    .readiness-stat-chip {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      padding: 0.45rem 0.75rem;
-      text-align: center;
-      min-width: 95px;
-    }
-    .readiness-stat-val {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--slate-900);
-      display: block;
-      line-height: 1.1;
-    }
-    .readiness-stat-label {
-      font-size: 0.675rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--slate-500);
-      letter-spacing: 0.03em;
-    }
-    /* Status styles */
-    .schedule-readiness-banner.status-ready {
-      border-color: var(--emerald-500);
-      background: linear-gradient(90deg, #ecfdf5 0%, #ffffff 60%);
-    }
-    .schedule-readiness-banner.status-ready .readiness-icon-wrap {
-      background: var(--emerald-100);
-      color: var(--emerald-700);
-    }
-    .schedule-readiness-banner.status-ready .readiness-text h3 {
-      color: var(--emerald-800);
-    }
-    .schedule-readiness-banner.status-attention {
-      border-color: var(--amber-500);
-      background: linear-gradient(90deg, #fffbeb 0%, #ffffff 60%);
-    }
-    .schedule-readiness-banner.status-attention .readiness-icon-wrap {
-      background: var(--amber-100);
-      color: var(--amber-700);
-    }
-    .schedule-readiness-banner.status-attention .readiness-text h3 {
-      color: var(--amber-900);
-    }
-    .schedule-readiness-banner.status-none {
-      border-color: var(--slate-300);
-      background: linear-gradient(90deg, #f8fafc 0%, #ffffff 60%);
-    }
-    .schedule-readiness-banner.status-none .readiness-icon-wrap {
-      background: var(--slate-100);
-      color: var(--slate-600);
-    }
-    .schedule-readiness-banner.status-none .readiness-text h3 {
-      color: var(--slate-800);
-    }
-
     /* Business Impact Section & Calculator */
     .business-impact-layout {
       display: grid;
@@ -2109,188 +1985,6 @@
       box-shadow: 0 0 0 2px var(--primary-light);
     }
 
-    /* 3-Minute Walkthrough Banner */
-    .walkthrough-banner {
-      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 60%, #4338ca 100%);
-      color: #ffffff;
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 8px 20px -4px rgba(49, 46, 129, 0.3);
-      border: 1px solid rgba(199, 210, 254, 0.2);
-    }
-    .walkthrough-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.85rem;
-    }
-    .walkthrough-title-area {
-      max-width: 650px;
-    }
-    .walkthrough-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 0.2rem 0.5rem;
-      border-radius: var(--radius-full);
-      margin-bottom: 0.35rem;
-    }
-    .walkthrough-heading {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 0.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .walkthrough-sub {
-      font-size: 0.825rem;
-      color: #c7d2fe;
-    }
-
-    /* Benchmark Stopwatch Box */
-    .walkthrough-benchmark-box {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      background: rgba(15, 23, 42, 0.4);
-      padding: 0.5rem 0.85rem;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      flex-wrap: wrap;
-    }
-    .benchmark-live-item {
-      display: flex;
-      flex-direction: column;
-    }
-    .benchmark-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      color: #94a3b8;
-      font-weight: 700;
-    }
-    .benchmark-value {
-      font-family: monospace;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-    .benchmark-value.highlight {
-      color: #34d399;
-    }
-    .benchmark-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      background: rgba(16, 185, 129, 0.2);
-      color: #a7f3d0;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 0.25rem 0.55rem;
-      border-radius: var(--radius-full);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    /* Progress bar */
-    .walkthrough-track-container {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-full);
-      overflow: hidden;
-      margin: 0.75rem 0 0.5rem;
-    }
-    .walkthrough-track-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
-      transition: width 0.4s ease;
-    }
-    .walkthrough-progress-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: #e0e7ff;
-      margin-bottom: 0.85rem;
-    }
-
-    /* Steps grid */
-    .walkthrough-steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 0.75rem;
-    }
-    .wt-step-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius-md);
-      padding: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      transition: all 0.2s ease;
-    }
-    .wt-step-card.completed {
-      background: rgba(16, 185, 129, 0.15);
-      border-color: rgba(52, 211, 153, 0.4);
-    }
-    .wt-step-indicator {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      color: #ffffff;
-      font-size: 0.8rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .wt-step-card.completed .wt-step-indicator {
-      background: #10b981;
-      color: #ffffff;
-    }
-    .wt-step-body {
-      flex: 1;
-      min-width: 0;
-    }
-    .wt-step-body strong {
-      display: block;
-      font-size: 0.8rem;
-      color: #ffffff;
-      line-height: 1.2;
-    }
-    .wt-step-body p {
-      font-size: 0.7rem;
-      color: #c7d2fe;
-      margin: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .wt-status-tag {
-      font-size: 0.65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 0.15rem 0.4rem;
-      border-radius: var(--radius-full);
-      background: rgba(255, 255, 255, 0.15);
-      color: #e0e7ff;
-    }
-    .wt-step-card.completed .wt-status-tag {
-      background: #10b981;
-      color: #ffffff;
-    }
-
     /* Role Badges for all 3 industries */
     .role-shift-lead, .role-shift\ lead { background: #f3e8ff; color: #7e22ce; }
     .role-floor-manager, .role-floor\ manager { background: #ede9fe; color: #6d28d9; }
@@ -2300,7 +1994,7 @@
     .role-sales-associate, .role-sales\ associate { background: #d1fae5; color: #065f46; }
     .role-inventory-stocker, .role-inventory\ stocker { background: #e0f2fe; color: #0369a1; }
 
-    /* Shark Tank Financial & Labor ROI Panel */
+    /* Financial & Labor Cost ROI Panel */
     .roi-panel {
       background: #ffffff;
       border: 1px solid var(--slate-200);
@@ -2768,49 +2462,44 @@
           </svg>
         </div>
         <div class="brand-text">
-          <h1>GetShifty <span class="brand-badge">PROTOTYPE</span></h1>
+          <h1>GetShifty</h1>
           <p>Smarter Scheduling. Happier Teams.</p>
         </div>
       </div>
 
       <!-- Quick Action Controls -->
       <div class="header-actions">
-        <!-- Multi-Industry Preset Switcher (Customer Lead) -->
+        <!-- Multi-Industry Preset Switcher -->
         <div class="preset-selector-group">
           <label for="select-industry-preset" class="preset-label">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
-            Industry Preset:
+            Industry:
           </label>
           <select id="select-industry-preset" class="preset-select" title="Switch small business industry preset">
-            <option value="cafe" selected>☕ Café / Coffee Shop (Shift Leads, Baristas, Cashiers)</option>
-            <option value="restaurant">🍽️ Full-Service Restaurant (Servers, Line Cooks, Hosts, Managers)</option>
-            <option value="retail">🛍️ Retail Boutique / Store (Sales Associates, Stockers, Keyholders)</option>
+            <option value="cafe" selected>☕ Café (Baristas & Cashiers)</option>
+            <option value="restaurant">🍽️ Restaurant (Servers & Cooks)</option>
+            <option value="retail">🛍️ Retail Store (Associates & Stockers)</option>
           </select>
         </div>
 
-        <button id="btn-open-tester-review" class="btn btn-warning btn-sm" title="Open user tester feedback and export benchmark report">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          Tester Review & Stats
-        </button>
-
-        <button id="btn-load-demo"  class="btn btn-secondary btn-sm" title="Populate 10 fictional employees and shift requirements">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-          Load Demo Scenario
+        <button id="btn-load-demo" class="btn btn-secondary btn-sm" title="Load a realistic 10-person team template">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Load Sample Team
         </button>
 
         <button id="btn-generate" class="btn btn-primary btn-sm" title="Run scheduling optimization based on constraints">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
           Generate Schedule
         </button>
 
         <button id="btn-regenerate" class="btn btn-emerald btn-sm" title="Re-solve schedule while preserving unaffected assignments">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-          Regenerate Schedule
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+          Regenerate
         </button>
 
         <button id="btn-reset-schedule" class="btn btn-danger btn-sm" title="Clear schedule assignments">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-          Reset Schedule
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          Reset
         </button>
       </div>
     </div>
@@ -2818,85 +2507,6 @@
 
   <!-- Main Container -->
   <main class="app-main">
-
-    <!-- 3-Minute Guided Walkthrough Checklist & Benchmark Stopwatch (Customer Lead) -->
-    <div id="walkthrough-bar" class="walkthrough-banner">
-      <div class="walkthrough-top">
-        <div class="walkthrough-title-area">
-          <span class="walkthrough-badge">CUSTOMER LEAD • USER TESTING SUITE</span>
-          <h3 class="walkthrough-heading">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            3-Minute Guided Usability Walkthrough
-          </h3>
-          <span class="walkthrough-sub">Follow this 4-step testing protocol to evaluate automated solving, emergency call-out healing, and mathematical fairness.</span>
-        </div>
-        
-        <div class="walkthrough-benchmark-box">
-          <div class="benchmark-live-item">
-            <span class="benchmark-label">Session Elapsed:</span>
-            <span class="benchmark-value" id="stopwatch-session-time">00:00</span>
-          </div>
-          <div class="benchmark-live-item">
-            <span class="benchmark-label">Last Solve Speed:</span>
-            <span class="benchmark-value highlight" id="stopwatch-solve-time">< 1.5s</span>
-          </div>
-          <div class="benchmark-badge" title="Live comparison against manual scheduling time">
-            ⚡ ~99.8% Time Saved vs 3.5h Manual
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Progress Track -->
-      <div class="walkthrough-track-container">
-        <div class="walkthrough-track-fill" id="walkthrough-progress-fill" style="width: 0%;"></div>
-      </div>
-      <div class="walkthrough-progress-info">
-        <span id="walkthrough-progress-label">0 of 4 Steps Completed (0%)</span>
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <button id="btn-toggle-walkthrough" class="btn btn-ghost btn-xs" style="color:#ffffff;">Minimize Checklist</button>
-          <button id="btn-wt-review" class="btn btn-primary btn-xs">⭐ Record Feedback</button>
-        </div>
-      </div>
-
-      <!-- 4 Step Cards -->
-      <div class="walkthrough-steps-grid" id="walkthrough-steps-list">
-        <div class="wt-step-card" id="wt-card-1">
-          <div class="wt-step-indicator" id="wt-ind-1">1</div>
-          <div class="wt-step-body">
-            <strong>Step 1: Review Availability</strong>
-            <p>Inspect team availability & hour caps</p>
-          </div>
-          <span class="wt-status-tag" id="wt-tag-1">Pending</span>
-        </div>
-
-        <div class="wt-step-card" id="wt-card-2">
-          <div class="wt-step-indicator" id="wt-ind-2">2</div>
-          <div class="wt-step-body">
-            <strong>Step 2: Generate Schedule</strong>
-            <p>Solve multi-constraint weekly assignments</p>
-          </div>
-          <span class="wt-status-tag" id="wt-tag-2">Pending</span>
-        </div>
-
-        <div class="wt-step-card" id="wt-card-3">
-          <div class="wt-step-indicator" id="wt-ind-3">3</div>
-          <div class="wt-step-body">
-            <strong>Step 3: Trigger Call-Out</strong>
-            <p>Click 'Call Out' on any assigned employee</p>
-          </div>
-          <span class="wt-status-tag" id="wt-tag-3">Pending</span>
-        </div>
-
-        <div class="wt-step-card" id="wt-card-4">
-          <div class="wt-step-indicator" id="wt-ind-4">4</div>
-          <div class="wt-step-body">
-            <strong>Step 4: Regenerate & Inspect Diff</strong>
-            <p>Inspect stability score & minimal replacement churn</p>
-          </div>
-          <span class="wt-status-tag" id="wt-tag-4">Pending</span>
-        </div>
-      </div>
-    </div>
 
     <!-- Active Call-Out Alert Banner (Visible when an employee is marked unavailable) -->
     <div id="callout-alert-banner" class="callout-banner">
@@ -2906,7 +2516,7 @@
         </div>
         <div class="callout-text">
           <h4 id="callout-banner-title">Employee Call-Out Recorded</h4>
-          <p id="callout-banner-desc">An employee called out. Click 'Regenerate Schedule' to find qualified replacement coverage while preserving existing assignments.</p>
+          <p id="callout-banner-desc">An employee called out. Click 'Regenerate' to find qualified replacement coverage while preserving existing assignments.</p>
         </div>
       </div>
       <div style="display:flex; gap:0.5rem;">
@@ -2914,110 +2524,6 @@
         <button id="btn-banner-dismiss" class="btn btn-secondary btn-sm">Clear Alert</button>
       </div>
     </div>
-
-    <!-- Getting Started Section for First-Time Managers -->
-    <section id="getting-started-card" class="getting-started-card">
-      <div class="getting-started-header">
-        <div class="getting-started-title-wrap">
-          <div class="getting-started-badge">New Manager Guide</div>
-          <h2 style="font-size: 1.05rem; font-weight: 800; color: var(--slate-900); margin: 0;">Getting Started with GetShifty</h2>
-        </div>
-        <button id="btn-toggle-getting-started" class="getting-started-collapse-btn" title="Toggle guide visibility">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="18 15 12 9 6 15"></polyline></svg>
-          <span id="guide-toggle-text">Hide Guide</span>
-        </button>
-      </div>
-
-      <div id="getting-started-content">
-        <div class="getting-started-value-quote">
-          “GetShifty helps small-business managers spend less time building schedules and more time running their business.”
-        </div>
-
-        <div class="getting-started-steps">
-          <!-- Step 1 -->
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-body">
-              <h4>Add Staff & Availability</h4>
-              <p>Configure team members, assigned roles, weekly working hour caps, and preferred shift availability windows.</p>
-            </div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-body">
-              <h4>Generate Weekly Schedule</h4>
-              <p>Automatically match staff to required morning, afternoon, and evening shifts across all 7 days in seconds.</p>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-body">
-              <h4>Review Coverage & Call-Outs</h4>
-              <p>Check readiness status, inspect fairness metrics, and quickly re-solve coverage whenever an employee calls out.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="getting-started-actions">
-          <button id="btn-guide-load-demo" class="btn btn-primary btn-sm" title="Populate 10 fictional employees and shift requirements">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
-            Load Demo Scenario (10 Staff)
-          </button>
-          <button id="btn-guide-calc-link" class="btn btn-secondary btn-sm" title="View estimated ROI and time savings">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            Calculate Business Impact
-          </button>
-          <span style="font-size: 0.775rem; color: var(--slate-500); margin-left: auto;">
-            Tip: Click <strong>"Load Demo Scenario"</strong> to test all features with pre-configured restaurant data.
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Schedule Readiness Summary Banner -->
-    <section id="schedule-readiness-banner" class="schedule-readiness-banner status-none">
-      <div class="readiness-main-col">
-        <div class="readiness-icon-wrap" id="readiness-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-        </div>
-        <div class="readiness-text">
-          <h3 id="readiness-status-title">
-            <span id="readiness-status-badge">No Schedule Generated</span>
-          </h3>
-          <p id="readiness-status-desc">Shift requirements configured. No employee shifts assigned yet. Click 'Generate Schedule' to create your weekly roster.</p>
-        </div>
-      </div>
-
-      <div class="readiness-stats-strip">
-        <div class="readiness-stat-chip">
-          <span class="readiness-stat-val" id="readiness-coverage-pct">0%</span>
-          <span class="readiness-stat-label">Staffing Coverage</span>
-        </div>
-        <div class="readiness-stat-chip">
-          <span class="readiness-stat-val" id="readiness-uncovered-count">0</span>
-          <span class="readiness-stat-label">Uncovered Shifts</span>
-        </div>
-        <div class="readiness-stat-chip">
-          <span class="readiness-stat-val" id="readiness-assigned-hours">0.0h</span>
-          <span class="readiness-stat-label">Assigned Hours</span>
-        </div>
-        <div class="readiness-stat-chip">
-          <span class="readiness-stat-val" id="readiness-conflicts-count">0</span>
-          <span class="readiness-stat-label">Active Conflicts</span>
-        </div>
-      </div>
-
-      <div id="readiness-action-wrap">
-        <button id="btn-readiness-action" class="btn btn-primary btn-sm">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-          Generate Schedule Now
-        </button>
-      </div>
-    </section>
 
     <!-- KPI Metric Dashboard Cards -->
     <section class="kpi-grid">
@@ -3416,15 +2922,15 @@
         </div>
       </div>
 
-      <!-- Shark Tank Financial & Labor ROI Widget (Customer Lead) -->
+      <!-- Labor Cost & Overtime Prevention ROI Calculator -->
       <div class="roi-panel">
         <div class="roi-header">
           <div class="roi-title-wrap">
             <h3>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-              Shark Tank Labor ROI & Overtime Prevention Calculator
+              Labor ROI & Overtime Cost Optimization Calculator
             </h3>
-            <p>Empirical financial statistics demonstrating labor optimization, zero-overtime guarantees, and administrative cost reduction.</p>
+            <p>Real-time financial metrics for labor cost control, zero-overtime compliance, and administrative time savings.</p>
           </div>
           <div class="roi-inputs-row">
             <div class="roi-input-item">
@@ -4019,8 +3525,8 @@
     <div class="footer-container">
       <div class="footer-top">
         <div>
-          <strong style="color:var(--slate-800);">GetShifty</strong> — AI-Assisted Employee Scheduling Prototype
-          <div style="font-size:0.75rem; margin-top:0.25rem;">Developed for University AI for Business Shark Tank Project</div>
+          <strong style="color:var(--slate-800);">GetShifty</strong> — Intelligent Employee Scheduling & Fair Workweek Automation
+          <div style="font-size:0.75rem; margin-top:0.25rem;">Automated scheduling and predictive compliance for modern teams.</div>
         </div>
         <div style="display:flex; gap:0.75rem;">
           <button id="btn-clear-all-data" class="btn btn-danger btn-sm">Clear All Stored Data</button>
@@ -4080,12 +3586,12 @@
           shiftyHours: null,
           hourlyRate: null
         },
-        guideDismissed: false,
+        guideDismissed: true,
         selectedConfigDay: 'Monday',
         activeMobileDay: 'Monday',
         // Customer Lead & Usability Testing Suite Additions (v1.1)
         currentIndustry: 'cafe',
-        walkthrough: { step1: false, step2: false, step3: false, step4: false, collapsed: false },
+        walkthrough: { step1: false, step2: false, step3: false, step4: false, collapsed: true },
         benchmarks: { sessionStart: Date.now(), lastGenTime: null, lastRegenTime: null },
         roi: { staffWage: 15.00, managerRate: 25.00 },
         testerReviews: [],
@@ -4137,7 +3643,7 @@
             state.lastDiff = parsed.lastDiff || null;
             state.lastRegenSummary = parsed.lastRegenSummary || null;
             state.calculator = parsed.calculator || { manualHours: null, shiftyHours: null, hourlyRate: null };
-            state.guideDismissed = !!parsed.guideDismissed;
+            state.guideDismissed = parsed.guideDismissed !== undefined ? !!parsed.guideDismissed : true;
             return true;
           }
         } catch (e) {
@@ -5557,9 +5063,9 @@
         const lines = [
           '================================================================================',
           'GetShifty — Operations & Fair Workweek Labor Standards Audit',
-          'INSY 3331 Group 6 Shark Tank Project — Compliance Protocol (v1.2)',
+          'Compliance Protocol: Fair Workweek & Predictive Scheduling Standards',
           `Audited On: ${new Date().toLocaleString()}`,
-          'Author: Operations & Compliance Lead (cadencunanan)',
+          'Verification: Automated Heuristic Compliance Engine',
           '================================================================================\n',
           '[1] FAIR WORKWEEK COMPLIANCE SCORECARD',
           `- Clopening Prevention Score:     ${restScore}`,
@@ -5910,16 +5416,20 @@
               const emp = state.employees.find(e => e.id === empId);
               if (!emp) return;
 
-              const roleClass = `chip-${emp.role.toLowerCase()}`;
+              const roleClass = `chip-${emp.role.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+              const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
               assignmentsHtml += `
                 <div class="asgn-chip ${roleClass}">
-                  <div class="asgn-chip-info">
-                    <span class="asgn-chip-name">${emp.name}</span>
-                    <span class="asgn-chip-role">${emp.role}</span>
+                  <div class="asgn-chip-main">
+                    <span class="asgn-avatar">${initials}</span>
+                    <div class="asgn-chip-info">
+                      <span class="asgn-chip-name">${emp.name}</span>
+                      <span class="asgn-chip-role">${emp.role}</span>
+                    </div>
                   </div>
                   <div class="asgn-chip-actions">
-                    <button class="btn-callout-trigger" title="Mark ${emp.name} unavailable (Call-Out)" onclick="window.triggerCalloutModal('${emp.id}', '${day}', '${shiftId}')">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                    <button class="btn-callout-trigger" title="Simulate Call-Out for ${emp.name}" onclick="window.triggerCalloutModal('${emp.id}', '${day}', '${shiftId}')">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
                     </button>
                   </div>
                 </div>
@@ -6148,46 +5658,12 @@
          CUSTOMER LEAD & USABILITY TESTING SUITE UTILITIES (v1.1)
          ========================================================================== */
       function updateWalkthroughUI() {
-        const wt = state.walkthrough || { step1: false, step2: false, step3: false, step4: false };
-        let completed = 0;
-        if (wt.step1) completed++;
-        if (wt.step2) completed++;
-        if (wt.step3) completed++;
-        if (wt.step4) completed++;
-
-        const pct = Math.round((completed / 4) * 100);
-        const fillEl = document.getElementById('walkthrough-progress-fill');
-        if (fillEl) fillEl.style.width = `${pct}%`;
-
-        const labelEl = document.getElementById('walkthrough-progress-label');
-        if (labelEl) labelEl.textContent = `${completed} of 4 Steps Completed (${pct}%)`;
-
-        // Update cards
-        [1, 2, 3, 4].forEach(stepNum => {
-          const card = document.getElementById(`wt-card-${stepNum}`);
-          const tag = document.getElementById(`wt-tag-${stepNum}`);
-          const isDone = wt[`step${stepNum}`];
-          if (card) {
-            card.classList.toggle('completed', !!isDone);
-          }
-          if (tag) {
-            tag.textContent = isDone ? '✓ Completed' : 'Pending';
-          }
-        });
-
-        // Update stopwatch solve speed display
-        const solveEl = document.getElementById('stopwatch-solve-time');
+        // Update solve speed benchmark in ROI & analytics
         const metricSolveEl = document.getElementById('metric-solve-time');
         const speed = state.benchmarks.lastRegenTime 
           ? `${state.benchmarks.lastRegenTime}s (regen)`
           : (state.benchmarks.lastGenTime ? `${state.benchmarks.lastGenTime}s` : '< 1.5s');
-        if (solveEl) solveEl.textContent = speed;
         if (metricSolveEl) metricSolveEl.textContent = speed;
-
-        if (completed === 4 && !state.walkthroughCelebrated) {
-          state.walkthroughCelebrated = true;
-          showToast('🎉 3-Minute Walkthrough Complete! Click "Record Feedback" to finalize tester data.', 'success');
-        }
       }
 
       function updateSessionStopwatch() {
@@ -6200,120 +5676,7 @@
         if (timerEl) timerEl.textContent = display;
       }
 
-      function openTesterReviewModal() {
-        // Pre-fill modal stats
-        const modalStatsEl = document.getElementById('tester-modal-stats');
-        const genTime = state.benchmarks.lastGenTime ? `${state.benchmarks.lastGenTime}s` : '<1.5s';
-        const regenTime = state.benchmarks.lastRegenTime ? `${state.benchmarks.lastRegenTime}s` : '<1.0s';
-        const stabRate = document.getElementById('metric-stability-rate')?.textContent || '100%';
-        if (modalStatsEl) {
-          modalStatsEl.textContent = `Initial solve: ${genTime} | Call-out resolution: ${regenTime} | Schedule stability: ${stabRate}`;
-        }
-        const industrySelect = document.getElementById('tester-industry');
-        if (industrySelect) {
-          const map = { cafe: 'Café / Coffee Shop', restaurant: 'Full-Service Restaurant', retail: 'Retail Boutique / Store' };
-          industrySelect.value = map[state.currentIndustry] || 'Café / Coffee Shop';
-        }
-        document.getElementById('modal-tester-review').classList.add('active');
-      }
 
-      function closeTesterReviewModal() {
-        document.getElementById('modal-tester-review').classList.remove('active');
-      }
-
-      function saveTesterReview() {
-        const name = document.getElementById('tester-name').value.trim();
-        const store = document.getElementById('tester-store').value.trim();
-        const industry = document.getElementById('tester-industry').value;
-        const quote = document.getElementById('tester-quote').value.trim();
-
-        if (!name || !store) {
-          showToast('Please enter Tester Name and Business Name.', 'error');
-          return;
-        }
-
-        const review = {
-          name,
-          store,
-          industry,
-          quote: quote || 'No qualitative feedback provided.',
-          ratings: { ...state.currentRatings },
-          benchmarks: {
-            lastGenTime: state.benchmarks.lastGenTime || '<1.5s',
-            lastRegenTime: state.benchmarks.lastRegenTime || '<1.0s',
-            sessionDuration: document.getElementById('stopwatch-session-time')?.textContent || '00:00'
-          },
-          stabilityRate: document.getElementById('metric-stability-rate')?.textContent || '100%',
-          timestamp: new Date().toISOString()
-        };
-
-        state.testerReviews = state.testerReviews || [];
-        state.testerReviews.push(review);
-        saveToStorage();
-        closeTesterReviewModal();
-        showToast('Tester review saved successfully! You can now export the session report.', 'success');
-      }
-
-      function exportTesterSessionReport() {
-        const name = document.getElementById('tester-name')?.value.trim() || 'Evaluator';
-        const store = document.getElementById('tester-store')?.value.trim() || 'Sample Small Business';
-        const industry = document.getElementById('tester-industry')?.value || (state.currentIndustry || 'General');
-        const quote = document.getElementById('tester-quote')?.value.trim() || 'Managing last-minute weekend call-outs while keeping overtime strictly at zero.';
-
-        const genTime = state.benchmarks.lastGenTime ? `${state.benchmarks.lastGenTime}s` : '< 1.5s';
-        const regenTime = state.benchmarks.lastRegenTime ? `${state.benchmarks.lastRegenTime}s` : '< 1.0s';
-        const sessionTime = document.getElementById('stopwatch-session-time')?.textContent || '00:00';
-        const stabilityRate = document.getElementById('metric-stability-rate')?.textContent || '100.0%';
-        const fulfillRate = document.getElementById('metric-fulfillment-rate')?.textContent || '100.0%';
-        const payrollVal = document.getElementById('roi-total-payroll')?.textContent || '$0.00';
-        const annualSavings = document.getElementById('roi-annual-savings')?.textContent || '$4,550.00';
-
-        const lines = [
-          '================================================================================',
-          'GetShifty — Usability Tester Benchmark & Statistical Audit Report',
-          'INSY 3331 Group 6 Shark Tank Deliverable — Customer Lead Evaluation Suite',
-          `Exported: ${new Date().toLocaleString()}`,
-          '================================================================================\n',
-          '[1] TESTER PROFILE & RECRUITMENT METADATA',
-          `Tester Name:          ${name}`,
-          `Business / Store:     ${store}`,
-          `Industry Preset:      ${industry}`,
-          `Session Date:         ${new Date().toLocaleDateString()}\n`,
-          '[2] OBJECTIVE USABILITY BENCHMARKS & STOPWATCH TIMINGS',
-          `Automated Solve Time:             ${genTime}`,
-          `Emergency Call-Out Healing Time:  ${regenTime}`,
-          `Total Usability Session Duration: ${sessionTime}`,
-          'Manual Scheduling Baseline:       3.5 hours/week (12,600 seconds)',
-          'Empirical Administrative Gain:    ~99.8% Time Reduction\n',
-          '[3] QUANTITATIVE LIKERT EVALUATION (1 to 5 Stars)',
-          `- Overall Ease of Use:           ${state.currentRatings.ease} / 5 Stars`,
-          `- Fairness & Transparency:       ${state.currentRatings.fairness} / 5 Stars`,
-          `- Solving Speed & Performance:   ${state.currentRatings.speed} / 5 Stars`,
-          `- Net Promoter Score (NPS):       ${state.currentRatings.nps} / 10\n`,
-          '[4] QUALITATIVE MANAGER SOUNDBITE',
-          '"What is the most frustrating part of your current scheduling method?"',
-          `Quote: "${quote}"\n`,
-          '[5] SCHEDULE INTEGRITY & SHARK TANK LABOR ROI',
-          `Roster Size:                     ${state.employees.length} employees`,
-          `Schedule Stability Rate:         ${stabilityRate}`,
-          `Preferred Hours Fulfillment:     ${fulfillRate}`,
-          `Total Scheduled Payroll:         ${payrollVal}`,
-          'Overtime Penalty Risk:           $0.00 (100% Protected via weekly <=40h hard caps)',
-          `Estimated Annual Manager ROI:    ${annualSavings} (3.5 hrs/wk saved x $25/hr rate)`,
-          '================================================================================'
-        ];
-
-        const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `GetShifty-Tester-Session-${Date.now()}.txt`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showToast('Tester session report downloaded successfully!', 'success');
-      }
 
       function renderFairnessAnalytics(metrics) {
         const tbody = document.getElementById('fairness-table-tbody');
@@ -6458,7 +5821,7 @@
         if (fulDescEl) fulDescEl.textContent = `${fulfilledCount} of ${state.employees.length} employees scheduled within ±2.0 hours of preferred weekly target.`;
 
         // ==========================================================================
-        // SHARK TANK FINANCIAL & LABOR ROI CALCULATOR (Customer Lead)
+        // FINANCIAL & LABOR COST ROI CALCULATOR
         // ==========================================================================
         const wageInput = document.getElementById('roi-hourly-wage');
         const managerInput = document.getElementById('roi-manager-rate');
@@ -6989,39 +6352,7 @@
           });
         }
 
-        // Walkthrough Mode Toggle
-        const wtToggle = document.getElementById('btn-toggle-walkthrough');
-        if (wtToggle) {
-          wtToggle.addEventListener('click', () => {
-            const list = document.getElementById('walkthrough-steps-list');
-            if (list) {
-              const isHidden = list.style.display === 'none';
-              list.style.display = isHidden ? 'grid' : 'none';
-              wtToggle.textContent = isHidden ? 'Minimize Checklist' : 'Expand Checklist';
-            }
-          });
-        }
 
-        // Open Tester Review Modal
-        const btnOpenReview = document.getElementById('btn-open-tester-review');
-        if (btnOpenReview) btnOpenReview.addEventListener('click', openTesterReviewModal);
-
-        const btnWtReview = document.getElementById('btn-wt-review');
-        if (btnWtReview) btnWtReview.addEventListener('click', openTesterReviewModal);
-
-        // Close Tester Review Modal
-        const btnCloseReview = document.getElementById('btn-close-tester-modal');
-        if (btnCloseReview) btnCloseReview.addEventListener('click', closeTesterReviewModal);
-
-        const btnCancelReview = document.getElementById('btn-cancel-tester-modal');
-        if (btnCancelReview) btnCancelReview.addEventListener('click', closeTesterReviewModal);
-
-        // Save & Export Tester Review
-        const btnSaveReview = document.getElementById('btn-save-tester-review');
-        if (btnSaveReview) btnSaveReview.addEventListener('click', saveTesterReview);
-
-        const btnExportReview = document.getElementById('btn-export-tester-data');
-        if (btnExportReview) btnExportReview.addEventListener('click', exportTesterSessionReport);
 
         // Star Rating Controls
         document.querySelectorAll('.star-rating-group').forEach(group => {
@@ -7403,111 +6734,7 @@
 
     })();
   </script>
-  <!-- ==========================================================================
-       MODAL 5: In-App Tester Review & Usability Data Export Modal (Customer Lead)
-       ========================================================================== -->
-  <div id="modal-tester-review" class="modal-overlay">
-    <div class="modal-container" style="max-width: 600px;">
-      <div class="modal-header">
-        <h3 class="modal-title" style="display:flex; align-items:center; gap:0.4rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-          Complete Usability Tester Review
-        </h3>
-        <button class="modal-close" id="btn-close-tester-modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <p style="font-size:0.85rem; color:var(--slate-600); margin-bottom:1rem;">
-          Thank you for testing GetShifty! Your feedback provides empirical validation for our INSY 3331 Shark Tank presentation.
-        </p>
 
-        <div class="form-row" style="margin-bottom:0.85rem;">
-          <div class="form-group" style="margin-bottom:0;">
-            <label class="form-label" for="tester-name">Tester Full Name *</label>
-            <input type="text" id="tester-name" class="form-input" placeholder="e.g. Jordan Hayes (Café Manager)" required>
-          </div>
-          <div class="form-group" style="margin-bottom:0;">
-            <label class="form-label" for="tester-store">Business / Store Name *</label>
-            <input type="text" id="tester-store" class="form-input" placeholder="e.g. Daily Grind Coffee Co." required>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="tester-industry">Tested Industry Preset</label>
-          <select id="tester-industry" class="form-select">
-            <option value="Café / Coffee Shop">Café / Coffee Shop</option>
-            <option value="Full-Service Restaurant">Full-Service Restaurant</option>
-            <option value="Retail Boutique / Store">Retail Boutique / Store</option>
-            <option value="Other Small Business">Other Small Business</option>
-          </select>
-        </div>
-
-        <!-- Likert Ratings -->
-        <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:0.85rem; margin-bottom:1rem;">
-          <div style="font-size:0.8rem; font-weight:700; color:var(--slate-800); margin-bottom:0.6rem;">Likert Usability Evaluation (1 = Poor, 5 = Outstanding)</div>
-          
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <span style="font-size:0.8rem; color:var(--slate-700);">1. Overall Ease of Use:</span>
-            <div class="star-rating-group" data-rating-id="rating-ease">
-              <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5" class="active">★</span>
-            </div>
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
-            <span style="font-size:0.8rem; color:var(--slate-700);">2. Fairness Transparency:</span>
-            <div class="star-rating-group" data-rating-id="rating-fairness">
-              <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5" class="active">★</span>
-            </div>
-          </div>
-
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-size:0.8rem; color:var(--slate-700);">3. Solving Speed & Responsiveness:</span>
-            <div class="star-rating-group" data-rating-id="rating-speed">
-              <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5" class="active">★</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Net Promoter Score -->
-        <div class="form-group">
-          <label class="form-label">Net Promoter Score: How likely are you to recommend GetShifty? (1 = Unlikely, 10 = Extremely Likely)</label>
-          <div class="nps-selector" id="nps-button-group">
-            <button type="button" class="nps-btn" data-nps="1">1</button>
-            <button type="button" class="nps-btn" data-nps="2">2</button>
-            <button type="button" class="nps-btn" data-nps="3">3</button>
-            <button type="button" class="nps-btn" data-nps="4">4</button>
-            <button type="button" class="nps-btn" data-nps="5">5</button>
-            <button type="button" class="nps-btn" data-nps="6">6</button>
-            <button type="button" class="nps-btn" data-nps="7">7</button>
-            <button type="button" class="nps-btn" data-nps="8">8</button>
-            <button type="button" class="nps-btn" data-nps="9">9</button>
-            <button type="button" class="nps-btn active" data-nps="10">10</button>
-          </div>
-        </div>
-
-        <!-- Open Quote Box -->
-        <div class="form-group">
-          <label class="form-label" for="tester-quote">Manager Quote: "What is the most frustrating part of your current scheduling method?" *</label>
-          <textarea id="tester-quote" class="form-input" rows="3" placeholder="e.g. Dealing with sudden 6:00 AM call-outs and scrambling to find who is qualified without paying overtime..."></textarea>
-        </div>
-
-        <!-- Session Statistics Preview -->
-        <div style="background:#eef2ff; border:1px solid #c7d2fe; border-radius:var(--radius-md); padding:0.75rem; font-size:0.75rem; color:#3730a3;">
-          <strong>Live Session Benchmark Stats:</strong> 
-          <span id="tester-modal-stats">Initial solve: &lt;1.5s | Call-out resolution: &lt;1.0s | Schedule stability: 100%</span>
-        </div>
-      </div>
-      <div class="modal-footer" style="justify-content:space-between;">
-        <button id="btn-export-tester-data" class="btn btn-secondary">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Export Test Session Data (.txt)
-        </button>
-        <div style="display:flex; gap:0.5rem;">
-          <button id="btn-cancel-tester-modal" class="btn btn-secondary">Close</button>
-          <button id="btn-save-tester-review" class="btn btn-primary">Save Tester Review</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- ==========================================================================
        MODAL 6: Employee Time-Off Request Modal (Option 2)
