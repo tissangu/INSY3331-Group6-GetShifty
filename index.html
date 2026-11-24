@@ -1125,6 +1125,181 @@
       }
     }
 
+    /* Staff Communication & Shift Confirmation Styles */
+    .badge-confirmed-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      background: var(--emerald-100);
+      color: var(--emerald-700);
+      border: 1px solid var(--emerald-300);
+      margin-left: 0.3rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .badge-confirmed-icon:hover {
+      background: var(--emerald-600);
+      color: #ffffff;
+      border-color: var(--emerald-600);
+      transform: scale(1.1);
+    }
+
+    .badge-pending-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-full);
+      background: var(--amber-50);
+      color: var(--amber-600);
+      border: 1px dashed var(--amber-300);
+      margin-left: 0.3rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+    .badge-pending-icon:hover {
+      background: var(--amber-500);
+      color: #ffffff;
+      border-color: var(--amber-500);
+      transform: scale(1.1);
+    }
+
+    .roster-preview-box {
+      width: 100%;
+      background: var(--slate-900);
+      color: #f1f5f9;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.825rem;
+      line-height: 1.6;
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      border: 1px solid var(--slate-800);
+      resize: vertical;
+      min-height: 230px;
+      white-space: pre;
+      overflow-x: auto;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .roster-options-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.15rem;
+      margin-top: 0.85rem;
+      padding: 0.65rem 0.85rem;
+      background: var(--slate-50);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      font-size: 0.785rem;
+      color: var(--slate-700);
+    }
+
+    .roster-option-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      user-select: none;
+      font-weight: 500;
+    }
+
+    /* Confirmation Tracker Modal Styles */
+    .conf-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .conf-card {
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.85rem;
+      text-align: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    }
+
+    .conf-card-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--slate-800);
+      margin-top: 0.2rem;
+    }
+
+    .conf-card-label {
+      font-size: 0.685rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-500);
+    }
+
+    .conf-emp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      background: #ffffff;
+      margin-bottom: 0.5rem;
+      transition: all 0.15s ease;
+    }
+
+    .conf-emp-row:hover {
+      background: var(--slate-50);
+      border-color: var(--slate-300);
+    }
+
+    .conf-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      white-space: nowrap;
+    }
+    .conf-status-badge.confirmed {
+      background: var(--emerald-50);
+      color: var(--emerald-700);
+      border: 1px solid var(--emerald-200);
+    }
+    .conf-status-badge.pending {
+      background: var(--amber-50);
+      color: var(--amber-700);
+      border: 1px solid var(--amber-200);
+    }
+
+    .badge-conf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.12rem 0.45rem;
+      border-radius: var(--radius-full);
+      margin-left: 0.35rem;
+    }
+    .badge-conf-pill.confirmed {
+      background: var(--emerald-100);
+      color: var(--emerald-800);
+    }
+    .badge-conf-pill.pending {
+      background: var(--amber-100);
+      color: var(--amber-800);
+    }
+
     /* ==========================================================================
        VIEW 2: Employee Management & Availability
        ========================================================================== */
@@ -2896,7 +3071,15 @@
             </h2>
             <p class="panel-subtitle">Monday through Sunday • Morning, Afternoon & Evening Shifts</p>
           </div>
-          <div style="display:flex; gap:0.5rem; align-items:center;">
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <button id="btn-copy-roster" class="btn btn-primary btn-sm" title="Copy text-friendly roster for GroupMe, Slack, WhatsApp, or SMS">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copy Text Roster
+            </button>
+            <button id="btn-open-confirmations" class="btn btn-secondary btn-sm" title="Track & manage employee shift confirmations">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Confirmations (<span id="conf-summary-count">0/0</span>)
+            </button>
             <button id="btn-print-schedule" class="btn btn-secondary btn-sm" title="Print this schedule or save as PDF">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
               Print / PDF
@@ -3494,7 +3677,11 @@
             <p>Empowering team members with real-time personal schedule access, calendar exports, and instant call-out reporting.</p>
           </div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-            <button id="btn-export-calendar-ics" class="btn btn-emerald btn-sm" title="Add your schedule to Apple Calendar, Google Calendar, or Outlook">
+            <button id="btn-portal-confirm-all" class="btn btn-emerald btn-sm" title="Confirm all your scheduled shifts for this week">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Confirm All My Shifts
+            </button>
+            <button id="btn-export-calendar-ics" class="btn btn-secondary btn-sm" title="Add your schedule to Apple Calendar, Google Calendar, or Outlook">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
               Export to Calendar (.ics)
             </button>
@@ -3829,6 +4016,109 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================================================================
+       MODAL 6: Copy Text-Friendly Roster Modal (GroupMe, Slack, WhatsApp)
+       ========================================================================== -->
+  <div id="modal-copy-roster" class="modal-overlay">
+    <div class="modal-container" style="max-width:620px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Copy Text-Friendly Roster</h3>
+          <p style="font-size:0.8rem; color:var(--slate-500); margin-top:0.2rem;">Ready to paste into team GroupMe, Slack, WhatsApp, or text messages.</p>
+        </div>
+        <button class="modal-close" id="btn-close-copy-roster">&times;</button>
+      </div>
+      <div class="modal-body" style="padding:1.25rem;">
+        <label for="roster-text-area" style="font-size:0.775rem; font-weight:700; color:var(--slate-600); margin-bottom:0.4rem; display:block;">Formatted Weekly Schedule Block:</label>
+        <textarea id="roster-text-area" class="roster-preview-box" readonly></textarea>
+        
+        <div class="roster-options-bar">
+          <label class="roster-option-label">
+            <input type="checkbox" id="roster-opt-short" checked>
+            <span>First names only (e.g. Sarah)</span>
+          </label>
+          <label class="roster-option-label">
+            <input type="checkbox" id="roster-opt-open" checked>
+            <span>Include open shifts</span>
+          </label>
+          <label class="roster-option-label">
+            <input type="checkbox" id="roster-opt-times">
+            <span>Include shift hours (e.g. 8a-12p)</span>
+          </label>
+          <label class="roster-option-label">
+            <input type="checkbox" id="roster-opt-prompt" checked>
+            <span>Include portal confirmation prompt</span>
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="roster-copy-feedback" style="font-size:0.8rem; color:var(--emerald-600); font-weight:600; display:none;">
+          ✓ Copied to clipboard!
+        </span>
+        <div style="display:flex; gap:0.5rem; margin-left:auto;">
+          <button type="button" class="btn btn-secondary" id="btn-close-copy-roster-btn">Done</button>
+          <button type="button" class="btn btn-primary" id="btn-do-copy-roster">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="btn-do-copy-text">Copy to Clipboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL 7: Shift Confirmation & Acknowledgment Tracker Modal
+       ========================================================================== -->
+  <div id="modal-confirmations" class="modal-overlay">
+    <div class="modal-container" style="max-width:680px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Shift Acknowledgments Tracker</h3>
+          <p style="font-size:0.8rem; color:var(--slate-500); margin-top:0.2rem;">Track which staff members have viewed and confirmed their weekly shifts.</p>
+        </div>
+        <button class="modal-close" id="btn-close-confirmations">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height:65vh; overflow-y:auto; padding:1.25rem;">
+        <!-- Summary Cards -->
+        <div class="conf-summary-grid">
+          <div class="conf-card">
+            <div class="conf-card-label">Scheduled Shifts</div>
+            <div class="conf-card-val" id="conf-total-shifts">0</div>
+          </div>
+          <div class="conf-card" style="border-color:var(--emerald-200); background:var(--emerald-50);">
+            <div class="conf-card-label" style="color:var(--emerald-800);">Confirmed</div>
+            <div class="conf-card-val" id="conf-confirmed-shifts" style="color:var(--emerald-700);">0 (0%)</div>
+          </div>
+          <div class="conf-card" style="border-color:var(--amber-200); background:var(--amber-50);">
+            <div class="conf-card-label" style="color:var(--amber-800);">Pending</div>
+            <div class="conf-card-val" id="conf-pending-shifts" style="color:var(--amber-700);">0</div>
+          </div>
+        </div>
+
+        <!-- Manager Quick Actions Bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:1rem; padding:0.6rem 0.75rem; background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md);">
+          <div style="font-size:0.75rem; color:var(--slate-600); font-weight:600;">Manager Quick Actions:</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button type="button" class="btn btn-emerald btn-xs" id="btn-mark-all-confirmed">✓ Mark All Confirmed</button>
+            <button type="button" class="btn btn-secondary btn-xs" id="btn-copy-reminder-group">📢 Copy Reminder Text</button>
+            <button type="button" class="btn btn-ghost btn-xs" id="btn-reset-all-confirmations" style="color:var(--slate-500);">Reset</button>
+          </div>
+        </div>
+
+        <!-- Employee Confirmation List -->
+        <div>
+          <h4 style="font-size:0.8rem; font-weight:700; color:var(--slate-700); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem;">Staff Confirmation Status:</h4>
+          <div id="conf-roster-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:flex-end;">
+        <button type="button" class="btn btn-secondary" id="btn-close-confirmations-btn">Close</button>
+      </div>
+    </div>
+  </div>
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Footer with Responsible AI & Data Privacy Disclaimers -->
@@ -3890,6 +4180,7 @@
         uncoveredSlots: [],    // [{ day, shiftId, role, reason }]
         callouts: [],          // [{ employeeId, day, shiftId }]
         manualAssignments: [], // [{ day, shiftId, role, employeeId, slotIndex, assignedAt }]
+        shiftConfirmations: {},// key `${empId}_${day}_${shiftId}` -> { confirmed: true, confirmedAt: string, confirmedBy: string }
         previousSchedule: null,// Snapshot for regeneration diff
         lastDiff: null,        // [{ type, day, shiftId, role, oldEmp, newEmp, reason }]
         lastRegenSummary: null,// Structured executive summary for non-technical managers
@@ -3934,6 +4225,7 @@
             uncoveredSlots: state.uncoveredSlots,
             callouts: state.callouts,
             manualAssignments: state.manualAssignments || [],
+            shiftConfirmations: state.shiftConfirmations || {},
             previousSchedule: state.previousSchedule,
             lastDiff: state.lastDiff,
             lastRegenSummary: state.lastRegenSummary,
@@ -3957,6 +4249,7 @@
             state.uncoveredSlots = parsed.uncoveredSlots || [];
             state.callouts = parsed.callouts || [];
             state.manualAssignments = parsed.manualAssignments || [];
+            state.shiftConfirmations = parsed.shiftConfirmations || {};
             state.previousSchedule = parsed.previousSchedule || null;
             state.lastDiff = parsed.lastDiff || null;
             state.lastRegenSummary = parsed.lastRegenSummary || null;
@@ -5226,7 +5519,19 @@
         document.getElementById('portal-earnings').textContent = grossPay;
         document.getElementById('portal-earnings-sub').textContent = `${totalAssignedHours.toFixed(1)}h × $${wage.toFixed(2)}/hr wage`;
 
-        // Attendance status
+        // Attendance and Shift Confirmations status
+        let myTotalShifts = 0;
+        let myConfirmedShifts = 0;
+        DAYS.forEach(day => {
+          myShiftsByDay[day].forEach(s => {
+            myTotalShifts++;
+            const k = `${emp.id}_${day}_${s.shiftId}`;
+            if (state.shiftConfirmations && state.shiftConfirmations[k]) {
+              myConfirmedShifts++;
+            }
+          });
+        });
+
         const hasCallout = state.callouts && state.callouts.some(c => c.employeeId === emp.id);
         const attendEl = document.getElementById('portal-attendance');
         const attendSubEl = document.getElementById('portal-attendance-sub');
@@ -5234,10 +5539,40 @@
           attendEl.textContent = 'Active Call-Out';
           attendEl.style.color = 'var(--rose-600)';
           attendSubEl.textContent = 'Reported unavailable for a scheduled shift';
+        } else if (myTotalShifts > 0 && myConfirmedShifts === myTotalShifts) {
+          attendEl.textContent = 'Confirmed & Ready';
+          attendEl.style.color = 'var(--emerald-600)';
+          attendSubEl.textContent = `All ${myTotalShifts} shifts confirmed by you ✅`;
+        } else if (myTotalShifts > 0) {
+          attendEl.textContent = `${myConfirmedShifts} / ${myTotalShifts} Confirmed`;
+          attendEl.style.color = 'var(--amber-600)';
+          attendSubEl.textContent = 'Pending your shift confirmation';
         } else {
           attendEl.textContent = 'Active & Ready';
           attendEl.style.color = 'var(--emerald-600)';
-          attendSubEl.textContent = '100% attendance confirmation';
+          attendSubEl.textContent = 'Zero scheduled shifts this week';
+        }
+
+        // Update "Confirm All My Shifts" button state
+        const btnConfirmAll = document.getElementById('btn-portal-confirm-all');
+        if (btnConfirmAll) {
+          if (myTotalShifts > 0 && myConfirmedShifts === myTotalShifts) {
+            btnConfirmAll.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              All Shifts Confirmed ✓
+            `;
+            btnConfirmAll.className = 'btn btn-secondary btn-sm';
+            btnConfirmAll.style.borderColor = 'var(--emerald-300)';
+            btnConfirmAll.style.color = 'var(--emerald-700)';
+          } else {
+            btnConfirmAll.innerHTML = `
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              Confirm All My Shifts (${myConfirmedShifts}/${myTotalShifts})
+            `;
+            btnConfirmAll.className = 'btn btn-emerald btn-sm';
+            btnConfirmAll.style.borderColor = '';
+            btnConfirmAll.style.color = '';
+          }
         }
 
         // Render 7-day chronological cards
@@ -5253,12 +5588,27 @@
           card.className = `my-day-card ${isWorking ? 'working' : 'off'}`;
 
           if (isWorking) {
-            const shiftInfo = shifts.map(s => `
-              <div style="margin-bottom:0.25rem;">
-                <strong>${s.name} (${s.start} – ${s.end})</strong> • <span class="shift-duration-badge">${s.duration}h</span>
-                ${s.coworkers.length > 0 ? `<div class="coworkers-badge">👥 On duty with: ${s.coworkers.join(', ')}</div>` : ''}
-              </div>
-            `).join('');
+            const shiftInfo = shifts.map(s => {
+              const k = `${emp.id}_${day}_${s.shiftId}`;
+              const isConf = !!(state.shiftConfirmations && state.shiftConfirmations[k]);
+              return `
+                <div style="margin-bottom:0.35rem;">
+                  <div style="display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
+                    <strong>${s.name} (${s.start} – ${s.end})</strong> • <span class="shift-duration-badge">${s.duration}h</span>
+                    ${isConf ? `
+                      <span class="conf-status-badge confirmed" style="cursor:pointer;" title="Shift confirmed. Click to change." onclick="window.toggleShiftConfirmation('${emp.id}', '${day}', '${s.shiftId}', 'Employee Portal')">
+                        ✓ Confirmed
+                      </span>
+                    ` : `
+                      <button type="button" class="btn btn-emerald btn-xs" onclick="window.confirmEmployeeShift('${emp.id}', '${day}', '${s.shiftId}')">
+                        ✓ Confirm Shift
+                      </button>
+                    `}
+                  </div>
+                  ${s.coworkers.length > 0 ? `<div class="coworkers-badge">👥 On duty with: ${s.coworkers.join(', ')}</div>` : ''}
+                </div>
+              `;
+            }).join('');
 
             card.innerHTML = `
               <div class="my-day-info">
@@ -5711,6 +6061,9 @@
         const tbody = document.getElementById('schedule-matrix-tbody');
         tbody.innerHTML = '';
 
+        let totalAssignedSlots = 0;
+        let totalConfirmedSlots = 0;
+
         DEFAULT_SHIFTS.forEach(shiftDef => {
           const shiftId = shiftDef.id;
           const tr = document.createElement('tr');
@@ -5766,6 +6119,11 @@
               const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
               const isManual = state.manualAssignments && state.manualAssignments.some(m => m.day === day && m.shiftId === shiftId && m.employeeId === empId);
 
+              totalAssignedSlots++;
+              const confKey = `${emp.id}_${day}_${shiftId}`;
+              const isConfirmed = !!(state.shiftConfirmations && state.shiftConfirmations[confKey]);
+              if (isConfirmed) totalConfirmedSlots++;
+
               assignmentsHtml += `
                 <div class="asgn-chip ${roleClass} ${isManual ? 'asgn-chip-manual' : ''}">
                   <div class="asgn-chip-main">
@@ -5779,6 +6137,15 @@
                     </div>
                   </div>
                   <div class="asgn-chip-actions">
+                    <span class="${isConfirmed ? 'badge-confirmed-icon' : 'badge-pending-icon'}" 
+                          title="${isConfirmed ? 'Confirmed by employee (Click to toggle)' : 'Awaiting confirmation (Click to confirm)'}" 
+                          onclick="event.stopPropagation(); window.toggleShiftConfirmation('${emp.id}', '${day}', '${shiftId}')">
+                      ${isConfirmed ? `
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      ` : `
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                      `}
+                    </span>
                     ${isManual ? `
                       <button class="btn-manual-remove" title="Remove manual assignment for ${emp.name}" onclick="window.removeManualAssignment('${emp.id}', '${day}', '${shiftId}')">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -5832,6 +6199,14 @@
 
           tbody.appendChild(tr);
         });
+
+        const confCounterEl = document.getElementById('conf-summary-count');
+        if (confCounterEl) {
+          confCounterEl.textContent = `${totalConfirmedSlots}/${totalAssignedSlots}`;
+          if (confCounterEl.parentElement && confCounterEl.parentElement.style) {
+            confCounterEl.parentElement.style.color = (totalConfirmedSlots === totalAssignedSlots && totalAssignedSlots > 0) ? 'var(--emerald-700)' : '';
+          }
+        }
       }
 
       /* Render Employee Cards */
@@ -5881,6 +6256,24 @@
           const initials = emp.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
           const roleClass = `role-${emp.role.toLowerCase()}`;
 
+          let empTotalShifts = 0;
+          let empConfirmedShifts = 0;
+          DAYS.forEach(d => {
+            DEFAULT_SHIFTS.forEach(s => {
+              if (state.activeSchedule[d] && state.activeSchedule[d][s.id] && state.activeSchedule[d][s.id].includes(emp.id)) {
+                empTotalShifts++;
+                if (state.shiftConfirmations && state.shiftConfirmations[`${emp.id}_${d}_${s.id}`]) {
+                  empConfirmedShifts++;
+                }
+              }
+            });
+          });
+          const confBadgeHtml = empTotalShifts === 0 ? '' : (
+            empConfirmedShifts === empTotalShifts 
+              ? `<span class="badge-conf-pill confirmed" title="All ${empTotalShifts} shifts confirmed">✓ Confirmed</span>`
+              : `<span class="badge-conf-pill pending" title="${empConfirmedShifts}/${empTotalShifts} shifts confirmed">⏳ ${empConfirmedShifts}/${empTotalShifts} Conf</span>`
+          );
+
           const card = document.createElement('div');
           card.className = 'emp-card';
           card.innerHTML = `
@@ -5891,7 +6284,10 @@
                   <div class="emp-name">
                     ${emp.name}
                   </div>
-                  <span class="role-badge ${roleClass}">${emp.role}</span>
+                  <div style="display:flex; align-items:center; gap:0.35rem; flex-wrap:wrap; margin-top:0.25rem;">
+                    <span class="role-badge ${roleClass}">${emp.role}</span>
+                    ${confBadgeHtml}
+                  </div>
                 </div>
               </div>
 
@@ -6941,6 +7337,465 @@
       }
 
       /* ==========================================================================
+         STAFF COMMUNICATION: TEXT-FRIENDLY ROSTER & SHIFT CONFIRMATIONS
+         ========================================================================== */
+
+      // Cross-browser clipboard helper
+      function copyTextToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        return new Promise((resolve, reject) => {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.top = '0';
+          ta.style.left = '0';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          try {
+            const success = document.execCommand('copy');
+            document.body.removeChild(ta);
+            if (success) resolve();
+            else reject(new Error('Copy command failed'));
+          } catch (err) {
+            document.body.removeChild(ta);
+            reject(err);
+          }
+        });
+      }
+
+      // Generate week date range string: e.g. "Nov 24 – Nov 30"
+      function getActiveWeekDateRange() {
+        const now = new Date();
+        const currentDayOfWeek = now.getDay(); // 0 is Sun, 1 is Mon...
+        const distanceToMonday = (currentDayOfWeek + 6) % 7;
+        const monday = new Date(now);
+        monday.setDate(now.getDate() - distanceToMonday);
+
+        const sunday = new Date(monday);
+        sunday.setDate(monday.getDate() + 6);
+
+        const mMonth = monday.toLocaleDateString('en-US', { month: 'short' });
+        const mDay = monday.getDate();
+        const sMonth = sunday.toLocaleDateString('en-US', { month: 'short' });
+        const sDay = sunday.getDate();
+
+        return `${mMonth} ${mDay} – ${sMonth} ${sDay}`;
+      }
+
+      // Generate formatted text block for GroupMe / Slack / WhatsApp
+      function generateTextFriendlyRoster(opts = {}) {
+        const useShortNames = opts.useShortNames !== undefined ? opts.useShortNames : true;
+        const includeOpen = opts.includeOpen !== undefined ? opts.includeOpen : true;
+        const includeTimes = opts.includeTimes !== undefined ? opts.includeTimes : false;
+        const includePrompt = opts.includePrompt !== undefined ? opts.includePrompt : true;
+
+        const dateRange = getActiveWeekDateRange();
+        const lines = [];
+
+        lines.push(`📅 GETSHIFTY SCHEDULE: ${dateRange}`);
+        lines.push('----------------------------------------');
+
+        const shiftShortNames = {
+          morning: 'Morn',
+          afternoon: 'Aft',
+          evening: 'Eve'
+        };
+
+        const dayShortNames = {
+          Monday: 'MON',
+          Tuesday: 'TUE',
+          Wednesday: 'WED',
+          Thursday: 'THU',
+          Friday: 'FRI',
+          Saturday: 'SAT',
+          Sunday: 'SUN'
+        };
+
+        DAYS.forEach(day => {
+          const dayCode = dayShortNames[day] || day.slice(0, 3).toUpperCase();
+          const dayAssignments = [];
+
+          DEFAULT_SHIFTS.forEach(shiftDef => {
+            const shiftId = shiftDef.id;
+            const shortShift = shiftShortNames[shiftId] || shiftDef.name;
+            const shiftReq = (state.shiftRequirements[day] && state.shiftRequirements[day][shiftId]) || {};
+            const timeTag = includeTimes ? ` ${shiftReq.start || shiftDef.defaultStart}-${shiftReq.end || shiftDef.defaultEnd}` : '';
+            const assignedIds = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
+
+            assignedIds.forEach(empId => {
+              const emp = state.employees.find(e => e.id === empId);
+              if (emp) {
+                const displayName = useShortNames ? emp.name.split(' ')[0] : emp.name;
+                dayAssignments.push(`${displayName} (${shortShift}${timeTag})`);
+              }
+            });
+          });
+
+          if (dayAssignments.length > 0) {
+            lines.push(`${dayCode}: ${dayAssignments.join(', ')}`);
+          } else {
+            lines.push(`${dayCode}: Off / No scheduled staff`);
+          }
+        });
+
+        // Open shifts summary
+        if (includeOpen && state.uncoveredSlots && state.uncoveredSlots.length > 0) {
+          lines.push('----------------------------------------');
+          const openSummary = state.uncoveredSlots.map(u => {
+            const shortDay = dayShortNames[u.day] || u.day.slice(0, 3);
+            const shortShift = shiftShortNames[u.shiftId] || u.shiftId;
+            return `${shortDay} ${shortShift} (${u.role || 'Staff'})`;
+          });
+          lines.push(`⚠️ Open Shifts (${state.uncoveredSlots.length}): ${openSummary.join(', ')}`);
+        }
+
+        // Confirmation prompt
+        if (includePrompt) {
+          lines.push('----------------------------------------');
+          lines.push('✅ Team: Please check your shifts & confirm in the GetShifty portal!');
+        }
+
+        return lines.join('\n');
+      }
+
+      function updateRosterPreviewText() {
+        const shortCb = document.getElementById('roster-opt-short');
+        const openCb = document.getElementById('roster-opt-open');
+        const timesCb = document.getElementById('roster-opt-times');
+        const promptCb = document.getElementById('roster-opt-prompt');
+        const ta = document.getElementById('roster-text-area');
+        if (!ta) return;
+
+        const text = generateTextFriendlyRoster({
+          useShortNames: shortCb ? shortCb.checked : true,
+          includeOpen: openCb ? openCb.checked : true,
+          includeTimes: timesCb ? timesCb.checked : false,
+          includePrompt: promptCb ? promptCb.checked : true
+        });
+        ta.value = text;
+      }
+
+      function openCopyRosterModal() {
+        updateRosterPreviewText();
+        const feedback = document.getElementById('roster-copy-feedback');
+        if (feedback) feedback.style.display = 'none';
+
+        const btnCopyText = document.getElementById('btn-do-copy-text');
+        if (btnCopyText) btnCopyText.textContent = 'Copy to Clipboard';
+
+        const modal = document.getElementById('modal-copy-roster');
+        if (modal) modal.classList.add('active');
+      }
+
+      function closeCopyRosterModal() {
+        const modal = document.getElementById('modal-copy-roster');
+        if (modal) modal.classList.remove('active');
+      }
+
+      function copyRosterToClipboard() {
+        const ta = document.getElementById('roster-text-area');
+        if (!ta) return;
+        const text = ta.value;
+
+        copyTextToClipboard(text).then(() => {
+          const feedback = document.getElementById('roster-copy-feedback');
+          if (feedback) feedback.style.display = 'inline';
+
+          const btnCopyText = document.getElementById('btn-do-copy-text');
+          if (btnCopyText) btnCopyText.textContent = '✓ Copied!';
+
+          showToast('📋 Text roster copied to clipboard! Ready to paste into GroupMe, Slack, or WhatsApp.', 'success');
+
+          setTimeout(() => {
+            if (btnCopyText) btnCopyText.textContent = 'Copy to Clipboard';
+          }, 3000);
+        }).catch(err => {
+          console.warn('Clipboard write error:', err);
+          ta.select();
+          showToast('Selected roster text. Press Ctrl+C or Cmd+C to copy.', 'info');
+        });
+      }
+
+      /* Shift Confirmation & Acknowledgments Tracker */
+      window.toggleShiftConfirmation = function(empId, day, shiftId, confirmedBy = 'Manager') {
+        const key = `${empId}_${day}_${shiftId}`;
+        state.shiftConfirmations = state.shiftConfirmations || {};
+
+        const emp = state.employees.find(e => e.id === empId);
+        const empName = emp ? emp.name : 'Employee';
+
+        if (state.shiftConfirmations[key]) {
+          delete state.shiftConfirmations[key];
+          showToast(`Shift unconfirmed for ${empName} (${day} ${shiftId}).`, 'info');
+        } else {
+          state.shiftConfirmations[key] = {
+            confirmed: true,
+            confirmedAt: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+            confirmedBy
+          };
+          showToast(`✓ Shift confirmed for ${empName} (${day} ${shiftId})!`, 'success');
+        }
+
+        saveToStorage();
+        renderAll();
+        if (document.getElementById('modal-confirmations').classList.contains('active')) {
+          renderConfirmationsModal();
+        }
+      };
+
+      window.confirmEmployeeShift = function(empId, day, shiftId) {
+        window.toggleShiftConfirmation(empId, day, shiftId, 'Employee Portal');
+      };
+
+      window.confirmAllMyShifts = function(empId) {
+        if (!empId) {
+          const selectEl = document.getElementById('self-service-emp-select');
+          empId = (selectEl && selectEl.value) ? selectEl.value : (state.employees[0] ? state.employees[0].id : null);
+        }
+        if (!empId) {
+          showToast('No employee selected in portal.', 'warning');
+          return;
+        }
+
+        const emp = state.employees.find(e => e.id === empId);
+        state.shiftConfirmations = state.shiftConfirmations || {};
+
+        let count = 0;
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(s => {
+            if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(empId)) {
+              const key = `${empId}_${day}_${s.id}`;
+              state.shiftConfirmations[key] = {
+                confirmed: true,
+                confirmedAt: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+                confirmedBy: 'Employee Portal'
+              };
+              count++;
+            }
+          });
+        });
+
+        saveToStorage();
+        renderAll();
+        if (document.getElementById('modal-confirmations').classList.contains('active')) {
+          renderConfirmationsModal();
+        }
+        showToast(`🎉 All ${count} scheduled shifts confirmed for ${emp ? emp.name : 'you'}!`, 'success');
+      };
+
+      function markAllShiftsConfirmed() {
+        state.shiftConfirmations = state.shiftConfirmations || {};
+        let count = 0;
+
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(s => {
+            const assigned = (state.activeSchedule[day] && state.activeSchedule[day][s.id]) || [];
+            assigned.forEach(empId => {
+              const key = `${empId}_${day}_${s.id}`;
+              state.shiftConfirmations[key] = {
+                confirmed: true,
+                confirmedAt: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
+                confirmedBy: 'Manager'
+              };
+              count++;
+            });
+          });
+        });
+
+        saveToStorage();
+        renderAll();
+        renderConfirmationsModal();
+        showToast(`✓ Marked all ${count} scheduled shifts as confirmed!`, 'success');
+      }
+
+      function resetAllConfirmations() {
+        if (confirm('Reset all shift confirmation checkmarks for this week?')) {
+          state.shiftConfirmations = {};
+          saveToStorage();
+          renderAll();
+          renderConfirmationsModal();
+          showToast('Shift confirmation checkmarks reset.', 'info');
+        }
+      }
+
+      function copyGroupConfirmationReminder() {
+        const unconfirmedEmployees = [];
+        state.employees.forEach(emp => {
+          let hasUnconfirmed = false;
+          DAYS.forEach(day => {
+            DEFAULT_SHIFTS.forEach(s => {
+              if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(emp.id)) {
+                const k = `${emp.id}_${day}_${s.id}`;
+                if (!state.shiftConfirmations || !state.shiftConfirmations[k]) {
+                  hasUnconfirmed = true;
+                }
+              }
+            });
+          });
+          if (hasUnconfirmed) {
+            unconfirmedEmployees.push(emp.name);
+          }
+        });
+
+        if (unconfirmedEmployees.length === 0) {
+          showToast('🎉 All scheduled staff have already confirmed their shifts!', 'success');
+          return;
+        }
+
+        const dateRange = getActiveWeekDateRange();
+        const msg = `📢 SCHEDULE CONFIRMATION REMINDER (${dateRange}):\nHey team! Please review your shifts on GetShifty and confirm your schedule.\nStill awaiting confirmation from: ${unconfirmedEmployees.join(', ')}.\nThank you! 🙌`;
+
+        copyTextToClipboard(msg).then(() => {
+          showToast('📋 Copied group reminder to clipboard! Ready to paste into group chat.', 'success');
+        });
+      }
+
+      function copyPersonalReminder(empId) {
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+
+        const myShifts = [];
+        DAYS.forEach(day => {
+          DEFAULT_SHIFTS.forEach(s => {
+            if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(empId)) {
+              const k = `${empId}_${day}_${s.id}`;
+              const isConf = !!(state.shiftConfirmations && state.shiftConfirmations[k]);
+              if (!isConf) {
+                myShifts.push(`${day.slice(0, 3)} ${s.name}`);
+              }
+            }
+          });
+        });
+
+        const dateRange = getActiveWeekDateRange();
+        const msg = `Hey ${emp.name.split(' ')[0]}! Please check your shifts on GetShifty for ${dateRange} (${myShifts.join(', ')}) and confirm when you can. Thanks! 👍`;
+
+        copyTextToClipboard(msg).then(() => {
+          showToast(`📋 Copied personal reminder for ${emp.name} to clipboard!`, 'success');
+        });
+      }
+
+      function renderConfirmationsModal() {
+        const listEl = document.getElementById('conf-roster-list');
+        if (!listEl) return;
+        listEl.innerHTML = '';
+
+        let totalShifts = 0;
+        let totalConfirmed = 0;
+
+        const scheduledStaff = [];
+
+        state.employees.forEach(emp => {
+          const empShifts = [];
+          DAYS.forEach(day => {
+            DEFAULT_SHIFTS.forEach(s => {
+              if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(emp.id)) {
+                totalShifts++;
+                const k = `${emp.id}_${day}_${s.id}`;
+                const isConf = !!(state.shiftConfirmations && state.shiftConfirmations[k]);
+                if (isConf) totalConfirmed++;
+                empShifts.push({
+                  day,
+                  shiftId: s.id,
+                  shiftName: s.name,
+                  isConfirmed: isConf,
+                  confirmedAt: isConf ? state.shiftConfirmations[k].confirmedAt : null
+                });
+              }
+            });
+          });
+
+          if (empShifts.length > 0) {
+            scheduledStaff.push({ emp, shifts: empShifts });
+          }
+        });
+
+        const totalPending = totalShifts - totalConfirmed;
+        const pct = totalShifts > 0 ? Math.round((totalConfirmed / totalShifts) * 100) : 0;
+
+        const totEl = document.getElementById('conf-total-shifts');
+        const confEl = document.getElementById('conf-confirmed-shifts');
+        const pendEl = document.getElementById('conf-pending-shifts');
+
+        if (totEl) totEl.textContent = totalShifts;
+        if (confEl) confEl.textContent = `${totalConfirmed} (${pct}%)`;
+        if (pendEl) pendEl.textContent = totalPending;
+
+        if (scheduledStaff.length === 0) {
+          listEl.innerHTML = `
+            <div style="text-align:center; padding:1.5rem; color:var(--slate-500); background:var(--slate-50); border-radius:var(--radius-md);">
+              No scheduled shifts generated yet. Click "Generate Schedule" to assign shifts first.
+            </div>
+          `;
+          return;
+        }
+
+        scheduledStaff.forEach(({ emp, shifts }) => {
+          const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          const confirmedCount = shifts.filter(s => s.isConfirmed).length;
+          const isAllConfirmed = confirmedCount === shifts.length;
+
+          const row = document.createElement('div');
+          row.className = 'conf-emp-row';
+
+          const shiftTagsHtml = shifts.map(s => `
+            <span class="badge-conf-pill ${s.isConfirmed ? 'confirmed' : 'pending'}" style="cursor:pointer;" title="Click to toggle confirmation for this shift" onclick="window.toggleShiftConfirmation('${emp.id}', '${s.day}', '${s.shiftId}')">
+              ${s.isConfirmed ? '✓' : '⏳'} ${s.day.slice(0, 3)} ${s.shiftName}
+            </span>
+          `).join(' ');
+
+          row.innerHTML = `
+            <div style="display:flex; align-items:center; gap:0.65rem; min-width:0; flex:1;">
+              <span class="asgn-avatar">${initials}</span>
+              <div style="min-width:0;">
+                <div style="font-weight:700; color:var(--slate-900); font-size:0.85rem; display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap;">
+                  ${emp.name}
+                  <span class="role-badge role-${emp.role.toLowerCase()}">${emp.role}</span>
+                  <span class="conf-status-badge ${isAllConfirmed ? 'confirmed' : 'pending'}">
+                    ${isAllConfirmed ? '✓ Confirmed' : `⏳ ${confirmedCount}/${shifts.length} Confirmed`}
+                  </span>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:0.3rem; margin-top:0.35rem;">
+                  ${shiftTagsHtml}
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem; flex-shrink:0;">
+              ${isAllConfirmed ? `
+                <button type="button" class="btn btn-secondary btn-xs" onclick="window.toggleShiftConfirmation('${emp.id}', '${shifts[0].day}', '${shifts[0].shiftId}')" title="Mark as pending">
+                  Unconfirm
+                </button>
+              ` : `
+                <button type="button" class="btn btn-emerald btn-xs" onclick="window.confirmAllMyShifts('${emp.id}')" title="Confirm all shifts for this employee">
+                  ✓ Mark Confirmed
+                </button>
+                <button type="button" class="btn btn-secondary btn-xs" onclick="copyPersonalReminder('${emp.id}')" title="Copy text reminder to send to this employee">
+                  📢 Remind
+                </button>
+              `}
+            </div>
+          `;
+
+          listEl.appendChild(row);
+        });
+      }
+
+      function openConfirmationsModal() {
+        renderConfirmationsModal();
+        const modal = document.getElementById('modal-confirmations');
+        if (modal) modal.classList.add('active');
+      }
+
+      function closeConfirmationsModal() {
+        const modal = document.getElementById('modal-confirmations');
+        if (modal) modal.classList.remove('active');
+      }
+
+      /* ==========================================================================
          10. EVENT LISTENERS INITIALIZATION
          ========================================================================== */
       function setupEventListeners() {
@@ -7137,6 +7992,7 @@
             state.uncoveredSlots = [];
             state.callouts = [];
             state.manualAssignments = [];
+            state.shiftConfirmations = {};
             state.previousSchedule = null;
             state.lastDiff = null;
             state.lastRegenSummary = null;
@@ -7156,6 +8012,7 @@
             state.uncoveredSlots = [];
             state.callouts = [];
             state.manualAssignments = [];
+            state.shiftConfirmations = {};
             state.previousSchedule = null;
             state.lastDiff = null;
             state.lastRegenSummary = null;
@@ -7221,6 +8078,46 @@
 
         const btnConfirmOverride = document.getElementById('btn-confirm-manual-override');
         if (btnConfirmOverride) btnConfirmOverride.addEventListener('click', confirmManualOverrideAction);
+
+        // Staff Communication: Copy Text-Friendly Roster Listeners
+        const btnOpenCopyRoster = document.getElementById('btn-copy-roster');
+        if (btnOpenCopyRoster) btnOpenCopyRoster.addEventListener('click', openCopyRosterModal);
+
+        const btnCloseCopyRoster = document.getElementById('btn-close-copy-roster');
+        if (btnCloseCopyRoster) btnCloseCopyRoster.addEventListener('click', closeCopyRosterModal);
+
+        const btnCloseCopyRosterBtn = document.getElementById('btn-close-copy-roster-btn');
+        if (btnCloseCopyRosterBtn) btnCloseCopyRosterBtn.addEventListener('click', closeCopyRosterModal);
+
+        const btnDoCopyRoster = document.getElementById('btn-do-copy-roster');
+        if (btnDoCopyRoster) btnDoCopyRoster.addEventListener('click', copyRosterToClipboard);
+
+        ['roster-opt-short', 'roster-opt-open', 'roster-opt-times', 'roster-opt-prompt'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener('change', updateRosterPreviewText);
+        });
+
+        // Shift Acknowledgments & Confirmations Tracker Listeners
+        const btnOpenConf = document.getElementById('btn-open-confirmations');
+        if (btnOpenConf) btnOpenConf.addEventListener('click', openConfirmationsModal);
+
+        const btnCloseConf = document.getElementById('btn-close-confirmations');
+        if (btnCloseConf) btnCloseConf.addEventListener('click', closeConfirmationsModal);
+
+        const btnCloseConfBtn = document.getElementById('btn-close-confirmations-btn');
+        if (btnCloseConfBtn) btnCloseConfBtn.addEventListener('click', closeConfirmationsModal);
+
+        const btnMarkAllConf = document.getElementById('btn-mark-all-confirmed');
+        if (btnMarkAllConf) btnMarkAllConf.addEventListener('click', markAllShiftsConfirmed);
+
+        const btnResetConf = document.getElementById('btn-reset-all-confirmations');
+        if (btnResetConf) btnResetConf.addEventListener('click', resetAllConfirmations);
+
+        const btnCopyGroupRemind = document.getElementById('btn-copy-reminder-group');
+        if (btnCopyGroupRemind) btnCopyGroupRemind.addEventListener('click', copyGroupConfirmationReminder);
+
+        const btnPortalConfAll = document.getElementById('btn-portal-confirm-all');
+        if (btnPortalConfAll) btnPortalConfAll.addEventListener('click', () => window.confirmAllMyShifts());
 
         // Print Schedule
         document.getElementById('btn-print-schedule').addEventListener('click', () => {
