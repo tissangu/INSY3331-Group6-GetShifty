@@ -3276,14 +3276,23 @@
             <button class="day-tab-pill" data-day="Sunday">Sunday</button>
           </div>
 
-          <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center;">
+          <div style="background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); padding:0.85rem 1rem; margin-bottom:1rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
             <div>
               <strong id="shift-config-current-day-title" style="color:var(--slate-900);">Monday Staffing Configuration</strong>
               <div id="shift-config-day-hours-summary" style="font-size:0.8rem; color:var(--slate-500);">3 shifts • 36 required staffing hours</div>
             </div>
-            <button id="btn-apply-to-all-days" class="btn btn-secondary btn-sm" title="Copy this day's shift requirements to all 7 days">
-              Copy to All Days
-            </button>
+            <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:0.4rem; background:#ffffff; padding:0.25rem 0.6rem; border:1px solid var(--slate-300); border-radius:var(--radius-md);">
+                <label for="select-max-shifts-per-day" style="font-size:0.775rem; font-weight:600; color:var(--slate-700); margin:0;">Max shifts/day:</label>
+                <select id="select-max-shifts-per-day" class="form-select" style="width:auto; padding:0.2rem 0.5rem; font-size:0.775rem; border:none; background:transparent; font-weight:600; cursor:pointer;" title="Maximum shifts an employee can work in a single calendar day">
+                  <option value="1" selected>1 shift (Standard)</option>
+                  <option value="2">2 shifts (Allow Doubles)</option>
+                </select>
+              </div>
+              <button id="btn-apply-to-all-days" class="btn btn-secondary btn-sm" title="Copy this day's shift requirements to all operating days">
+                Copy to All Days
+              </button>
+            </div>
           </div>
 
           <!-- Shift requirements table -->
@@ -3366,6 +3375,18 @@
             <p style="font-size:0.8rem; color:var(--slate-500);">Transparent breakdown explaining variance between team members:</p>
             <div class="fairness-explanation-list" id="fairness-explanations-list">
               <div class="explanation-item">Generate a schedule to view detailed fairness explanations.</div>
+            </div>
+          </div>
+
+          <!-- Scheduled Double Shifts Box (Manager Setting: Max Shifts / Day) -->
+          <div class="fairness-card-box" style="margin-top:1rem;">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Scheduled Double Shifts
+            </h3>
+            <p style="font-size:0.8rem; color:var(--slate-500);">Employees scheduled for multiple non-overlapping shifts on the same day.</p>
+            <div id="fairness-doubles-list" style="margin-top:0.5rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <div class="explanation-item" style="border-left-color:var(--slate-300);">Generate a schedule to view double shifts.</div>
             </div>
           </div>
         </div>
@@ -4263,6 +4284,16 @@
             <div id="setup-shifts-list" style="display:flex; flex-direction:column; gap:0.5rem;">
               <!-- Shift rows rendered dynamically -->
             </div>
+            <div style="margin-top:0.85rem; padding:0.6rem 0.85rem; background:var(--slate-50); border:1px solid var(--slate-200); border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <label for="setup-max-shifts-per-day" style="font-size:0.8rem; font-weight:700; color:var(--slate-800); margin:0; display:block;">Max Shifts per Employee per Day</label>
+                <div style="font-size:0.725rem; color:var(--slate-500);">Allow employees to cover a second non-overlapping shift when needed.</div>
+              </div>
+              <select id="setup-max-shifts-per-day" class="form-select" style="width:auto; padding:0.3rem 0.6rem; font-size:0.8rem;">
+                <option value="1" selected>1 shift (Standard)</option>
+                <option value="2">2 shifts (Allow Doubles)</option>
+              </select>
+            </div>
           </div>
 
           <!-- 5. Staffing Needs Matrix -->
@@ -4387,6 +4418,7 @@
         // Customer Lead & Usability Testing Suite Additions (v1.1)
         currentIndustry: 'cafe',
         customBusiness: null,
+        maxShiftsPerDay: 1,
         walkthrough: { step1: false, step2: false, step3: false, step4: false, collapsed: true },
         benchmarks: { sessionStart: Date.now(), lastGenTime: null, lastRegenTime: null },
         roi: { staffWage: 15.00, managerRate: 25.00 },
@@ -4425,7 +4457,8 @@
             calculator: state.calculator,
             guideDismissed: state.guideDismissed,
             currentIndustry: state.currentIndustry,
-            customBusiness: state.customBusiness
+            customBusiness: state.customBusiness,
+            maxShiftsPerDay: state.maxShiftsPerDay || 1
           };
           localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
           if (state.currentIndustry === 'custom' && state.customBusiness) {
@@ -4437,7 +4470,8 @@
               uncoveredSlots: state.uncoveredSlots,
               callouts: state.callouts,
               manualAssignments: state.manualAssignments || [],
-              shiftConfirmations: state.shiftConfirmations || {}
+              shiftConfirmations: state.shiftConfirmations || {},
+              maxShiftsPerDay: state.maxShiftsPerDay || 1
             }));
           }
         } catch (e) {
@@ -4464,6 +4498,9 @@
             state.guideDismissed = parsed.guideDismissed !== undefined ? !!parsed.guideDismissed : true;
             state.currentIndustry = parsed.currentIndustry || 'cafe';
             state.customBusiness = parsed.customBusiness || null;
+            state.maxShiftsPerDay = (parsed.maxShiftsPerDay === 2 || parsed.maxShiftsPerDay === '2') ? 2 : 1;
+            const selectMaxShifts = document.getElementById('select-max-shifts-per-day');
+            if (selectMaxShifts) selectMaxShifts.value = String(state.maxShiftsPerDay);
             return true;
           }
         } catch (e) {
@@ -4483,7 +4520,8 @@
           { id: 'afternoon', name: 'Afternoon', defaultStart: '12:00', defaultEnd: '16:00' },
           { id: 'evening', name: 'Evening', defaultStart: '16:00', defaultEnd: '20:00' }
         ],
-        staffingNeeds: {}
+        staffingNeeds: {},
+        maxShiftsPerDay: 1
       };
 
       function backupCustomBusiness() {
@@ -4497,7 +4535,8 @@
               uncoveredSlots: state.uncoveredSlots,
               callouts: state.callouts,
               manualAssignments: state.manualAssignments || [],
-              shiftConfirmations: state.shiftConfirmations || {}
+              shiftConfirmations: state.shiftConfirmations || {},
+              maxShiftsPerDay: state.maxShiftsPerDay || 1
             }));
           } catch (e) {
             console.error('Backup custom business error:', e);
@@ -4531,12 +4570,14 @@
         const typeSelect = document.getElementById('setup-biz-type');
         const otherGroup = document.getElementById('setup-biz-type-other-group');
         const otherInput = document.getElementById('setup-biz-type-other');
+        const setupMaxShifts = document.getElementById('setup-max-shifts-per-day');
 
         if (isEdit && state.customBusiness) {
           if (titleEl) titleEl.textContent = `Edit Business Setup: ${state.customBusiness.name}`;
           if (btnSave) btnSave.textContent = 'Save Changes';
           if (nameInput) nameInput.value = state.customBusiness.name || '';
           if (typeSelect) typeSelect.value = state.customBusiness.type || 'Restaurant';
+          if (setupMaxShifts) setupMaxShifts.value = String(state.customBusiness.maxShiftsPerDay || state.maxShiftsPerDay || 1);
           if (state.customBusiness.type === 'Other') {
             if (otherGroup) otherGroup.style.display = 'block';
             if (otherInput) otherInput.value = state.customBusiness.otherType || '';
@@ -4565,6 +4606,7 @@
           if (btnSave) btnSave.textContent = 'Save & Start';
           if (nameInput) nameInput.value = '';
           if (typeSelect) typeSelect.value = 'Restaurant';
+          if (setupMaxShifts) setupMaxShifts.value = '1';
           if (otherGroup) otherGroup.style.display = 'none';
           if (otherInput) otherInput.value = '';
           setupModel.roles = ['', ''];
@@ -4851,6 +4893,9 @@
         }
 
         const isNewSetup = !state.customBusiness || !state.customBusiness.enabled;
+        const setupMaxSelect = document.getElementById('setup-max-shifts-per-day');
+        const chosenMaxShifts = setupMaxSelect ? (parseInt(setupMaxSelect.value, 10) || 1) : 1;
+        state.maxShiftsPerDay = chosenMaxShifts;
 
         // Build shift requirements for each operating day
         const req = {};
@@ -4894,11 +4939,15 @@
           roles: activeRoles,
           operatingDays: [...setupModel.operatingDays],
           shifts: JSON.parse(JSON.stringify(setupModel.shifts)),
-          staffingNeeds: JSON.parse(JSON.stringify(setupModel.staffingNeeds))
+          staffingNeeds: JSON.parse(JSON.stringify(setupModel.staffingNeeds)),
+          maxShiftsPerDay: chosenMaxShifts
         };
         state.currentIndustry = 'custom';
         state.selectedConfigDay = setupModel.operatingDays[0] || 'Monday';
         state.activeMobileDay = setupModel.operatingDays[0] || 'Monday';
+
+        const configMaxSelect = document.getElementById('select-max-shifts-per-day');
+        if (configMaxSelect) configMaxSelect.value = String(chosenMaxShifts);
 
         updateHeaderForCustomBusiness();
         saveToStorage();
@@ -4928,6 +4977,13 @@
               state.manualAssignments = parsed.manualAssignments || [];
               state.shiftConfirmations = parsed.shiftConfirmations || {};
               state.currentIndustry = 'custom';
+              if (parsed.customBusiness && parsed.customBusiness.maxShiftsPerDay) {
+                state.maxShiftsPerDay = parsed.customBusiness.maxShiftsPerDay;
+              } else if (parsed.maxShiftsPerDay) {
+                state.maxShiftsPerDay = parsed.maxShiftsPerDay;
+              }
+              const configMaxSelect = document.getElementById('select-max-shifts-per-day');
+              if (configMaxSelect) configMaxSelect.value = String(state.maxShiftsPerDay || 1);
               if (state.customBusiness && state.customBusiness.operatingDays && state.customBusiness.operatingDays.length > 0) {
                 state.selectedConfigDay = state.customBusiness.operatingDays[0];
                 state.activeMobileDay = state.customBusiness.operatingDays[0];
@@ -5771,25 +5827,73 @@
           return state.callouts.some(c => c.employeeId === empId && c.day === day && c.shiftId === shiftId);
         }
 
-        // Check for time overlap on the same day
-        function hasOverlappingShift(empId, day, shiftData) {
-          const dayShifts = newSchedule[day];
-          for (const sId of Object.keys(dayShifts)) {
-            if (dayShifts[sId].includes(empId)) {
-              const otherShift = state.shiftRequirements[day][sId];
-              const s1 = parseTimeToHours(shiftData.start);
-              const e1 = parseTimeToHours(shiftData.end);
-              const s2 = parseTimeToHours(otherShift.start);
-              const e2 = parseTimeToHours(otherShift.end);
+        // Check if assigning this slot to empId would break the rest-interval rule (clopening <10h rest)
+        function breaksRestInterval(empId, day, shiftId) {
+          const activeDays = getActiveDays();
+          const activeShifts = getActiveShifts();
+          const firstShiftId = activeShifts[0]?.id || 'morning';
+          const lastShiftId = activeShifts[activeShifts.length - 1]?.id || 'evening';
+          const dayIdx = activeDays.indexOf(day);
 
-              // Standard interval overlap condition: max(s1, s2) < min(e1, e2)
-              if (Math.max(s1, s2) < Math.min(e1, e2)) {
-                return true;
-              }
-              // In addition, standard practice: maximum 1 shift per day per person to avoid burnout
+          // If opening shift, check if closed previous night
+          if (shiftId === firstShiftId && dayIdx > 0) {
+            const prevDay = activeDays[dayIdx - 1];
+            if (newSchedule[prevDay] && newSchedule[prevDay][lastShiftId] && newSchedule[prevDay][lastShiftId].includes(empId)) {
               return true;
             }
           }
+
+          // If closing shift, check if opening next morning
+          if (shiftId === lastShiftId && dayIdx < activeDays.length - 1) {
+            const nextDay = activeDays[dayIdx + 1];
+            if (newSchedule[nextDay] && newSchedule[nextDay][firstShiftId] && newSchedule[nextDay][firstShiftId].includes(empId)) {
+              return true;
+            }
+          }
+
+          return false;
+        }
+
+        // Check for time overlap or maximum daily shifts on the same day
+        function hasOverlappingShift(empId, day, shiftData, shiftId) {
+          const maxShifts = state.maxShiftsPerDay || 1;
+          const dayShifts = newSchedule[day] || {};
+          let assignedCountOnDay = 0;
+
+          for (const sId of Object.keys(dayShifts)) {
+            if (dayShifts[sId].includes(empId)) {
+              assignedCountOnDay++;
+
+              // When maxShifts is 1, any existing shift on the same day is an immediate constraint hit
+              if (maxShifts === 1) {
+                return true;
+              }
+
+              // When maxShifts > 1: check time interval overlap
+              const otherShift = state.shiftRequirements[day] ? state.shiftRequirements[day][sId] : null;
+              if (otherShift) {
+                const s1 = parseTimeToHours(shiftData.start);
+                const e1 = parseTimeToHours(shiftData.end);
+                const s2 = parseTimeToHours(otherShift.start);
+                const e2 = parseTimeToHours(otherShift.end);
+
+                // Standard interval overlap condition: max(s1, s2) < min(e1, e2)
+                if (Math.max(s1, s2) < Math.min(e1, e2)) {
+                  return true;
+                }
+              }
+            }
+          }
+
+          if (assignedCountOnDay >= maxShifts) {
+            return true;
+          }
+
+          // If this would be a second shift on this day, ensure it does not break rest-interval rule
+          if (assignedCountOnDay > 0 && breaksRestInterval(empId, day, shiftId)) {
+            return true;
+          }
+
           return false;
         }
 
@@ -5829,8 +5933,13 @@
             }
 
             // Must not already be assigned to another shift on this day (overlap / double-booking)
-            if (hasOverlappingShift(emp.id, day, shiftData)) {
-              disqualificationReasons[emp.id] = 'Already scheduled on ' + day;
+            if (hasOverlappingShift(emp.id, day, shiftData, shiftId)) {
+              const maxShifts = state.maxShiftsPerDay || 1;
+              if (maxShifts === 1) {
+                disqualificationReasons[emp.id] = 'Already scheduled that day (Allow 2 shifts per day in Shift Requirements)';
+              } else {
+                disqualificationReasons[emp.id] = 'Shift time overlap or daily shift limit reached';
+              }
               return;
             }
 
@@ -5872,8 +5981,15 @@
                 if (prevEvening.includes(b.id)) restBonusB = -500;
               }
 
-              const scoreA = (deficitA * 2.5) + bufferA + stabilityA + restBonusA;
-              const scoreB = (deficitB * 2.5) + bufferB + stabilityB + restBonusB;
+              // Priority 5: Single-shift candidate preference over double-shift candidate
+              // Prefer giving the shift to someone not yet working that day first; use a double only when no one else can cover it.
+              const isWorkingA = Object.values(newSchedule[day] || {}).some(list => list.includes(a.id));
+              const isWorkingB = Object.values(newSchedule[day] || {}).some(list => list.includes(b.id));
+              const doublePenaltyA = isWorkingA ? -10000 : 0;
+              const doublePenaltyB = isWorkingB ? -10000 : 0;
+
+              const scoreA = (deficitA * 2.5) + bufferA + stabilityA + restBonusA + doublePenaltyA;
+              const scoreB = (deficitB * 2.5) + bufferB + stabilityB + restBonusB + doublePenaltyB;
 
               return scoreB - scoreA;
             });
@@ -5916,12 +6032,18 @@
               } else {
                 const calloutCount = availableOnDay.filter(e => hasCalledOut(e.id, day, shiftId)).length;
                 const maxHourCount = availableOnDay.filter(e => assignedHours[e.id] + duration > e.maxHours).length;
-                const alreadyWorkingCount = availableOnDay.filter(e => hasOverlappingShift(e.id, day, shiftData)).length;
+                const alreadyWorkingCount = availableOnDay.filter(e => hasOverlappingShift(e.id, day, shiftData, shiftId)).length;
 
                 const reasons = [];
                 if (calloutCount > 0) reasons.push(`${calloutCount} called out`);
                 if (maxHourCount > 0) reasons.push(`${maxHourCount} reached weekly hour cap`);
-                if (alreadyWorkingCount > 0) reasons.push(`${alreadyWorkingCount} already scheduled on ${day}`);
+                if (alreadyWorkingCount > 0) {
+                  if ((state.maxShiftsPerDay || 1) === 1) {
+                    reasons.push(`${alreadyWorkingCount} already scheduled that day (suggested fix: Allow 2 shifts per day in Shift Requirements)`);
+                  } else {
+                    reasons.push(`${alreadyWorkingCount} shift time overlap or max daily shifts reached`);
+                  }
+                }
                 specificReason = `All ${availableOnDay.length} available ${role}(s) unavailable: ` + reasons.join(', ') + '.';
               }
             }
@@ -6856,6 +6978,8 @@
               const roleClass = `chip-${emp.role.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
               const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
               const isManual = state.manualAssignments && state.manualAssignments.some(m => m.day === day && m.shiftId === shiftId && m.employeeId === empId);
+              const shiftsOnThisDay = activeShifts.filter(s => state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(emp.id));
+              const isDouble = shiftsOnThisDay.length > 1;
 
               totalAssignedSlots++;
               const confKey = `${emp.id}_${day}_${shiftId}`;
@@ -6869,6 +6993,7 @@
                     <div class="asgn-chip-info">
                       <span class="asgn-chip-name">
                         ${emp.name}
+                        ${isDouble ? `<span class="badge-double" style="background:#fef3c7; color:#92400e; border:1px solid #fcd34d; font-size:0.65rem; font-weight:700; padding:1px 4px; border-radius:3px; margin-left:3px; display:inline-block;" title="Double shift scheduled on ${day}">Double</span>` : ''}
                         ${isManual ? '<span class="badge-manual" title="Manually assigned by manager">Manual</span>' : ''}
                       </span>
                       <span class="asgn-chip-role">${emp.role}</span>
@@ -7086,6 +7211,8 @@
         }
 
         document.getElementById('shift-config-current-day-title').textContent = `${day} Staffing Configuration`;
+        const selectMaxShifts = document.getElementById('select-max-shifts-per-day');
+        if (selectMaxShifts) selectMaxShifts.value = String(state.maxShiftsPerDay || 1);
 
         const tbody = document.getElementById('shift-config-tbody');
         tbody.innerHTML = '';
@@ -7227,6 +7354,12 @@
 
           const utilPct = Math.min(100, Math.round((assigned / max) * 100));
 
+          let doubleCount = 0;
+          getActiveDays().forEach(d => {
+            const dayCount = getActiveShifts().filter(s => state.activeSchedule[d] && state.activeSchedule[d][s.id] && state.activeSchedule[d][s.id].includes(emp.id)).length;
+            if (dayCount > 1) doubleCount++;
+          });
+
           let statusBadge = '';
           if (assigned === 0) {
             statusBadge = '<span style="color:var(--slate-500); font-weight:600;">0 Hours</span>';
@@ -7238,6 +7371,9 @@
             statusBadge = `<span style="color:var(--amber-600); font-weight:600;">-${formatHours(Math.abs(diff))} below target</span>`;
           } else {
             statusBadge = `<span style="color:var(--primary); font-weight:600;">+${formatHours(diff)} above target</span>`;
+          }
+          if (doubleCount > 0) {
+            statusBadge += ` <span class="badge-double" style="background:#fef3c7; color:#92400e; border:1px solid #fcd34d; font-size:0.65rem; font-weight:700; padding:1px 4px; border-radius:3px;" title="${doubleCount} double shift(s)">${doubleCount} Double${doubleCount > 1 ? 's' : ''}</span>`;
           }
 
           const tr = document.createElement('tr');
@@ -7297,6 +7433,60 @@
           expListEl.innerHTML = `<div class="explanation-item" style="border-left-color:var(--emerald-500);">All scheduled employees received hours aligned closely with their preferred targets and availability profiles.</div>`;
         } else {
           expListEl.innerHTML = explanations.map(e => `<div class="explanation-item">${e}</div>`).join('');
+        }
+
+        // Render Scheduled Double Shifts list (Requirement 3)
+        const doublesListEl = document.getElementById('fairness-doubles-list');
+        if (doublesListEl) {
+          const doubleShiftsList = [];
+          const activeDays = getActiveDays();
+          const activeShifts = getActiveShifts();
+
+          activeDays.forEach(day => {
+            state.employees.forEach(emp => {
+              const assignedShiftsOnDay = [];
+              activeShifts.forEach(shiftDef => {
+                if (state.activeSchedule[day] && state.activeSchedule[day][shiftDef.id] && state.activeSchedule[day][shiftDef.id].includes(emp.id)) {
+                  const shiftData = (state.shiftRequirements[day] && state.shiftRequirements[day][shiftDef.id]) || { start: shiftDef.defaultStart, end: shiftDef.defaultEnd };
+                  const dur = calculateShiftDuration(shiftData.start, shiftData.end);
+                  assignedShiftsOnDay.push({
+                    shiftId: shiftDef.id,
+                    name: shiftDef.name,
+                    start: shiftData.start,
+                    end: shiftData.end,
+                    duration: dur
+                  });
+                }
+              });
+
+              if (assignedShiftsOnDay.length > 1) {
+                const totalDayHours = assignedShiftsOnDay.reduce((sum, s) => sum + s.duration, 0);
+                doubleShiftsList.push({
+                  empId: emp.id,
+                  empName: emp.name,
+                  role: emp.role,
+                  day,
+                  shifts: assignedShiftsOnDay,
+                  totalDayHours
+                });
+              }
+            });
+          });
+
+          if (doubleShiftsList.length === 0) {
+            const isDoubleEnabled = (state.maxShiftsPerDay || 1) === 2;
+            doublesListEl.innerHTML = `<div style="font-size:0.8rem; color:var(--slate-500); padding:0.5rem 0;">No double shifts scheduled for this week (${isDoubleEnabled ? '2 shifts/day allowed, none required' : '1 shift/day max setting active'}).</div>`;
+          } else {
+            doublesListEl.innerHTML = doubleShiftsList.map(d => `
+              <div class="explanation-item" style="border-left-color:var(--amber-500); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.4rem;">
+                <div>
+                  <strong>${d.empName}</strong> <span class="role-badge role-${d.role.toLowerCase()}" style="font-size:0.7rem; padding:1px 5px; margin:0 4px;">${d.role}</span> — <span style="font-weight:600; color:var(--slate-800);">${d.day}</span>:
+                  <span style="font-size:0.8rem; color:var(--slate-600);">${d.shifts.map(s => `${s.name} (${formatTimeDisplay(s.start)}–${formatTimeDisplay(s.end)})`).join(' + ')}</span>
+                </div>
+                <span class="badge-double" style="background:#fef3c7; color:#92400e; border:1px solid #fcd34d; font-size:0.75rem; font-weight:700; padding:2px 6px; border-radius:4px;">${formatHours(d.totalDayHours)} total</span>
+              </div>
+            `).join('');
+          }
         }
 
         // ==========================================================================
@@ -7861,18 +8051,41 @@
             reasons.push(`Would exceed ${emp.maxHours}h cap`);
           }
 
-          // 5. Already working on that day
+          // 5. Daily shift limit & time overlap
+          const maxShifts = state.maxShiftsPerDay || 1;
           const dayShifts = state.activeSchedule[day] || {};
+          let assignedCountOnDay = 0;
+          let hasOverlap = false;
+          let overlappingShiftName = null;
           let existingShiftName = null;
+
           for (const sId of Object.keys(dayShifts)) {
             if (dayShifts[sId].includes(emp.id)) {
+              assignedCountOnDay++;
               const sDef = getActiveShifts().find(s => s.id === sId);
               existingShiftName = sDef ? sDef.name.toLowerCase() : sId;
-              break;
+              const otherShift = state.shiftRequirements[day] ? state.shiftRequirements[day][sId] : null;
+              if (otherShift && shiftData) {
+                const s1 = parseTimeToHours(shiftData.start);
+                const e1 = parseTimeToHours(shiftData.end);
+                const s2 = parseTimeToHours(otherShift.start);
+                const e2 = parseTimeToHours(otherShift.end);
+                if (Math.max(s1, s2) < Math.min(e1, e2)) {
+                  hasOverlap = true;
+                  overlappingShiftName = existingShiftName;
+                }
+              }
             }
           }
-          if (existingShiftName) {
+
+          if (maxShifts === 1 && existingShiftName) {
             reasons.push(`Already working ${day} ${existingShiftName}`);
+          } else if (maxShifts > 1) {
+            if (hasOverlap) {
+              reasons.push(`Time overlaps with ${overlappingShiftName}`);
+            } else if (assignedCountOnDay >= maxShifts) {
+              reasons.push(`Already reached ${maxShifts} shifts on ${day}`);
+            }
           }
 
           if (reasons.length === 0) {
@@ -8886,6 +9099,20 @@
           showToast(`Copied ${srcDay}'s shift staffing rules to all ${getActiveDays().length} operating days.`, 'success');
         });
 
+        // Max shifts per employee per day manager setting
+        const selectMaxShifts = document.getElementById('select-max-shifts-per-day');
+        if (selectMaxShifts) {
+          selectMaxShifts.addEventListener('change', (e) => {
+            state.maxShiftsPerDay = parseInt(e.target.value, 10) || 1;
+            if (state.currentIndustry === 'custom' && state.customBusiness) {
+              state.customBusiness.maxShiftsPerDay = state.maxShiftsPerDay;
+            }
+            saveToStorage();
+            renderAll();
+            showToast(`Max shifts per employee per day set to ${state.maxShiftsPerDay}. Click "Generate Schedule" to apply.`, 'info');
+          });
+        }
+
         // Primary Buttons
         function promptAndLoadDemo() {
           if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.enabled) {
@@ -8948,6 +9175,9 @@
             state.lastDiff = null;
             state.lastRegenSummary = null;
             state.calculator = { manualHours: null, shiftyHours: null, hourlyRate: null };
+            state.maxShiftsPerDay = 1;
+            const selectMaxShifts = document.getElementById('select-max-shifts-per-day');
+            if (selectMaxShifts) selectMaxShifts.value = '1';
             state.guideDismissed = false;
             resetCalcTimer();
             renderAll();
