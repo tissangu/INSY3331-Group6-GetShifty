@@ -858,31 +858,254 @@
       background: var(--rose-50);
     }
 
-    /* Uncovered Slot Alert Box */
+    /* Uncovered Slot Alert Box — Consistent with .asgn-chip layout */
     .uncovered-slot-box {
       background: var(--rose-50);
       border: 1px dashed var(--rose-400);
-      border-radius: var(--radius-md);
+      border-radius: 8px;
       padding: 0.35rem 0.5rem;
-      font-size: 0.725rem;
-      color: var(--rose-800);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.25rem;
+      gap: 0.35rem;
+      position: relative;
+      min-height: 40px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
     }
 
-    .uncovered-title {
-      font-weight: 700;
+    .uncovered-slot-main {
       display: flex;
       align-items: center;
-      gap: 0.25rem;
+      gap: 0.45rem;
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
     }
 
-    .uncovered-role {
-      font-size: 0.675rem;
+    .uncovered-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--rose-100);
+      color: var(--rose-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px dashed var(--rose-300);
+    }
+
+    .uncovered-slot-info {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .uncovered-slot-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--rose-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .uncovered-slot-role {
+      font-size: 0.65rem;
       color: var(--rose-700);
       font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .uncovered-slot-action {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .uncovered-slot-box.clickable {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .uncovered-slot-box.clickable:hover {
+      background: #ffe4e6;
+      border-color: var(--rose-500);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(244, 63, 94, 0.15);
+    }
+
+    .uncovered-assign-hint {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.18rem 0.45rem;
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      color: var(--rose-700);
+      border: 1px solid var(--rose-300);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      transition: all 0.15s ease;
+    }
+
+    .uncovered-slot-box.clickable:hover .uncovered-assign-hint {
+      background: var(--rose-600);
+      color: #ffffff;
+      border-color: var(--rose-600);
+    }
+
+    .badge-manual {
+      display: inline-block;
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 0.1rem 0.35rem;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-border);
+      margin-left: 0.3rem;
+      vertical-align: middle;
+    }
+
+    .btn-manual-remove {
+      background: none;
+      border: none;
+      color: var(--slate-400);
+      cursor: pointer;
+      padding: 0.2rem;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .btn-manual-remove:hover {
+      color: var(--rose-600);
+      background: var(--rose-50);
+    }
+
+    .manual-assign-emp-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .manual-assign-emp-row:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .manual-assign-emp-row.other-emp-row {
+      background: var(--slate-50);
+      border-color: var(--slate-200);
+    }
+
+    .manual-assign-emp-row.other-emp-row:hover {
+      border-color: var(--amber-400);
+      background: var(--amber-50);
+    }
+
+    .manual-assign-emp-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .manual-assign-emp-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .manual-assign-emp-meta {
+      font-size: 0.75rem;
+      color: var(--slate-500);
+    }
+
+    .manual-assign-emp-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .manual-assign-hours-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      background: var(--slate-100);
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .manual-assign-hours-tag.muted {
+      color: var(--slate-500);
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+    }
+
+    .manual-assign-reasons-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.25rem;
+    }
+
+    .other-reason-pill {
+      font-size: 0.685rem;
+      font-weight: 500;
+      color: var(--amber-800);
+      background: var(--amber-100);
+      border: 1px solid var(--amber-200);
+      padding: 0.1rem 0.4rem;
+      border-radius: var(--radius-full);
+    }
+
+    .asgn-avatar-muted {
+      background: var(--slate-200) !important;
+      color: var(--slate-600) !important;
+    }
+
+    @media (max-width: 480px) {
+      .manual-assign-emp-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
+      }
+      .manual-assign-emp-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 0.25rem;
+      }
     }
 
     /* ==========================================================================
@@ -3524,7 +3747,71 @@
     </div>
   </div>
 
-  <!-- Toast Notification Container -->
+  <!-- ==========================================================================
+       MODAL 5: Manual Shift Assignment Modal
+       ========================================================================== -->
+  <div id="modal-manual-assign" class="modal-overlay">
+    <div class="modal-container" style="max-width:560px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="manual-assign-modal-title">Assign Role — Day Shift</h3>
+          <p id="manual-assign-modal-subtitle" style="font-size:0.8rem; color:var(--slate-500); margin-top:0.2rem;"></p>
+        </div>
+        <button class="modal-close" id="btn-close-manual-assign-modal">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height:65vh; overflow-y:auto; padding:1.25rem;">
+        <!-- In-Modal Warning Box (for Other Employees override) -->
+        <div id="manual-assign-warning-card" style="display:none; background:var(--amber-50); border:1px solid var(--amber-300); border-radius:var(--radius-md); padding:0.9rem; margin-bottom:1.15rem;">
+          <div style="display:flex; align-items:flex-start; gap:0.6rem;">
+            <div style="color:var(--amber-600); margin-top:0.1rem; flex-shrink:0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            </div>
+            <div style="flex:1;">
+              <h4 style="font-size:0.875rem; font-weight:700; color:var(--amber-900);">Managerial Override Warning</h4>
+              <p id="manual-assign-warning-text" style="font-size:0.8rem; color:var(--amber-800); margin-top:0.25rem; line-height:1.45;"></p>
+              <div style="display:flex; gap:0.5rem; margin-top:0.75rem;">
+                <button type="button" class="btn btn-secondary btn-xs" id="btn-cancel-manual-override">Cancel</button>
+                <button type="button" class="btn btn-amber btn-xs" id="btn-confirm-manual-override">Assign anyway</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 1: Recommended -->
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
+            <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); display:flex; align-items:center; gap:0.4rem;">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--emerald-500);"></span>
+              Recommended
+              <span id="manual-assign-recommended-count" class="brand-badge" style="background:var(--emerald-50); color:var(--emerald-700); border-color:var(--emerald-200);">0</span>
+            </h4>
+            <span style="font-size:0.725rem; color:var(--slate-500);">Qualified, available & under weekly cap</span>
+          </div>
+          <div id="manual-assign-recommended-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Group 2: Other Employees -->
+        <div>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
+            <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); display:flex; align-items:center; gap:0.4rem;">
+              <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--amber-500);"></span>
+              Other Employees
+              <span id="manual-assign-other-count" class="brand-badge" style="background:var(--slate-100); color:var(--slate-700); border-color:var(--slate-300);">0</span>
+            </h4>
+            <span style="font-size:0.725rem; color:var(--slate-500);">Requires manager override</span>
+          </div>
+          <div id="manual-assign-other-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="display:flex; justify-content:flex-end;">
+        <button type="button" class="btn btn-secondary" id="btn-close-manual-assign-btn">Close</button>
+      </div>
+    </div>
+  </div>
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Footer with Responsible AI & Data Privacy Disclaimers -->
@@ -3585,6 +3872,7 @@
         activeSchedule: {},    // day -> { morning: [empId1, empId2], ... }
         uncoveredSlots: [],    // [{ day, shiftId, role, reason }]
         callouts: [],          // [{ employeeId, day, shiftId }]
+        manualAssignments: [], // [{ day, shiftId, role, employeeId, slotIndex, assignedAt }]
         previousSchedule: null,// Snapshot for regeneration diff
         lastDiff: null,        // [{ type, day, shiftId, role, oldEmp, newEmp, reason }]
         lastRegenSummary: null,// Structured executive summary for non-technical managers
@@ -3608,6 +3896,10 @@
       // Temporary state for callout modal
       let pendingCallout = null;
 
+      // Temporary state for manual assignment modal
+      let pendingManualSlot = null; // { day, shiftId, role, slotIndex }
+      let pendingManualOverride = null; // { empId, day, shiftId, role, slotIndex }
+
       // Timer runtime state
       let calcTimerInterval = null;
       let calcTimerSeconds = 0;
@@ -3624,6 +3916,7 @@
             activeSchedule: state.activeSchedule,
             uncoveredSlots: state.uncoveredSlots,
             callouts: state.callouts,
+            manualAssignments: state.manualAssignments || [],
             previousSchedule: state.previousSchedule,
             lastDiff: state.lastDiff,
             lastRegenSummary: state.lastRegenSummary,
@@ -3646,6 +3939,7 @@
             state.activeSchedule = parsed.activeSchedule || {};
             state.uncoveredSlots = parsed.uncoveredSlots || [];
             state.callouts = parsed.callouts || [];
+            state.manualAssignments = parsed.manualAssignments || [];
             state.previousSchedule = parsed.previousSchedule || null;
             state.lastDiff = parsed.lastDiff || null;
             state.lastRegenSummary = parsed.lastRegenSummary || null;
@@ -4349,6 +4643,7 @@
         state.activeSchedule = {};
         state.uncoveredSlots = [];
         state.callouts = [];
+        state.manualAssignments = [];
         state.previousSchedule = null;
         state.lastDiff = null;
 
@@ -4438,6 +4733,28 @@
         const newUncovered = [];
         const diffLog = [];
 
+        // Honor and preserve Manager Manual Shift Assignments (Requirement 5)
+        if (state.manualAssignments && state.manualAssignments.length > 0) {
+          state.manualAssignments.forEach(man => {
+            const emp = state.employees.find(e => e.id === man.employeeId);
+            if (!emp) return;
+            const shiftData = state.shiftRequirements[man.day] ? state.shiftRequirements[man.day][man.shiftId] : null;
+            const duration = shiftData ? calculateShiftDuration(shiftData.start, shiftData.end) : 4;
+
+            // Pre-populate manual assignment into newSchedule
+            if (!newSchedule[man.day][man.shiftId].includes(man.employeeId)) {
+              newSchedule[man.day][man.shiftId].push(man.employeeId);
+              assignedHours[man.employeeId] = (assignedHours[man.employeeId] || 0) + duration;
+            }
+
+            // Mark one matching slot in allSlots as manually fulfilled so algorithm doesn't double-fill it
+            const matchSlot = allSlots.find(s => s.day === man.day && s.shiftId === man.shiftId && s.role === man.role && !s.isManuallyFulfilled);
+            if (matchSlot) {
+              matchSlot.isManuallyFulfilled = true;
+            }
+          });
+        }
+
         // Check if employee has called out for this specific day & shift
         function hasCalledOut(empId, day, shiftId) {
           return state.callouts.some(c => c.employeeId === empId && c.day === day && c.shiftId === shiftId);
@@ -4467,6 +4784,9 @@
 
         // Process each required slot
         allSlots.forEach(slot => {
+          if (slot.isManuallyFulfilled) {
+            return;
+          }
           const { day, shiftId, shiftData, role, duration } = slot;
 
           // 1. HARD CONSTRAINTS FILTERING
@@ -5427,19 +5747,30 @@
 
               const roleClass = `chip-${emp.role.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
               const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+              const isManual = state.manualAssignments && state.manualAssignments.some(m => m.day === day && m.shiftId === shiftId && m.employeeId === empId);
+
               assignmentsHtml += `
-                <div class="asgn-chip ${roleClass}">
+                <div class="asgn-chip ${roleClass} ${isManual ? 'asgn-chip-manual' : ''}">
                   <div class="asgn-chip-main">
                     <span class="asgn-avatar">${initials}</span>
                     <div class="asgn-chip-info">
-                      <span class="asgn-chip-name">${emp.name}</span>
+                      <span class="asgn-chip-name">
+                        ${emp.name}
+                        ${isManual ? '<span class="badge-manual" title="Manually assigned by manager">Manual</span>' : ''}
+                      </span>
                       <span class="asgn-chip-role">${emp.role}</span>
                     </div>
                   </div>
                   <div class="asgn-chip-actions">
-                    <button class="btn-callout-trigger" title="Simulate Call-Out for ${emp.name}" onclick="window.triggerCalloutModal('${emp.id}', '${day}', '${shiftId}')">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
-                    </button>
+                    ${isManual ? `
+                      <button class="btn-manual-remove" title="Remove manual assignment for ${emp.name}" onclick="window.removeManualAssignment('${emp.id}', '${day}', '${shiftId}')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                      </button>
+                    ` : `
+                      <button class="btn-callout-trigger" title="Simulate Call-Out for ${emp.name}" onclick="window.triggerCalloutModal('${emp.id}', '${day}', '${shiftId}')">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+                      </button>
+                    `}
                   </div>
                 </div>
               `;
@@ -5447,14 +5778,22 @@
 
             // If understaffed, show open/uncovered slot placeholders
             const uncoveredInShift = state.uncoveredSlots.filter(u => u.day === day && u.shiftId === shiftId);
-            uncoveredInShift.forEach(u => {
+            uncoveredInShift.forEach((u, uIdx) => {
+              const safeRole = (u.role || 'Staff').replace(/'/g, "\\'");
               assignmentsHtml += `
-                <div class="uncovered-slot-box" title="${u.reason}">
-                  <div class="uncovered-title">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                    <span>Open Position</span>
+                <div class="uncovered-slot-box clickable" title="${u.reason || 'Open shift slot'} (Click to assign)" onclick="window.openManualAssignModal('${day}', '${shiftId}', '${safeRole}', ${u.slotIndex !== undefined ? u.slotIndex : uIdx})">
+                  <div class="uncovered-slot-main">
+                    <span class="uncovered-avatar">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    </span>
+                    <div class="uncovered-slot-info">
+                      <span class="uncovered-slot-title">Open Position</span>
+                      <span class="uncovered-slot-role">${u.role}</span>
+                    </div>
                   </div>
-                  <span class="uncovered-role">${u.role}</span>
+                  <div class="uncovered-slot-action">
+                    <span class="uncovered-assign-hint">+ Assign</span>
+                  </div>
                 </div>
               `;
             });
@@ -6150,6 +6489,287 @@
         showToast(`${emp ? emp.name : 'Employee'} marked unavailable for ${day} ${shiftId}. Click 'Regenerate Schedule' to find replacement coverage.`, 'warning');
       }
 
+      /* ==========================================================================
+         Manual Shift Assignment Handlers (Requirement 1, 2, 3, 4, 6)
+         ========================================================================== */
+      function closeManualAssignModal() {
+        const modal = document.getElementById('modal-manual-assign');
+        if (modal) modal.classList.remove('active');
+        pendingManualSlot = null;
+        pendingManualOverride = null;
+        const warningCard = document.getElementById('manual-assign-warning-card');
+        if (warningCard) warningCard.style.display = 'none';
+      }
+
+      function cancelManualOverride() {
+        pendingManualOverride = null;
+        const warningCard = document.getElementById('manual-assign-warning-card');
+        if (warningCard) warningCard.style.display = 'none';
+      }
+
+      function confirmManualOverrideAction() {
+        if (!pendingManualOverride) return;
+        const { empId, day, shiftId, role, slotIndex } = pendingManualOverride;
+        cancelManualOverride();
+        executeManualAssignment(empId, day, shiftId, role, slotIndex);
+      }
+
+      function executeManualAssignment(empId, day, shiftId, role, slotIndex) {
+        const emp = state.employees.find(e => e.id === empId);
+        if (!state.activeSchedule[day]) {
+          state.activeSchedule[day] = { morning: [], afternoon: [], evening: [] };
+        }
+        if (!state.activeSchedule[day][shiftId]) {
+          state.activeSchedule[day][shiftId] = [];
+        }
+
+        // Add to active schedule
+        if (!state.activeSchedule[day][shiftId].includes(empId)) {
+          state.activeSchedule[day][shiftId].push(empId);
+        }
+
+        // Record in manual assignments
+        if (!state.manualAssignments) state.manualAssignments = [];
+        state.manualAssignments.push({
+          day,
+          shiftId,
+          role,
+          employeeId: empId,
+          slotIndex: slotIndex !== undefined ? slotIndex : 0,
+          assignedAt: Date.now()
+        });
+
+        // Remove one corresponding open position from uncovered slots
+        const uIdx = state.uncoveredSlots.findIndex(u => u.day === day && u.shiftId === shiftId && u.role === role);
+        if (uIdx !== -1) {
+          state.uncoveredSlots.splice(uIdx, 1);
+        } else {
+          const anyU = state.uncoveredSlots.findIndex(u => u.day === day && u.shiftId === shiftId);
+          if (anyU !== -1) state.uncoveredSlots.splice(anyU, 1);
+        }
+
+        closeManualAssignModal();
+        saveToStorage();
+        renderAll();
+        showToast(`Manually assigned ${emp ? emp.name : 'Employee'} to ${day} ${shiftId} (${role}).`, 'success');
+      }
+
+      window.openManualAssignModal = function (day, shiftId, role, slotIndex) {
+        pendingManualSlot = { day, shiftId, role, slotIndex: slotIndex || 0 };
+        pendingManualOverride = null;
+
+        const warningCard = document.getElementById('manual-assign-warning-card');
+        if (warningCard) warningCard.style.display = 'none';
+
+        const shiftDef = DEFAULT_SHIFTS.find(s => s.id === shiftId);
+        const shiftName = shiftDef ? shiftDef.name : (shiftId.charAt(0).toUpperCase() + shiftId.slice(1));
+        const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+        const duration = shiftData ? calculateShiftDuration(shiftData.start, shiftData.end) : 4;
+
+        // Title format per requirement: Assign [Role] — [Day] [Shift]
+        document.getElementById('manual-assign-modal-title').textContent = `Assign ${role} — ${day} ${shiftName}`;
+        document.getElementById('manual-assign-modal-subtitle').textContent = 
+          `Shift Duration: ${formatHours(duration)} (${shiftData ? formatTimeDisplay(shiftData.start) + ' – ' + formatTimeDisplay(shiftData.end) : ''})`;
+
+        const metrics = calculateMetrics();
+        const empHours = metrics.empHours || {};
+
+        const recommended = [];
+        const other = [];
+
+        state.employees.forEach(emp => {
+          const reasons = [];
+          const currentHours = empHours[emp.id] || 0;
+
+          // 1. Qualified for the role
+          if (emp.role !== role) {
+            reasons.push(`Not trained as ${role}`);
+          }
+
+          // 2. Available that shift
+          const isAvailable = emp.availability[day] && emp.availability[day][shiftId];
+          if (!isAvailable) {
+            reasons.push(`Unavailable ${day} ${shiftName.toLowerCase()}`);
+          }
+
+          // 3. Called out for this shift
+          const calledOut = state.callouts.some(c => c.employeeId === emp.id && c.day === day && c.shiftId === shiftId);
+          if (calledOut) {
+            reasons.push(`Called out for this shift`);
+          }
+
+          // 4. Weekly hour cap
+          if (currentHours + duration > emp.maxHours + 0.001) {
+            reasons.push(`Would exceed ${emp.maxHours}h cap`);
+          }
+
+          // 5. Already working on that day
+          const dayShifts = state.activeSchedule[day] || {};
+          let existingShiftName = null;
+          for (const sId of Object.keys(dayShifts)) {
+            if (dayShifts[sId].includes(emp.id)) {
+              const sDef = DEFAULT_SHIFTS.find(s => s.id === sId);
+              existingShiftName = sDef ? sDef.name.toLowerCase() : sId;
+              break;
+            }
+          }
+          if (existingShiftName) {
+            reasons.push(`Already working ${day} ${existingShiftName}`);
+          }
+
+          if (reasons.length === 0) {
+            recommended.push({ emp, currentHours });
+          } else {
+            other.push({ emp, currentHours, reasons });
+          }
+        });
+
+        // Render Recommended
+        const recList = document.getElementById('manual-assign-recommended-list');
+        const recCount = document.getElementById('manual-assign-recommended-count');
+        recCount.textContent = recommended.length;
+        recList.innerHTML = '';
+
+        if (recommended.length === 0) {
+          recList.innerHTML = `
+            <div style="font-size:0.775rem; color:var(--slate-500); padding:0.65rem; text-align:center; background:var(--slate-50); border:1px dashed var(--slate-300); border-radius:var(--radius-md);">
+              No employees satisfy all automated requirements for this slot. Review other employees below.
+            </div>
+          `;
+        } else {
+          // Sort recommended by hours deficit for fairness
+          recommended.sort((a, b) => {
+            const defA = (a.emp.preferredHours || a.emp.maxHours) - a.currentHours;
+            const defB = (b.emp.preferredHours || b.emp.maxHours) - b.currentHours;
+            return defB - defA;
+          });
+
+          recommended.forEach(({ emp, currentHours }) => {
+            const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            const row = document.createElement('div');
+            row.className = 'manual-assign-emp-row';
+            row.innerHTML = `
+              <div class="manual-assign-emp-left">
+                <span class="asgn-avatar">${initials}</span>
+                <div>
+                  <div class="manual-assign-emp-name">${emp.name}</div>
+                  <div class="manual-assign-emp-meta">${emp.role}</div>
+                </div>
+              </div>
+              <div class="manual-assign-emp-right">
+                <span class="manual-assign-hours-tag">${formatHours(currentHours)} / ${emp.maxHours}h</span>
+                <button type="button" class="btn btn-primary btn-xs">Assign</button>
+              </div>
+            `;
+            row.addEventListener('click', () => {
+              window.assignEmployeeDirectly(emp.id);
+            });
+            recList.appendChild(row);
+          });
+        }
+
+        // Render Other Employees
+        const otherList = document.getElementById('manual-assign-other-list');
+        const otherCount = document.getElementById('manual-assign-other-count');
+        otherCount.textContent = other.length;
+        otherList.innerHTML = '';
+
+        if (other.length === 0) {
+          otherList.innerHTML = `
+            <div style="font-size:0.775rem; color:var(--slate-500); padding:0.65rem; text-align:center; background:var(--slate-50); border-radius:var(--radius-md);">
+              All employees are in the Recommended group.
+            </div>
+          `;
+        } else {
+          other.forEach(({ emp, currentHours, reasons }) => {
+            const initials = emp.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            const row = document.createElement('div');
+            row.className = 'manual-assign-emp-row other-emp-row';
+            row.innerHTML = `
+              <div class="manual-assign-emp-left">
+                <span class="asgn-avatar asgn-avatar-muted">${initials}</span>
+                <div style="min-width:0;">
+                  <div class="manual-assign-emp-name">${emp.name} <span style="font-size:0.725rem; font-weight:500; color:var(--slate-500);">(${emp.role})</span></div>
+                  <div class="manual-assign-reasons-wrap">
+                    ${reasons.map(r => `<span class="other-reason-pill">${r}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+              <div class="manual-assign-emp-right">
+                <span class="manual-assign-hours-tag muted">${formatHours(currentHours)} / ${emp.maxHours}h</span>
+                <button type="button" class="btn btn-secondary btn-xs" style="border:1px solid var(--amber-400); color:var(--amber-800);">Select</button>
+              </div>
+            `;
+            row.addEventListener('click', () => {
+              window.promptManualOverride(emp.id, reasons);
+            });
+            otherList.appendChild(row);
+          });
+        }
+
+        document.getElementById('modal-manual-assign').classList.add('active');
+      };
+
+      window.assignEmployeeDirectly = function (empId) {
+        if (!pendingManualSlot) return;
+        executeManualAssignment(empId, pendingManualSlot.day, pendingManualSlot.shiftId, pendingManualSlot.role, pendingManualSlot.slotIndex);
+      };
+
+      window.promptManualOverride = function (empId, reasons) {
+        if (!pendingManualSlot) return;
+        const emp = state.employees.find(e => e.id === empId);
+        if (!emp) return;
+
+        pendingManualOverride = {
+          empId,
+          day: pendingManualSlot.day,
+          shiftId: pendingManualSlot.shiftId,
+          role: pendingManualSlot.role,
+          slotIndex: pendingManualSlot.slotIndex
+        };
+
+        const warningCard = document.getElementById('manual-assign-warning-card');
+        const warningText = document.getElementById('manual-assign-warning-text');
+        warningText.innerHTML = `Assigning <strong>${emp.name}</strong> breaks scheduling rules: <strong>${reasons.join(', ')}</strong>. Do you want to proceed with this manager override?`;
+        warningCard.style.display = 'block';
+
+        // Scroll modal body smoothly to top to show warning
+        const modalBody = warningCard.closest('.modal-body');
+        if (modalBody) modalBody.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      window.removeManualAssignment = function (empId, day, shiftId) {
+        const emp = state.employees.find(e => e.id === empId);
+
+        // Remove from activeSchedule
+        if (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) {
+          state.activeSchedule[day][shiftId] = state.activeSchedule[day][shiftId].filter(id => id !== empId);
+        }
+
+        // Find role from manual assignments
+        let role = emp ? emp.role : 'Staff';
+        if (state.manualAssignments) {
+          const mIdx = state.manualAssignments.findIndex(m => m.day === day && m.shiftId === shiftId && m.employeeId === empId);
+          if (mIdx !== -1) {
+            role = state.manualAssignments[mIdx].role || role;
+            state.manualAssignments.splice(mIdx, 1);
+          }
+        }
+
+        // Re-add to uncoveredSlots
+        state.uncoveredSlots.push({
+          day,
+          shiftId,
+          role,
+          slotIndex: 0,
+          reason: 'Manual assignment removed by manager.'
+        });
+
+        saveToStorage();
+        renderAll();
+        showToast(`Removed manual assignment for ${emp ? emp.name : 'employee'}. Slot returned to Open Position.`, 'info');
+      };
+
       /* Regeneration Diff Modal Logic */
       function openDiffModal() {
         const container = document.getElementById('diff-items-container');
@@ -6499,6 +7119,7 @@
             state.activeSchedule = {};
             state.uncoveredSlots = [];
             state.callouts = [];
+            state.manualAssignments = [];
             state.previousSchedule = null;
             state.lastDiff = null;
             state.lastRegenSummary = null;
@@ -6517,6 +7138,7 @@
             state.activeSchedule = {};
             state.uncoveredSlots = [];
             state.callouts = [];
+            state.manualAssignments = [];
             state.previousSchedule = null;
             state.lastDiff = null;
             state.lastRegenSummary = null;
@@ -6569,6 +7191,19 @@
         document.getElementById('btn-close-guide-btn').addEventListener('click', () => {
           document.getElementById('modal-guide').classList.remove('active');
         });
+
+        // Manual Shift Assignment Modal Listeners
+        const btnCloseManual = document.getElementById('btn-close-manual-assign-modal');
+        if (btnCloseManual) btnCloseManual.addEventListener('click', closeManualAssignModal);
+
+        const btnCancelManual = document.getElementById('btn-close-manual-assign-btn');
+        if (btnCancelManual) btnCancelManual.addEventListener('click', closeManualAssignModal);
+
+        const btnCancelOverride = document.getElementById('btn-cancel-manual-override');
+        if (btnCancelOverride) btnCancelOverride.addEventListener('click', cancelManualOverride);
+
+        const btnConfirmOverride = document.getElementById('btn-confirm-manual-override');
+        if (btnConfirmOverride) btnConfirmOverride.addEventListener('click', confirmManualOverrideAction);
 
         // Print Schedule
         document.getElementById('btn-print-schedule').addEventListener('click', () => {
