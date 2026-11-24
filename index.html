@@ -379,12 +379,29 @@
       border-bottom: 1px solid var(--slate-200);
       margin-bottom: 1.5rem;
       overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--slate-300) var(--slate-100);
+      -webkit-overflow-scrolling: touch;
     }
 
     .tab-nav::-webkit-scrollbar {
-      display: none;
+      height: 6px;
+    }
+
+    .tab-nav::-webkit-scrollbar-track {
+      background: var(--slate-100);
+      border-radius: var(--radius-full);
+    }
+
+    .tab-nav::-webkit-scrollbar-thumb {
+      background: var(--slate-300);
+      border-radius: var(--radius-full);
+      transition: background 0.15s ease;
+    }
+
+    .tab-nav::-webkit-scrollbar-thumb:hover {
+      background: var(--slate-400);
     }
 
     .tab-btn {
