@@ -1826,6 +1826,53 @@
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
     }
 
+    /* Business Setup Modal Specific Styles */
+    .setup-role-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .setup-shift-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .setup-day-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.65rem;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.8rem;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .setup-day-pill:hover {
+      background: var(--slate-200);
+    }
+    .setup-matrix-input {
+      width: 52px;
+      text-align: center;
+      padding: 0.3rem 0.25rem;
+      font-size: 0.85rem;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+    }
+    @media (max-width: 480px) {
+      .setup-shift-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+        background: var(--slate-50);
+        padding: 0.5rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--slate-200);
+      }
+    }
+
     /* Form Styles */
     .form-group {
       margin-bottom: 1.1rem;
@@ -2880,8 +2927,8 @@
           </svg>
         </div>
         <div class="brand-text">
-          <h1>GetShifty</h1>
-          <p>Smarter Scheduling. Happier Teams.</p>
+          <h1 id="brand-header-title">GetShifty</h1>
+          <p id="brand-header-subtitle">Smarter Scheduling. Happier Teams.</p>
         </div>
       </div>
 
@@ -2897,8 +2944,14 @@
             <option value="cafe" selected>☕ Café (Baristas & Cashiers)</option>
             <option value="restaurant">🍽️ Restaurant (Servers & Cooks)</option>
             <option value="retail">🛍️ Retail Store (Associates & Stockers)</option>
+            <option value="custom">➕ My Business (Custom)</option>
           </select>
         </div>
+
+        <button id="btn-setup-business" class="btn btn-emerald btn-sm" title="Configure your custom business, roles, days, and shifts">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <span id="btn-setup-business-label">Set Up My Business</span>
+        </button>
 
         <button id="btn-load-demo" class="btn btn-secondary btn-sm" title="Load a realistic 10-person team template">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
@@ -4119,6 +4172,123 @@
       </div>
     </div>
   </div>
+
+  <!-- ==========================================================================
+       MODAL 8: Set Up My Business (Custom Business Operating Model)
+       ========================================================================== -->
+  <div id="modal-business-setup" class="modal-overlay">
+    <div class="modal-container" style="max-width:720px;">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="setup-modal-title">Set Up My Business</h3>
+          <p style="font-size:0.8rem; color:var(--slate-500); margin-top:0.2rem;">Configure your business name, roles, operating days, shifts, and staffing targets.</p>
+        </div>
+        <button class="modal-close" id="btn-close-setup-modal">&times;</button>
+      </div>
+      <form id="form-business-setup">
+        <div class="modal-body" style="max-height:75vh; overflow-y:auto; padding:1.25rem;">
+          <!-- 1. Business Profile -->
+          <div style="margin-bottom:1.25rem;">
+            <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.6rem; display:flex; align-items:center; gap:0.4rem;">
+              <span>🏢</span> 1. Business Information
+            </h4>
+            <div class="form-row-2">
+              <div class="form-group" style="margin-bottom:0.75rem;">
+                <label class="form-label" for="setup-biz-name">Business Name *</label>
+                <input type="text" id="setup-biz-name" class="form-input" placeholder="e.g. Wabi House" required>
+              </div>
+              <div class="form-group" style="margin-bottom:0.75rem;">
+                <label class="form-label" for="setup-biz-type">Business Type *</label>
+                <select id="setup-biz-type" class="form-select">
+                  <option value="Restaurant">Restaurant</option>
+                  <option value="Café">Café</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Salon">Salon</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" id="setup-biz-type-other-group" style="display:none; margin-bottom:0.75rem;">
+              <label class="form-label" for="setup-biz-type-other">Specify Business Type *</label>
+              <input type="text" id="setup-biz-type-other" class="form-input" placeholder="e.g. Bakery, Yoga Studio, Medical Clinic...">
+            </div>
+          </div>
+
+          <!-- 2. Roles Configuration -->
+          <div style="margin-bottom:1.25rem; padding-top:1rem; border-top:1px solid var(--slate-200);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <div>
+                <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); text-transform:uppercase; letter-spacing:0.04em; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                  <span>👥</span> 2. Job Roles
+                </h4>
+                <div style="font-size:0.75rem; color:var(--slate-500); margin-top:0.15rem;">Define the roles required for your team (e.g. Server, Cook, Host).</div>
+              </div>
+              <button type="button" id="btn-add-setup-role" class="btn btn-secondary btn-xs">+ Add Role</button>
+            </div>
+            <div id="setup-roles-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+              <!-- Role input rows rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- 3. Operating Days -->
+          <div style="margin-bottom:1.25rem; padding-top:1rem; border-top:1px solid var(--slate-200);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <div>
+                <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); text-transform:uppercase; letter-spacing:0.04em; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                  <span>📅</span> 3. Operating Days
+                </h4>
+                <div style="font-size:0.75rem; color:var(--slate-500); margin-top:0.15rem;">Select the days your business is open and requires scheduled staff.</div>
+              </div>
+              <div style="display:flex; gap:0.4rem;">
+                <button type="button" id="btn-setup-days-all" class="btn btn-ghost btn-xs" style="font-size:0.7rem;">Select All</button>
+                <button type="button" id="btn-setup-days-weekdays" class="btn btn-ghost btn-xs" style="font-size:0.7rem;">Mon–Fri</button>
+              </div>
+            </div>
+            <div id="setup-days-list" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <!-- Monday-Sunday checkboxes rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- 4. Shifts Configuration -->
+          <div style="margin-bottom:1.25rem; padding-top:1rem; border-top:1px solid var(--slate-200);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem;">
+              <div>
+                <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); text-transform:uppercase; letter-spacing:0.04em; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                  <span>⏰</span> 4. Shift Schedule
+                </h4>
+                <div style="font-size:0.75rem; color:var(--slate-500); margin-top:0.15rem;">Define your daily shifts with start and end times (e.g. Lunch 11:00 AM–3:00 PM).</div>
+              </div>
+              <button type="button" id="btn-add-setup-shift" class="btn btn-secondary btn-xs">+ Add Shift</button>
+            </div>
+            <div id="setup-shifts-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+              <!-- Shift rows rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- 5. Staffing Needs Matrix -->
+          <div style="margin-bottom:0.5rem; padding-top:1rem; border-top:1px solid var(--slate-200);">
+            <div>
+              <h4 style="font-size:0.85rem; font-weight:700; color:var(--slate-800); text-transform:uppercase; letter-spacing:0.04em; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                <span>🎯</span> 5. Staffing Needs per Shift
+              </h4>
+              <div style="font-size:0.75rem; color:var(--slate-500); margin-top:0.15rem; margin-bottom:0.6rem;">Specify how many team members are needed for each role during each shift (default 1).</div>
+            </div>
+            <div id="setup-staffing-matrix-wrap" style="overflow-x:auto;">
+              <table class="schedule-table" style="font-size:0.8rem; text-align:center;">
+                <thead id="setup-staffing-matrix-head"></thead>
+                <tbody id="setup-staffing-matrix-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="display:flex; justify-content:space-between; align-items:center;">
+          <button type="button" class="btn btn-secondary" id="btn-cancel-setup-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-setup-save-biz">Save & Start</button>
+        </div>
+      </form>
+    </div>
+  </div>
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Footer with Responsible AI & Data Privacy Disclaimers -->
@@ -4155,6 +4325,7 @@
          1. CONSTANTS & DEFAULT CONFIGURATIONS
          ========================================================================== */
       const STORAGE_KEY = 'getshifty_store_v1';
+      const CUSTOM_BIZ_KEY = 'getshifty_custom_business_v1';
 
       const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -4169,6 +4340,27 @@
         'Barista', 'Line Cook', 'Server', 'Host',
         'Cashier', 'Sales Associate', 'Inventory Stocker'
       ];
+
+      function getActiveDays() {
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.operatingDays && state.customBusiness.operatingDays.length > 0) {
+          return state.customBusiness.operatingDays;
+        }
+        return DAYS;
+      }
+
+      function getActiveShifts() {
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.shifts && state.customBusiness.shifts.length > 0) {
+          return state.customBusiness.shifts;
+        }
+        return DEFAULT_SHIFTS;
+      }
+
+      function getActiveRoles() {
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.roles && state.customBusiness.roles.length > 0) {
+          return state.customBusiness.roles;
+        }
+        return ROLES;
+      }
 
       /* ==========================================================================
          2. APPLICATION STATE
@@ -4194,6 +4386,7 @@
         activeMobileDay: 'Monday',
         // Customer Lead & Usability Testing Suite Additions (v1.1)
         currentIndustry: 'cafe',
+        customBusiness: null,
         walkthrough: { step1: false, step2: false, step3: false, step4: false, collapsed: true },
         benchmarks: { sessionStart: Date.now(), lastGenTime: null, lastRegenTime: null },
         roi: { staffWage: 15.00, managerRate: 25.00 },
@@ -4230,9 +4423,23 @@
             lastDiff: state.lastDiff,
             lastRegenSummary: state.lastRegenSummary,
             calculator: state.calculator,
-            guideDismissed: state.guideDismissed
+            guideDismissed: state.guideDismissed,
+            currentIndustry: state.currentIndustry,
+            customBusiness: state.customBusiness
           };
           localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+          if (state.currentIndustry === 'custom' && state.customBusiness) {
+            localStorage.setItem(CUSTOM_BIZ_KEY, JSON.stringify({
+              customBusiness: state.customBusiness,
+              employees: state.employees,
+              shiftRequirements: state.shiftRequirements,
+              activeSchedule: state.activeSchedule,
+              uncoveredSlots: state.uncoveredSlots,
+              callouts: state.callouts,
+              manualAssignments: state.manualAssignments || [],
+              shiftConfirmations: state.shiftConfirmations || {}
+            }));
+          }
         } catch (e) {
           console.error('Storage save error:', e);
         }
@@ -4255,12 +4462,500 @@
             state.lastRegenSummary = parsed.lastRegenSummary || null;
             state.calculator = parsed.calculator || { manualHours: null, shiftyHours: null, hourlyRate: null };
             state.guideDismissed = parsed.guideDismissed !== undefined ? !!parsed.guideDismissed : true;
+            state.currentIndustry = parsed.currentIndustry || 'cafe';
+            state.customBusiness = parsed.customBusiness || null;
             return true;
           }
         } catch (e) {
           console.error('Storage load error:', e);
         }
         return false;
+      }
+
+      /* ==========================================================================
+         3b. CUSTOM BUSINESS SETUP & OPERATING MODEL LOGIC
+         ========================================================================== */
+      let setupModel = {
+        roles: ['', ''],
+        operatingDays: [...DAYS],
+        shifts: [
+          { id: 'morning', name: 'Morning', defaultStart: '08:00', defaultEnd: '12:00' },
+          { id: 'afternoon', name: 'Afternoon', defaultStart: '12:00', defaultEnd: '16:00' },
+          { id: 'evening', name: 'Evening', defaultStart: '16:00', defaultEnd: '20:00' }
+        ],
+        staffingNeeds: {}
+      };
+
+      function backupCustomBusiness() {
+        if (state.customBusiness) {
+          try {
+            localStorage.setItem(CUSTOM_BIZ_KEY, JSON.stringify({
+              customBusiness: state.customBusiness,
+              employees: state.employees,
+              shiftRequirements: state.shiftRequirements,
+              activeSchedule: state.activeSchedule,
+              uncoveredSlots: state.uncoveredSlots,
+              callouts: state.callouts,
+              manualAssignments: state.manualAssignments || [],
+              shiftConfirmations: state.shiftConfirmations || {}
+            }));
+          } catch (e) {
+            console.error('Backup custom business error:', e);
+          }
+        }
+      }
+
+      function updateHeaderForCustomBusiness() {
+        const titleEl = document.getElementById('brand-header-title');
+        const subEl = document.getElementById('brand-header-subtitle');
+        const btnLabel = document.getElementById('btn-setup-business-label');
+        const indSelect = document.getElementById('select-industry-preset');
+
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.name) {
+          if (titleEl) titleEl.textContent = state.customBusiness.name;
+          if (subEl) subEl.textContent = `${state.customBusiness.type || 'Custom'} • Smart Scheduling`;
+          if (btnLabel) btnLabel.textContent = 'Edit Business Setup';
+          if (indSelect) indSelect.value = 'custom';
+        } else {
+          if (titleEl) titleEl.textContent = 'GetShifty';
+          if (subEl) subEl.textContent = 'Smarter Scheduling. Happier Teams.';
+          if (btnLabel) btnLabel.textContent = 'Set Up My Business';
+          if (indSelect) indSelect.value = state.currentIndustry || 'cafe';
+        }
+      }
+
+      function openBusinessSetupModal(isEdit = false) {
+        const titleEl = document.getElementById('setup-modal-title');
+        const btnSave = document.getElementById('btn-setup-save-biz');
+        const nameInput = document.getElementById('setup-biz-name');
+        const typeSelect = document.getElementById('setup-biz-type');
+        const otherGroup = document.getElementById('setup-biz-type-other-group');
+        const otherInput = document.getElementById('setup-biz-type-other');
+
+        if (isEdit && state.customBusiness) {
+          if (titleEl) titleEl.textContent = `Edit Business Setup: ${state.customBusiness.name}`;
+          if (btnSave) btnSave.textContent = 'Save Changes';
+          if (nameInput) nameInput.value = state.customBusiness.name || '';
+          if (typeSelect) typeSelect.value = state.customBusiness.type || 'Restaurant';
+          if (state.customBusiness.type === 'Other') {
+            if (otherGroup) otherGroup.style.display = 'block';
+            if (otherInput) otherInput.value = state.customBusiness.otherType || '';
+          } else {
+            if (otherGroup) otherGroup.style.display = 'none';
+            if (otherInput) otherInput.value = '';
+          }
+          setupModel.roles = state.customBusiness.roles && state.customBusiness.roles.length > 0
+            ? [...state.customBusiness.roles]
+            : ['', ''];
+          setupModel.operatingDays = state.customBusiness.operatingDays && state.customBusiness.operatingDays.length > 0
+            ? [...state.customBusiness.operatingDays]
+            : [...DAYS];
+          setupModel.shifts = state.customBusiness.shifts && state.customBusiness.shifts.length > 0
+            ? JSON.parse(JSON.stringify(state.customBusiness.shifts))
+            : [
+                { id: 'morning', name: 'Morning', defaultStart: '08:00', defaultEnd: '12:00' },
+                { id: 'afternoon', name: 'Afternoon', defaultStart: '12:00', defaultEnd: '16:00' },
+                { id: 'evening', name: 'Evening', defaultStart: '16:00', defaultEnd: '20:00' }
+              ];
+          setupModel.staffingNeeds = state.customBusiness.staffingNeeds
+            ? JSON.parse(JSON.stringify(state.customBusiness.staffingNeeds))
+            : {};
+        } else {
+          if (titleEl) titleEl.textContent = 'Set Up My Business';
+          if (btnSave) btnSave.textContent = 'Save & Start';
+          if (nameInput) nameInput.value = '';
+          if (typeSelect) typeSelect.value = 'Restaurant';
+          if (otherGroup) otherGroup.style.display = 'none';
+          if (otherInput) otherInput.value = '';
+          setupModel.roles = ['', ''];
+          setupModel.operatingDays = [...DAYS];
+          setupModel.shifts = [
+            { id: 'morning', name: 'Morning', defaultStart: '08:00', defaultEnd: '12:00' },
+            { id: 'afternoon', name: 'Afternoon', defaultStart: '12:00', defaultEnd: '16:00' },
+            { id: 'evening', name: 'Evening', defaultStart: '16:00', defaultEnd: '20:00' }
+          ];
+          setupModel.staffingNeeds = {};
+        }
+
+        renderSetupRolesList();
+        renderSetupDaysList();
+        renderSetupShiftsList();
+        renderSetupStaffingMatrix();
+
+        const modal = document.getElementById('modal-business-setup');
+        if (modal) modal.classList.add('active');
+      }
+
+      function closeBusinessSetupModal() {
+        const modal = document.getElementById('modal-business-setup');
+        if (modal) modal.classList.remove('active');
+        const indSelect = document.getElementById('select-industry-preset');
+        if (indSelect) indSelect.value = state.currentIndustry || 'cafe';
+      }
+
+      function renderSetupRolesList() {
+        const container = document.getElementById('setup-roles-list');
+        if (!container) return;
+        container.innerHTML = '';
+
+        setupModel.roles.forEach((role, idx) => {
+          const row = document.createElement('div');
+          row.className = 'setup-role-row';
+          row.innerHTML = `
+            <input type="text" class="form-input setup-role-input" data-idx="${idx}" placeholder="e.g. Server, Cook, Host" value="${role.replace(/"/g, '&quot;')}" style="flex:1;">
+            <button type="button" class="btn btn-ghost btn-xs btn-remove-role" data-idx="${idx}" title="Remove role" style="color:var(--rose-600); padding:0.4rem 0.6rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          `;
+          container.appendChild(row);
+        });
+
+        // Attach listeners
+        container.querySelectorAll('.setup-role-input').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+            setupModel.roles[idx] = e.target.value;
+            renderSetupStaffingMatrix();
+          });
+        });
+
+        container.querySelectorAll('.btn-remove-role').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(btn.getAttribute('data-idx'), 10);
+            setupModel.roles.splice(idx, 1);
+            if (setupModel.roles.length === 0) setupModel.roles.push('');
+            renderSetupRolesList();
+            renderSetupStaffingMatrix();
+          });
+        });
+      }
+
+      function renderSetupDaysList() {
+        const container = document.getElementById('setup-days-list');
+        if (!container) return;
+        container.innerHTML = '';
+
+        DAYS.forEach(day => {
+          const isChecked = setupModel.operatingDays.includes(day);
+          const label = document.createElement('label');
+          label.className = 'setup-day-pill';
+          label.innerHTML = `
+            <input type="checkbox" class="setup-day-checkbox" value="${day}" ${isChecked ? 'checked' : ''}>
+            <span>${day}</span>
+          `;
+          container.appendChild(label);
+        });
+
+        container.querySelectorAll('.setup-day-checkbox').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            const day = e.target.value;
+            if (e.target.checked) {
+              if (!setupModel.operatingDays.includes(day)) setupModel.operatingDays.push(day);
+            } else {
+              setupModel.operatingDays = setupModel.operatingDays.filter(d => d !== day);
+            }
+          });
+        });
+      }
+
+      function renderSetupShiftsList() {
+        const container = document.getElementById('setup-shifts-list');
+        if (!container) return;
+        container.innerHTML = '';
+
+        setupModel.shifts.forEach((shift, idx) => {
+          const row = document.createElement('div');
+          row.className = 'setup-shift-row';
+          row.innerHTML = `
+            <input type="text" class="form-input setup-shift-name" data-idx="${idx}" placeholder="Shift Name (e.g. Lunch)" value="${(shift.name || '').replace(/"/g, '&quot;')}" required>
+            <div style="display:flex; align-items:center; gap:0.25rem;">
+              <span style="font-size:0.75rem; color:var(--slate-500);">Start:</span>
+              <input type="time" class="form-input setup-shift-start" data-idx="${idx}" value="${shift.defaultStart || '08:00'}" required>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.25rem;">
+              <span style="font-size:0.75rem; color:var(--slate-500);">End:</span>
+              <input type="time" class="form-input setup-shift-end" data-idx="${idx}" value="${shift.defaultEnd || '16:00'}" required>
+            </div>
+            <button type="button" class="btn btn-ghost btn-xs btn-remove-shift" data-idx="${idx}" title="Remove shift" style="color:var(--rose-600); padding:0.4rem 0.6rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          `;
+          container.appendChild(row);
+        });
+
+        // Listeners
+        container.querySelectorAll('.setup-shift-name').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+            setupModel.shifts[idx].name = e.target.value;
+            renderSetupStaffingMatrix();
+          });
+        });
+        container.querySelectorAll('.setup-shift-start').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+            setupModel.shifts[idx].defaultStart = e.target.value;
+          });
+        });
+        container.querySelectorAll('.setup-shift-end').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+            setupModel.shifts[idx].defaultEnd = e.target.value;
+          });
+        });
+        container.querySelectorAll('.btn-remove-shift').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = parseInt(btn.getAttribute('data-idx'), 10);
+            setupModel.shifts.splice(idx, 1);
+            if (setupModel.shifts.length === 0) {
+              setupModel.shifts.push({ id: 'shift_' + Date.now(), name: 'Main Shift', defaultStart: '09:00', defaultEnd: '17:00' });
+            }
+            renderSetupShiftsList();
+            renderSetupStaffingMatrix();
+          });
+        });
+      }
+
+      function renderSetupStaffingMatrix() {
+        const thead = document.getElementById('setup-staffing-matrix-head');
+        const tbody = document.getElementById('setup-staffing-matrix-body');
+        if (!thead || !tbody) return;
+
+        const activeRoles = setupModel.roles.map(r => r.trim()).filter(Boolean);
+
+        let headHtml = '<tr><th style="text-align:left; padding:0.5rem;">Shift</th>';
+        activeRoles.forEach(r => {
+          headHtml += `<th style="padding:0.5rem;">${r}</th>`;
+        });
+        headHtml += '<th style="padding:0.5rem;">Total Staff</th></tr>';
+        thead.innerHTML = headHtml;
+
+        tbody.innerHTML = '';
+        setupModel.shifts.forEach((shift, sIdx) => {
+          const tr = document.createElement('tr');
+          const shiftName = shift.name && shift.name.trim() ? shift.name : `Shift ${sIdx + 1}`;
+          let rowHtml = `<td style="font-weight:700; text-align:left; padding:0.5rem; background:var(--slate-50);">${shiftName}</td>`;
+
+          let shiftTotal = 0;
+          activeRoles.forEach(r => {
+            const curVal = (setupModel.staffingNeeds[shift.id] && setupModel.staffingNeeds[shift.id][r] !== undefined)
+              ? setupModel.staffingNeeds[shift.id][r]
+              : 1;
+            shiftTotal += curVal;
+            rowHtml += `
+              <td style="padding:0.4rem;">
+                <input type="number" min="0" max="20" class="setup-matrix-input" data-shift="${shift.id}" data-role="${r.replace(/"/g, '&quot;')}" value="${curVal}">
+              </td>
+            `;
+          });
+
+          rowHtml += `<td style="font-weight:700; color:var(--primary); padding:0.5rem;" id="setup-matrix-total-${shift.id}">${shiftTotal}</td>`;
+          tr.innerHTML = rowHtml;
+          tbody.appendChild(tr);
+        });
+
+        // Matrix input listeners
+        tbody.querySelectorAll('.setup-matrix-input').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const shiftId = e.target.getAttribute('data-shift');
+            const role = e.target.getAttribute('data-role');
+            const val = Math.max(0, parseInt(e.target.value, 10) || 0);
+            if (!setupModel.staffingNeeds[shiftId]) setupModel.staffingNeeds[shiftId] = {};
+            setupModel.staffingNeeds[shiftId][role] = val;
+
+            // Recalculate row total
+            let total = 0;
+            activeRoles.forEach(r => {
+              total += ((setupModel.staffingNeeds[shiftId] && setupModel.staffingNeeds[shiftId][r] !== undefined)
+                ? setupModel.staffingNeeds[shiftId][r]
+                : 1);
+            });
+            const totEl = document.getElementById(`setup-matrix-total-${shiftId}`);
+            if (totEl) totEl.textContent = total;
+          });
+        });
+      }
+
+      function handleBusinessSetupSubmit(e) {
+        if (e && e.preventDefault) e.preventDefault();
+
+        const nameInput = document.getElementById('setup-biz-name');
+        const bizName = nameInput ? nameInput.value.trim() : '';
+        if (!bizName) {
+          showToast('Please enter your business name.', 'error');
+          return;
+        }
+
+        const typeSelect = document.getElementById('setup-biz-type');
+        let bizType = typeSelect ? typeSelect.value : 'Restaurant';
+        let otherType = '';
+        if (bizType === 'Other') {
+          const otherInput = document.getElementById('setup-biz-type-other');
+          otherType = otherInput ? otherInput.value.trim() : '';
+          if (!otherType) {
+            showToast('Please specify your custom business type.', 'error');
+            return;
+          }
+        }
+
+        const activeRoles = setupModel.roles.map(r => r.trim()).filter(Boolean);
+        if (activeRoles.length === 0) {
+          showToast('Please specify at least one role (e.g. Server, Cook, Host).', 'error');
+          return;
+        }
+
+        if (setupModel.operatingDays.length === 0) {
+          showToast('Please select at least one operating day.', 'error');
+          return;
+        }
+
+        if (setupModel.shifts.length === 0) {
+          showToast('Please define at least one shift.', 'error');
+          return;
+        }
+
+        for (const s of setupModel.shifts) {
+          if (!s.name || !s.name.trim()) {
+            showToast('Please provide a name for all shifts.', 'error');
+            return;
+          }
+        }
+
+        // Check if removing roles in use (Requirement 4)
+        if (state.customBusiness && state.customBusiness.enabled) {
+          const oldRoles = state.customBusiness.roles || [];
+          const removedRoles = oldRoles.filter(r => !activeRoles.includes(r));
+          const affectedEmps = state.employees.filter(emp => removedRoles.includes(emp.role));
+          if (affectedEmps.length > 0) {
+            const empNames = affectedEmps.map(emp => `${emp.name} (${emp.role})`).join(', ');
+            const proceed = confirm(`The role(s) being removed are currently assigned to employees: ${empNames}. Removing them will clear or invalidate their assignments. Do you want to proceed?`);
+            if (!proceed) return;
+          }
+
+          // Check if removing shifts in use (Requirement 4)
+          const newShiftIds = setupModel.shifts.map(s => s.id);
+          const oldShifts = state.customBusiness.shifts || [];
+          const removedShiftIds = oldShifts.filter(s => !newShiftIds.includes(s.id)).map(s => s.id);
+          let shiftInUse = false;
+          removedShiftIds.forEach(sId => {
+            DAYS.forEach(d => {
+              if (state.activeSchedule[d] && state.activeSchedule[d][sId] && state.activeSchedule[d][sId].length > 0) {
+                shiftInUse = true;
+              }
+            });
+          });
+          if (shiftInUse) {
+            const proceed = confirm(`One or more shifts being removed currently have scheduled employees. Proceeding will clear assignments for those shifts. Do you want to proceed?`);
+            if (!proceed) return;
+          }
+        }
+
+        const isNewSetup = !state.customBusiness || !state.customBusiness.enabled;
+
+        // Build shift requirements for each operating day
+        const req = {};
+        setupModel.operatingDays.forEach(day => {
+          req[day] = {};
+          setupModel.shifts.forEach(s => {
+            const shiftRoles = {};
+            activeRoles.forEach(r => {
+              const count = (setupModel.staffingNeeds[s.id] && setupModel.staffingNeeds[s.id][r] !== undefined)
+                ? setupModel.staffingNeeds[s.id][r]
+                : 1;
+              shiftRoles[r] = count;
+            });
+            req[day][s.id] = {
+              start: s.defaultStart || '08:00',
+              end: s.defaultEnd || '16:00',
+              roles: shiftRoles
+            };
+          });
+        });
+
+        // If new setup, start with an EMPTY team (Requirement 3)
+        if (isNewSetup) {
+          state.employees = [];
+          state.activeSchedule = {};
+          state.uncoveredSlots = [];
+          state.callouts = [];
+          state.manualAssignments = [];
+          state.shiftConfirmations = {};
+          state.previousSchedule = null;
+          state.lastDiff = null;
+          state.lastRegenSummary = null;
+        }
+
+        state.shiftRequirements = req;
+        state.customBusiness = {
+          enabled: true,
+          name: bizName,
+          type: bizType,
+          otherType,
+          roles: activeRoles,
+          operatingDays: [...setupModel.operatingDays],
+          shifts: JSON.parse(JSON.stringify(setupModel.shifts)),
+          staffingNeeds: JSON.parse(JSON.stringify(setupModel.staffingNeeds))
+        };
+        state.currentIndustry = 'custom';
+        state.selectedConfigDay = setupModel.operatingDays[0] || 'Monday';
+        state.activeMobileDay = setupModel.operatingDays[0] || 'Monday';
+
+        updateHeaderForCustomBusiness();
+        saveToStorage();
+        closeBusinessSetupModal();
+        renderAll();
+
+        showToast(
+          isNewSetup 
+            ? `🎉 Business "${bizName}" configured! Add your first employee to get started.` 
+            : `✓ Updated business setup for "${bizName}".`,
+          'success'
+        );
+      }
+
+      function handleIndustryPresetChange(newVal) {
+        if (newVal === 'custom') {
+          const savedCustom = localStorage.getItem(CUSTOM_BIZ_KEY);
+          if (savedCustom) {
+            try {
+              const parsed = JSON.parse(savedCustom);
+              state.customBusiness = parsed.customBusiness;
+              state.employees = parsed.employees || [];
+              state.shiftRequirements = parsed.shiftRequirements || {};
+              state.activeSchedule = parsed.activeSchedule || {};
+              state.uncoveredSlots = parsed.uncoveredSlots || [];
+              state.callouts = parsed.callouts || [];
+              state.manualAssignments = parsed.manualAssignments || [];
+              state.shiftConfirmations = parsed.shiftConfirmations || {};
+              state.currentIndustry = 'custom';
+              if (state.customBusiness && state.customBusiness.operatingDays && state.customBusiness.operatingDays.length > 0) {
+                state.selectedConfigDay = state.customBusiness.operatingDays[0];
+                state.activeMobileDay = state.customBusiness.operatingDays[0];
+              }
+              updateHeaderForCustomBusiness();
+              saveToStorage();
+              renderAll();
+              showToast(`Restored your custom business: ${state.customBusiness.name}`, 'success');
+              return;
+            } catch (err) {
+              console.error('Error loading custom business:', err);
+            }
+          }
+          openBusinessSetupModal(false);
+        } else {
+          if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.enabled) {
+            const proceed = confirm("Switch to demo data? Your business will be saved");
+            if (!proceed) {
+              const selectEl = document.getElementById('select-industry-preset');
+              if (selectEl) selectEl.value = 'custom';
+              return;
+            }
+            backupCustomBusiness();
+          }
+          state.currentIndustry = newVal;
+          updateHeaderForCustomBusiness();
+          loadDemoScenario(newVal);
+        }
       }
 
       function generateDefaultShiftRequirements() {
@@ -4326,6 +5021,9 @@
         if (!industry || typeof industry !== 'string') {
           const selectEl = document.getElementById('select-industry-preset');
           industry = selectEl ? selectEl.value : (state.currentIndustry || 'cafe');
+        }
+        if (industry === 'custom') {
+          return;
         }
         state.currentIndustry = industry;
         const selectEl = document.getElementById('select-industry-preset');
@@ -4997,8 +5695,8 @@
 
         // Build list of all required shift slots across the entire week
         const allSlots = [];
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
             const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
             if (!shiftData) return;
@@ -5036,8 +5734,11 @@
         allSlots.sort((a, b) => a.difficultyScore - b.difficultyScore);
 
         const newSchedule = {};
-        DAYS.forEach(d => {
-          newSchedule[d] = { morning: [], afternoon: [], evening: [] };
+        getActiveDays().forEach(d => {
+          newSchedule[d] = {};
+          getActiveShifts().forEach(s => {
+            newSchedule[d][s.id] = [];
+          });
         });
 
         const newUncovered = [];
@@ -5159,10 +5860,14 @@
               // Priority 4: Clopening / Fatigue Rest Interval Heuristic (cadencunanan)
               let restBonusA = 0;
               let restBonusB = 0;
-              const dayIdx = DAYS.indexOf(day);
-              if (dayIdx > 0 && shiftId === 'morning') {
-                const prevDay = DAYS[dayIdx - 1];
-                const prevEvening = (newSchedule[prevDay] && newSchedule[prevDay].evening) || [];
+              const activeDays = getActiveDays();
+              const activeShifts = getActiveShifts();
+              const firstShiftId = activeShifts[0]?.id || 'morning';
+              const lastShiftId = activeShifts[activeShifts.length - 1]?.id || 'evening';
+              const dayIdx = activeDays.indexOf(day);
+              if (dayIdx > 0 && shiftId === firstShiftId) {
+                const prevDay = activeDays[dayIdx - 1];
+                const prevEvening = (newSchedule[prevDay] && newSchedule[prevDay][lastShiftId]) || [];
                 if (prevEvening.includes(a.id)) restBonusA = -500;
                 if (prevEvening.includes(b.id)) restBonusB = -500;
               }
@@ -5255,8 +5960,8 @@
           let preservedCount = 0;
           let otherChangedCount = 0;
 
-          DAYS.forEach(d => {
-            DEFAULT_SHIFTS.forEach(s => {
+          getActiveDays().forEach(d => {
+            getActiveShifts().forEach(s => {
               const prevList = (state.previousSchedule && state.previousSchedule[d] && state.previousSchedule[d][s.id]) || [];
               const newList = (newSchedule[d] && newSchedule[d][s.id]) || [];
               prevSlotsTotal += prevList.length;
@@ -5338,8 +6043,8 @@
         let totalRequiredSlots = 0;
         let totalAssignedSlots = 0;
 
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
             const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
             if (!shiftData) return;
@@ -5369,13 +6074,12 @@
         // Compute individual employee total assigned hours
         const empHours = {};
         state.employees.forEach(e => { empHours[e.id] = 0; });
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
-            const duration = calculateShiftDuration(
-              state.shiftRequirements[day][shiftId].start,
-              state.shiftRequirements[day][shiftId].end
-            );
+            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+            if (!shiftData) return;
+            const duration = calculateShiftDuration(shiftData.start, shiftData.end);
             const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
             assigned.forEach(id => {
               if (empHours[id] !== undefined) {
@@ -5480,9 +6184,9 @@
         let shiftCount = 0;
         const myShiftsByDay = {};
 
-        DAYS.forEach(day => {
+        getActiveDays().forEach(day => {
           myShiftsByDay[day] = [];
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
             const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
             if (assigned.includes(emp.id)) {
@@ -5522,7 +6226,7 @@
         // Attendance and Shift Confirmations status
         let myTotalShifts = 0;
         let myConfirmedShifts = 0;
-        DAYS.forEach(day => {
+        getActiveDays().forEach(day => {
           myShiftsByDay[day].forEach(s => {
             myTotalShifts++;
             const k = `${emp.id}_${day}_${s.shiftId}`;
@@ -5579,7 +6283,7 @@
         const daysListEl = document.getElementById('portal-days-list');
         daysListEl.innerHTML = '';
 
-        DAYS.forEach(day => {
+        getActiveDays().forEach(day => {
           const shifts = myShiftsByDay[day];
           const isWorking = shifts.length > 0;
           const dayShort = day.substring(0, 3);
@@ -5679,8 +6383,8 @@
 
         const icsEvents = [];
 
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
             const assigned = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
             if (assigned.includes(emp.id)) {
@@ -6043,19 +6747,51 @@
 
       /* Render Schedule Calendar Matrix */
       function renderScheduleMatrix(metrics) {
-        // Update header daily required hours
+        const activeDays = getActiveDays();
+        const activeShifts = getActiveShifts();
+
+        // Update header daily required hours & column visibility
         DAYS.forEach(day => {
-          let dayReq = 0;
-          DEFAULT_SHIFTS.forEach(s => {
-            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][s.id] : null;
-            if (shiftData) {
-              const dur = calculateShiftDuration(shiftData.start, shiftData.end);
-              const count = Object.values(shiftData.roles).reduce((a, b) => a + b, 0);
-              dayReq += (dur * count);
-            }
-          });
-          const headerSub = document.getElementById(`header-req-${day}`);
-          if (headerSub) headerSub.textContent = formatHours(dayReq) + ' req';
+          const isOperating = activeDays.includes(day);
+          const th = document.querySelector(`#schedule-matrix-table th[data-col="${day}"]`);
+          if (th) th.style.display = isOperating ? '' : 'none';
+
+          const mobBtn = document.querySelector(`.mobile-day-btn[data-day="${day}"]`);
+          if (mobBtn) mobBtn.style.display = isOperating ? '' : 'none';
+
+          const shiftTab = document.querySelector(`#shift-config-day-tabs .day-tab-pill[data-day="${day}"]`);
+          if (shiftTab) shiftTab.style.display = isOperating ? '' : 'none';
+
+          if (isOperating) {
+            let dayReq = 0;
+            activeShifts.forEach(s => {
+              const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][s.id] : null;
+              if (shiftData) {
+                const dur = calculateShiftDuration(shiftData.start, shiftData.end);
+                const count = Object.values(shiftData.roles).reduce((a, b) => a + b, 0);
+                dayReq += (dur * count);
+              }
+            });
+            const headerSub = document.getElementById(`header-req-${day}`);
+            if (headerSub) headerSub.textContent = formatHours(dayReq) + ' req';
+          }
+        });
+
+        // Ensure activeMobileDay and selectedConfigDay are valid
+        if (!activeDays.includes(state.activeMobileDay)) {
+          state.activeMobileDay = activeDays[0] || 'Monday';
+        }
+        if (!activeDays.includes(state.selectedConfigDay)) {
+          state.selectedConfigDay = activeDays[0] || 'Monday';
+        }
+
+        // Sync mobile active day classes
+        document.querySelectorAll('#schedule-matrix-table th').forEach(th => {
+          if (th.getAttribute('data-col') === state.activeMobileDay) {
+            th.classList.add('mobile-active-day');
+          } else {
+            th.classList.remove('mobile-active-day');
+          }
         });
 
         const tbody = document.getElementById('schedule-matrix-tbody');
@@ -6064,14 +6800,16 @@
         let totalAssignedSlots = 0;
         let totalConfirmedSlots = 0;
 
-        DEFAULT_SHIFTS.forEach(shiftDef => {
+        activeShifts.forEach(shiftDef => {
           const shiftId = shiftDef.id;
           const tr = document.createElement('tr');
 
           // First Column: Shift Name & Timing
           const th = document.createElement('td');
           th.className = 'shift-header-cell';
-          const sampleTiming = state.shiftRequirements['Monday'][shiftId];
+          const firstDay = activeDays[0] || 'Monday';
+          const sampleTiming = (state.shiftRequirements[firstDay] && state.shiftRequirements[firstDay][shiftId])
+            || { start: shiftDef.defaultStart || '08:00', end: shiftDef.defaultEnd || '12:00' };
           const duration = calculateShiftDuration(sampleTiming.start, sampleTiming.end);
 
           th.innerHTML = `
@@ -6084,8 +6822,8 @@
           `;
           tr.appendChild(th);
 
-          // Columns for Monday through Sunday
-          DAYS.forEach(day => {
+          // Columns for operating days
+          activeDays.forEach(day => {
             const td = document.createElement('td');
             td.className = 'schedule-cell';
             td.setAttribute('data-col', day);
@@ -6094,8 +6832,8 @@
               td.classList.add('mobile-active-day');
             }
 
-            const shiftData = state.shiftRequirements[day][shiftId];
-            const requiredCount = Object.values(shiftData.roles).reduce((a, b) => a + b, 0);
+            const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+            const requiredCount = shiftData ? Object.values(shiftData.roles).reduce((a, b) => a + b, 0) : 0;
             const assignedIds = (state.activeSchedule[day] && state.activeSchedule[day][shiftId]) || [];
             const isFullyStaffed = assignedIds.length >= requiredCount && requiredCount > 0;
 
@@ -6216,15 +6954,27 @@
 
         if (state.employees.length === 0) {
           container.innerHTML = `
-            <div class="empty-state" style="grid-column: 1 / -1;">
-              <div class="empty-icon">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <div class="empty-state" style="grid-column: 1 / -1; padding: 2.5rem 1.5rem; text-align: center;">
+              <div class="empty-icon" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; border-radius: 50%; background: var(--emerald-50); color: var(--emerald-600); display: flex; align-items: center; justify-content: center;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               </div>
-              <h3 class="empty-title">No Employees Found</h3>
-              <p class="empty-desc">Get started by loading sample employees or adding your team members manually.</p>
-              <button class="btn btn-primary btn-sm" onclick="document.getElementById('btn-load-sample-employees').click()">
-                Load Sample Employees
-              </button>
+              <h3 class="empty-title" style="font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 0.35rem;">Add your first employee to get started</h3>
+              <p class="empty-desc" style="font-size: 0.85rem; color: var(--slate-500); max-width: 440px; margin: 0 auto 1.25rem;">
+                ${state.currentIndustry === 'custom' 
+                  ? 'Define your team roster by adding staff members with qualified roles and weekly shift availability.' 
+                  : 'Get started by adding your team members or loading a sample team.'}
+              </p>
+              <div style="display: flex; gap: 0.65rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" onclick="window.openAddEmployeeModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                  Add Employee
+                </button>
+                ${state.currentIndustry !== 'custom' ? `
+                  <button class="btn btn-secondary btn-sm" onclick="document.getElementById('btn-load-demo').click()">
+                    Load Sample Team
+                  </button>
+                ` : ''}
+              </div>
             </div>
           `;
           return;
@@ -6243,9 +6993,9 @@
 
           // Availability chips
           let availChipsHtml = '';
-          DAYS.forEach(day => {
-            const hasShift = emp.availability[day] && 
-              (emp.availability[day].morning || emp.availability[day].afternoon || emp.availability[day].evening);
+          getActiveDays().forEach(day => {
+            const hasShift = emp.availability && emp.availability[day] && 
+              Object.values(emp.availability[day]).some(Boolean);
             availChipsHtml += `
               <span class="day-avail-chip ${hasShift ? 'has-shifts' : 'no-shifts'}">
                 ${day.slice(0, 3)}
@@ -6258,8 +7008,8 @@
 
           let empTotalShifts = 0;
           let empConfirmedShifts = 0;
-          DAYS.forEach(d => {
-            DEFAULT_SHIFTS.forEach(s => {
+          getActiveDays().forEach(d => {
+            getActiveShifts().forEach(s => {
               if (state.activeSchedule[d] && state.activeSchedule[d][s.id] && state.activeSchedule[d][s.id].includes(emp.id)) {
                 empTotalShifts++;
                 if (state.shiftConfirmations && state.shiftConfirmations[`${emp.id}_${d}_${s.id}`]) {
@@ -6325,7 +7075,16 @@
 
       /* Render Shift Requirements Editor for Selected Day */
       function renderShiftRequirements() {
-        const day = state.selectedConfigDay;
+        const activeDays = getActiveDays();
+        const activeShifts = getActiveShifts();
+        const activeRoles = getActiveRoles();
+
+        let day = state.selectedConfigDay;
+        if (!activeDays.includes(day)) {
+          day = activeDays[0] || 'Monday';
+          state.selectedConfigDay = day;
+        }
+
         document.getElementById('shift-config-current-day-title').textContent = `${day} Staffing Configuration`;
 
         const tbody = document.getElementById('shift-config-tbody');
@@ -6334,9 +7093,10 @@
         let dayTotalHours = 0;
         let dayTotalSlots = 0;
 
-        DEFAULT_SHIFTS.forEach(shiftDef => {
+        activeShifts.forEach(shiftDef => {
           const shiftId = shiftDef.id;
-          const shiftData = state.shiftRequirements[day][shiftId];
+          const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
+          if (!shiftData) return;
           const duration = calculateShiftDuration(shiftData.start, shiftData.end);
 
           const tr = document.createElement('tr');
@@ -6358,8 +7118,8 @@
           let rolesHtml = '<div class="role-req-pills">';
           let shiftStaffCount = 0;
 
-          ROLES.forEach(role => {
-            const count = shiftData.roles[role] || 0;
+          activeRoles.forEach(role => {
+            const count = (shiftData.roles && shiftData.roles[role]) || 0;
             shiftStaffCount += count;
             rolesHtml += `
               <div class="req-stepper">
@@ -6385,7 +7145,7 @@
         });
 
         document.getElementById('shift-config-day-hours-summary').textContent = 
-          `3 shifts • ${dayTotalSlots} positions needed • ${formatHours(dayTotalHours)} required staffing`;
+          `${activeShifts.length} shifts • ${dayTotalSlots} positions needed • ${formatHours(dayTotalHours)} required staffing`;
 
         // Check for shift overlaps on the current day
         checkShiftOverlapAlert(day);
@@ -6393,11 +7153,17 @@
 
       function checkShiftOverlapAlert(day) {
         const shifts = state.shiftRequirements[day];
-        const intervals = [
-          { name: 'Morning', s: parseTimeToHours(shifts.morning.start), e: parseTimeToHours(shifts.morning.end) },
-          { name: 'Afternoon', s: parseTimeToHours(shifts.afternoon.start), e: parseTimeToHours(shifts.afternoon.end) },
-          { name: 'Evening', s: parseTimeToHours(shifts.evening.start), e: parseTimeToHours(shifts.evening.end) }
-        ];
+        if (!shifts) return;
+        const intervals = [];
+        getActiveShifts().forEach(s => {
+          if (shifts[s.id] && shifts[s.id].start && shifts[s.id].end) {
+            intervals.push({
+              name: s.name,
+              s: parseTimeToHours(shifts[s.id].start),
+              e: parseTimeToHours(shifts[s.id].end)
+            });
+          }
+        });
 
         let overlap = false;
         for (let i = 0; i < intervals.length; i++) {
@@ -6410,7 +7176,7 @@
         }
 
         const alertEl = document.getElementById('shift-overlap-alert');
-        alertEl.style.display = overlap ? 'block' : 'none';
+        if (alertEl) alertEl.style.display = overlap ? 'block' : 'none';
       }
 
       /* Render Fairness & Hours Analytics */
@@ -6497,8 +7263,8 @@
           if (assigned < pref) {
             // Count open days
             let openDays = 0;
-            DAYS.forEach(d => {
-              if (emp.availability[d] && (emp.availability[d].morning || emp.availability[d].afternoon || emp.availability[d].evening)) {
+            getActiveDays().forEach(d => {
+              if (emp.availability && emp.availability[d] && Object.values(emp.availability[d]).some(Boolean)) {
                 openDays++;
               }
             });
@@ -6541,8 +7307,8 @@
         if (state.previousSchedule) {
           let totalPreviousSlots = 0;
           let matchingSlots = 0;
-          DAYS.forEach(day => {
-            DEFAULT_SHIFTS.forEach(shiftDef => {
+          getActiveDays().forEach(day => {
+            getActiveShifts().forEach(shiftDef => {
               const sId = shiftDef.id;
               const currentStaff = (state.activeSchedule[day] && state.activeSchedule[day][sId]) || [];
               const prevStaff = (state.previousSchedule[day] && state.previousSchedule[day][sId]) || [];
@@ -6665,11 +7431,15 @@
 
                 // 4. Clopening & Fatigue Rest Interval Audit (cadencunanan v1.2)
         let clopeningViolations = 0;
-        DAYS.forEach((day, dIdx) => {
+        const activeDays = getActiveDays();
+        const activeShifts = getActiveShifts();
+        const firstShiftId = activeShifts[0]?.id || 'morning';
+        const lastShiftId = activeShifts[activeShifts.length - 1]?.id || 'evening';
+        activeDays.forEach((day, dIdx) => {
           if (dIdx > 0) {
-            const prevDay = DAYS[dIdx - 1];
-            const morningAssigned = (state.activeSchedule[day] && state.activeSchedule[day].morning) || [];
-            const prevEveningAssigned = (state.activeSchedule[prevDay] && state.activeSchedule[prevDay].evening) || [];
+            const prevDay = activeDays[dIdx - 1];
+            const morningAssigned = (state.activeSchedule[day] && state.activeSchedule[day][firstShiftId]) || [];
+            const prevEveningAssigned = (state.activeSchedule[prevDay] && state.activeSchedule[prevDay][lastShiftId]) || [];
 
             morningAssigned.forEach(empId => {
               if (prevEveningAssigned.includes(empId)) {
@@ -6678,8 +7448,8 @@
                 allConflicts.push({
                   type: 'clopening',
                   title: `Fatigue Warning: Clopening Shift Detected (${emp ? emp.name : 'Staff'})`,
-                  desc: `${emp ? emp.name : 'Staff'} closed on ${prevDay} Evening and opened on ${day} Morning with under 10 hours of rest.`,
-                  meta: [`${prevDay} Evening -> ${day} Morning`, `Rest: <10h`, 'Fair Workweek'],
+                  desc: `${emp ? emp.name : 'Staff'} closed on ${prevDay} and opened on ${day} with under 10 hours of rest.`,
+                  meta: [`${prevDay} -> ${day}`, `Rest: <10h`, 'Fair Workweek'],
                   severity: 'warning'
                 });
               }
@@ -6758,7 +7528,37 @@
         document.getElementById('modal-employee-title').textContent = 'Add New Employee';
         document.getElementById('emp-form-id').value = '';
         document.getElementById('emp-name').value = '';
-        document.getElementById('emp-role').value = 'Server';
+
+        const roleSelect = document.getElementById('emp-role');
+        const activeRoles = getActiveRoles();
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.roles) {
+          roleSelect.innerHTML = activeRoles.map(r => `<option value="${r.replace(/"/g, '&quot;')}">${r}</option>`).join('');
+          roleSelect.value = activeRoles[0] || '';
+        } else {
+          roleSelect.innerHTML = `
+            <optgroup label="Café / Coffee Shop">
+              <option value="Shift Lead">Shift Lead</option>
+              <option value="Barista">Barista</option>
+              <option value="Cashier">Cashier</option>
+            </optgroup>
+            <optgroup label="Full-Service Restaurant">
+              <option value="Floor Manager">Floor Manager</option>
+              <option value="Line Cook">Line Cook</option>
+              <option value="Server">Server</option>
+              <option value="Host">Host</option>
+            </optgroup>
+            <optgroup label="Retail Store / Boutique">
+              <option value="Keyholder">Keyholder</option>
+              <option value="Sales Associate">Sales Associate</option>
+              <option value="Inventory Stocker">Inventory Stocker</option>
+            </optgroup>
+            <optgroup label="General / Other">
+              <option value="Manager">Manager</option>
+            </optgroup>
+          `;
+          roleSelect.value = activeRoles[0] || 'Server';
+        }
+
         document.getElementById('emp-max-hours').value = '35';
         document.getElementById('emp-pref-hours').value = '30';
         renderModalAvailabilityCheckboxes();
@@ -6772,7 +7572,39 @@
         document.getElementById('modal-employee-title').textContent = `Edit Employee: ${emp.name}`;
         document.getElementById('emp-form-id').value = emp.id;
         document.getElementById('emp-name').value = emp.name;
-        document.getElementById('emp-role').value = emp.role;
+
+        const roleSelect = document.getElementById('emp-role');
+        const activeRoles = getActiveRoles();
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.roles) {
+          let opts = activeRoles.map(r => `<option value="${r.replace(/"/g, '&quot;')}">${r}</option>`).join('');
+          if (!activeRoles.includes(emp.role)) {
+            opts += `<option value="${emp.role.replace(/"/g, '&quot;')}">${emp.role} (Current)</option>`;
+          }
+          roleSelect.innerHTML = opts;
+        } else {
+          roleSelect.innerHTML = `
+            <optgroup label="Café / Coffee Shop">
+              <option value="Shift Lead">Shift Lead</option>
+              <option value="Barista">Barista</option>
+              <option value="Cashier">Cashier</option>
+            </optgroup>
+            <optgroup label="Full-Service Restaurant">
+              <option value="Floor Manager">Floor Manager</option>
+              <option value="Line Cook">Line Cook</option>
+              <option value="Server">Server</option>
+              <option value="Host">Host</option>
+            </optgroup>
+            <optgroup label="Retail Store / Boutique">
+              <option value="Keyholder">Keyholder</option>
+              <option value="Sales Associate">Sales Associate</option>
+              <option value="Inventory Stocker">Inventory Stocker</option>
+            </optgroup>
+            <optgroup label="General / Other">
+              <option value="Manager">Manager</option>
+            </optgroup>
+          `;
+        }
+        roleSelect.value = emp.role;
         document.getElementById('emp-max-hours').value = emp.maxHours;
         document.getElementById('emp-pref-hours').value = emp.preferredHours || emp.maxHours;
         renderModalAvailabilityCheckboxes(emp.availability);
@@ -6784,15 +7616,28 @@
       }
 
       function renderModalAvailabilityCheckboxes(currentAvail = null) {
+        const activeDays = getActiveDays();
+        const activeShifts = getActiveShifts();
+
+        // Update thead columns for active operating days
+        const thead = document.querySelector('.modal-avail-table thead tr');
+        if (thead) {
+          let thHtml = '<th>Shift</th>';
+          activeDays.forEach(d => {
+            thHtml += `<th>${d.substring(0, 3)}</th>`;
+          });
+          thead.innerHTML = thHtml;
+        }
+
         const tbody = document.getElementById('modal-avail-tbody');
         tbody.innerHTML = '';
 
-        DEFAULT_SHIFTS.forEach(shiftDef => {
+        activeShifts.forEach(shiftDef => {
           const shiftId = shiftDef.id;
           const tr = document.createElement('tr');
           let rowHtml = `<td style="font-weight:700; background:var(--slate-50); text-align:left; padding-left:0.5rem;">${shiftDef.name}</td>`;
 
-          DAYS.forEach(day => {
+          activeDays.forEach(day => {
             const isChecked = currentAvail ? (currentAvail[day] && currentAvail[day][shiftId]) : true;
             rowHtml += `
               <td>
@@ -6822,9 +7667,9 @@
 
         // Build availability map from checkboxes
         const availability = {};
-        DAYS.forEach(day => {
+        getActiveDays().forEach(day => {
           availability[day] = {};
-          DEFAULT_SHIFTS.forEach(s => {
+          getActiveShifts().forEach(s => {
             const cb = document.querySelector(`.avail-checkbox[data-day="${day}"][data-shift="${s.id}"]`);
             availability[day][s.id] = cb ? cb.checked : false;
           });
@@ -6974,7 +7819,7 @@
         const warningCard = document.getElementById('manual-assign-warning-card');
         if (warningCard) warningCard.style.display = 'none';
 
-        const shiftDef = DEFAULT_SHIFTS.find(s => s.id === shiftId);
+        const shiftDef = getActiveShifts().find(s => s.id === shiftId);
         const shiftName = shiftDef ? shiftDef.name : (shiftId.charAt(0).toUpperCase() + shiftId.slice(1));
         const shiftData = state.shiftRequirements[day] ? state.shiftRequirements[day][shiftId] : null;
         const duration = shiftData ? calculateShiftDuration(shiftData.start, shiftData.end) : 4;
@@ -7021,7 +7866,7 @@
           let existingShiftName = null;
           for (const sId of Object.keys(dayShifts)) {
             if (dayShifts[sId].includes(emp.id)) {
-              const sDef = DEFAULT_SHIFTS.find(s => s.id === sId);
+              const sDef = getActiveShifts().find(s => s.id === sId);
               existingShiftName = sDef ? sDef.name.toLowerCase() : sId;
               break;
             }
@@ -7396,7 +8241,10 @@
         const dateRange = getActiveWeekDateRange();
         const lines = [];
 
-        lines.push(`📅 GETSHIFTY SCHEDULE: ${dateRange}`);
+        const bizTitle = (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.name)
+          ? state.customBusiness.name.toUpperCase()
+          : 'GETSHIFTY';
+        lines.push(`📅 ${bizTitle} SCHEDULE: ${dateRange}`);
         lines.push('----------------------------------------');
 
         const shiftShortNames = {
@@ -7415,11 +8263,11 @@
           Sunday: 'SUN'
         };
 
-        DAYS.forEach(day => {
+        getActiveDays().forEach(day => {
           const dayCode = dayShortNames[day] || day.slice(0, 3).toUpperCase();
           const dayAssignments = [];
 
-          DEFAULT_SHIFTS.forEach(shiftDef => {
+          getActiveShifts().forEach(shiftDef => {
             const shiftId = shiftDef.id;
             const shortShift = shiftShortNames[shiftId] || shiftDef.name;
             const shiftReq = (state.shiftRequirements[day] && state.shiftRequirements[day][shiftId]) || {};
@@ -7565,8 +8413,8 @@
         state.shiftConfirmations = state.shiftConfirmations || {};
 
         let count = 0;
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(s => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(s => {
             if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(empId)) {
               const key = `${empId}_${day}_${s.id}`;
               state.shiftConfirmations[key] = {
@@ -7591,8 +8439,8 @@
         state.shiftConfirmations = state.shiftConfirmations || {};
         let count = 0;
 
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(s => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(s => {
             const assigned = (state.activeSchedule[day] && state.activeSchedule[day][s.id]) || [];
             assigned.forEach(empId => {
               const key = `${empId}_${day}_${s.id}`;
@@ -7626,8 +8474,8 @@
         const unconfirmedEmployees = [];
         state.employees.forEach(emp => {
           let hasUnconfirmed = false;
-          DAYS.forEach(day => {
-            DEFAULT_SHIFTS.forEach(s => {
+          getActiveDays().forEach(day => {
+            getActiveShifts().forEach(s => {
               if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(emp.id)) {
                 const k = `${emp.id}_${day}_${s.id}`;
                 if (!state.shiftConfirmations || !state.shiftConfirmations[k]) {
@@ -7659,8 +8507,8 @@
         if (!emp) return;
 
         const myShifts = [];
-        DAYS.forEach(day => {
-          DEFAULT_SHIFTS.forEach(s => {
+        getActiveDays().forEach(day => {
+          getActiveShifts().forEach(s => {
             if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(empId)) {
               const k = `${empId}_${day}_${s.id}`;
               const isConf = !!(state.shiftConfirmations && state.shiftConfirmations[k]);
@@ -7691,8 +8539,8 @@
 
         state.employees.forEach(emp => {
           const empShifts = [];
-          DAYS.forEach(day => {
-            DEFAULT_SHIFTS.forEach(s => {
+          getActiveDays().forEach(day => {
+            getActiveShifts().forEach(s => {
               if (state.activeSchedule[day] && state.activeSchedule[day][s.id] && state.activeSchedule[day][s.id].includes(emp.id)) {
                 totalShifts++;
                 const k = `${emp.id}_${day}_${s.id}`;
@@ -7862,11 +8710,79 @@
           });
         }
     
-        // Industry Preset Selector (Customer Lead)
+        // Industry Preset Selector & Custom Business Switcher
         const industrySelect = document.getElementById('select-industry-preset');
         if (industrySelect) {
           industrySelect.addEventListener('change', (e) => {
-            loadDemoScenario(e.target.value);
+            handleIndustryPresetChange(e.target.value);
+          });
+        }
+
+        // Set Up My Business Button
+        const btnSetupBusiness = document.getElementById('btn-setup-business');
+        if (btnSetupBusiness) {
+          btnSetupBusiness.addEventListener('click', () => {
+            const isEdit = state.currentIndustry === 'custom' && !!(state.customBusiness && state.customBusiness.enabled);
+            openBusinessSetupModal(isEdit);
+          });
+        }
+
+        // Business Setup Modal Listeners
+        const btnCloseSetupModal = document.getElementById('btn-close-setup-modal');
+        if (btnCloseSetupModal) btnCloseSetupModal.addEventListener('click', closeBusinessSetupModal);
+
+        const btnCancelSetupModal = document.getElementById('btn-cancel-setup-modal');
+        if (btnCancelSetupModal) btnCancelSetupModal.addEventListener('click', closeBusinessSetupModal);
+
+        const formBizSetup = document.getElementById('form-business-setup');
+        if (formBizSetup) formBizSetup.addEventListener('submit', handleBusinessSetupSubmit);
+
+        const btnAddRole = document.getElementById('btn-add-setup-role');
+        if (btnAddRole) {
+          btnAddRole.addEventListener('click', () => {
+            setupModel.roles.push('');
+            renderSetupRolesList();
+            renderSetupStaffingMatrix();
+            const inputs = document.querySelectorAll('.setup-role-input');
+            if (inputs.length > 0) inputs[inputs.length - 1].focus();
+          });
+        }
+
+        const btnAddShift = document.getElementById('btn-add-setup-shift');
+        if (btnAddShift) {
+          btnAddShift.addEventListener('click', () => {
+            setupModel.shifts.push({
+              id: 'shift_' + Date.now(),
+              name: 'Shift ' + (setupModel.shifts.length + 1),
+              defaultStart: '09:00',
+              defaultEnd: '17:00'
+            });
+            renderSetupShiftsList();
+            renderSetupStaffingMatrix();
+          });
+        }
+
+        const btnDaysAll = document.getElementById('btn-setup-days-all');
+        if (btnDaysAll) {
+          btnDaysAll.addEventListener('click', () => {
+            setupModel.operatingDays = [...DAYS];
+            renderSetupDaysList();
+          });
+        }
+
+        const btnDaysWeekdays = document.getElementById('btn-setup-days-weekdays');
+        if (btnDaysWeekdays) {
+          btnDaysWeekdays.addEventListener('click', () => {
+            setupModel.operatingDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+            renderSetupDaysList();
+          });
+        }
+
+        const setupBizTypeSelect = document.getElementById('setup-biz-type');
+        if (setupBizTypeSelect) {
+          setupBizTypeSelect.addEventListener('change', (e) => {
+            const otherGrp = document.getElementById('setup-biz-type-other-group');
+            if (otherGrp) otherGrp.style.display = e.target.value === 'Other' ? 'block' : 'none';
           });
         }
 
@@ -7961,19 +8877,30 @@
         document.getElementById('btn-apply-to-all-days').addEventListener('click', () => {
           const srcDay = state.selectedConfigDay;
           const srcConfig = state.shiftRequirements[srcDay];
-          DAYS.forEach(day => {
+          getActiveDays().forEach(day => {
             state.shiftRequirements[day] = JSON.parse(JSON.stringify(srcConfig));
           });
           saveToStorage();
           renderShiftRequirements();
           renderAll();
-          showToast(`Copied ${srcDay}'s shift staffing rules to all 7 days.`, 'success');
+          showToast(`Copied ${srcDay}'s shift staffing rules to all ${getActiveDays().length} operating days.`, 'success');
         });
 
         // Primary Buttons
-        document.getElementById('btn-load-demo').addEventListener('click', loadDemoScenario);
-        document.getElementById('btn-load-sample-employees').addEventListener('click', loadDemoScenario);
-        document.getElementById('btn-load-sample-shifts').addEventListener('click', loadDemoScenario);
+        function promptAndLoadDemo() {
+          if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.enabled) {
+            const proceed = confirm("Switch to demo data? Your business will be saved");
+            if (!proceed) return;
+            backupCustomBusiness();
+            state.currentIndustry = 'cafe';
+            updateHeaderForCustomBusiness();
+          }
+          loadDemoScenario();
+        }
+
+        document.getElementById('btn-load-demo').addEventListener('click', promptAndLoadDemo);
+        document.getElementById('btn-load-sample-employees').addEventListener('click', promptAndLoadDemo);
+        document.getElementById('btn-load-sample-shifts').addEventListener('click', promptAndLoadDemo);
 
         document.getElementById('btn-generate').addEventListener('click', () => runSchedulingEngine(false));
         document.getElementById('btn-regenerate').addEventListener('click', () => runSchedulingEngine(true));
@@ -8006,6 +8933,10 @@
         document.getElementById('btn-clear-all-data').addEventListener('click', () => {
           if (confirm('Clear all stored employee profiles, shift requirements, and schedules? This action cannot be undone.')) {
             localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(CUSTOM_BIZ_KEY);
+            state.customBusiness = null;
+            state.currentIndustry = 'cafe';
+            updateHeaderForCustomBusiness();
             state.employees = [];
             state.shiftRequirements = generateDefaultShiftRequirements();
             state.activeSchedule = {};
@@ -8297,10 +9228,14 @@
         setInterval(updateSessionStopwatch, 1000);
 
         const hasExistingData = loadFromStorage();
-        if (!hasExistingData || state.employees.length === 0) {
+        if (state.currentIndustry === 'custom' && state.customBusiness && state.customBusiness.enabled) {
+          updateHeaderForCustomBusiness();
+          renderAll();
+        } else if (!hasExistingData || state.employees.length === 0) {
           // Initialize with default demo scenario for smooth first-time user experience
           loadDemoScenario();
         } else {
+          updateHeaderForCustomBusiness();
           renderAll();
         }
         setupEventListeners();
